@@ -79,37 +79,44 @@ class UserQueries:
 
         return user
 
-    def create_user(self, username: str, hashed_password: str) -> UserWithPw:
+    def create_user(self,
+                    username: str,
+                    hashed_password: str,
+                    first_name: str,
+                    last_name: str,
+                    email: str
+                ) -> UserWithPw:
         """
         Creates a new user in the database
 
         Raises a UserInsertionException if creating the user fails
         """
-        try:
-            with pool.connection() as conn:
-                with conn.cursor(row_factory=class_row(UserWithPw)) as cur:
-                    cur.execute(
-                        """
-                        INSERT INTO users (
-                            username,
-                            password
-                        ) VALUES (
-                            %s, %s
-                        )
-                        RETURNING *;
-                        """,
-                        [
-                            username,
-                            hashed_password,
-                        ],
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(UserWithPw)) as cur:
+                cur.execute(
+                    """
+                    INSERT INTO users (
+                        username,
+                        password,
+                        first_name,
+                        last_name,
+                        email
+                    ) VALUES (
+                        %s, %s, %s, %s, %s
                     )
-                    user = cur.fetchone()
-                    if not user:
-                        raise UserDatabaseException(
-                            f"Could not create user with username {username}"
-                        )
-        except psycopg.Error:
-            raise UserDatabaseException(
-                f"Could not create user with username {username}"
-            )
-        return user
+                    RETURNING *;
+                    """,
+                    [
+                        username,
+                        hashed_password,
+                        first_name,
+                        last_name,
+                        email
+                    ],
+                )
+                user = cur.fetchone()
+                if not user:
+                    raise UserDatabaseException(
+                        f"Could not create user with username {username}"
+                    )
+                return user
