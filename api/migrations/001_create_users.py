@@ -3,7 +3,7 @@ steps = [
         # "Up" SQL statement
         """
         CREATE TABLE users (
-            user_id SERIAL PRIMARY KEY NOT NULL,
+            id SERIAL PRIMARY KEY NOT NULL,
             email VARCHAR(100) UNIQUE NOT NULL,
             username VARCHAR(100) UNIQUE NOT NULL,
             password VARCHAR(256) NOT NULL,
