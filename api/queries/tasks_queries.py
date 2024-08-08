@@ -19,7 +19,10 @@ pool = ConnectionPool(DATABASE_URL)
 
 class TaskQueries:
     
-    def create_task(self, task: TaskIn) -> TaskOut:
+    def create_task(self, 
+                    new_task: TaskIn,
+                    assigner_id: int
+                    ) -> TaskOut:
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(TaskOut)) as cur:
                 cur.execute(
@@ -29,23 +32,25 @@ class TaskQueries:
                         description,
                         due_date,
                         priority,
-                        assignee_id
+                        assignee_id,
+                        assigner_id
                     ) VALUES (
-                        %s, %s, %s, %s, %s
+                        %s, %s, %s, %s, %s, %s
                     )
                     RETURNING *;
                     """,
                     [
-                        task.title,
-                        task.description,
-                        task.due_date,
-                        task.priority,
-                        task.assignee_id
+                        new_task.title,
+                        new_task.description,
+                        new_task.due_date,
+                        new_task.priority,
+                        new_task.assignee_id,
+                        assigner_id
                     ],
                 )
-                task = cur.fetchone()
-                if not task:
+                new_task = cur.fetchone()
+                if not new_task:
                     raise TaskDatabaseException(
-                        f"Could not create task with title {task.title}"
+                        f"Could not create task with title {new_task.title}"
                     )
-                return task
+                return new_task
