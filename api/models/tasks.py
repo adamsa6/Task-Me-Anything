@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from datetime import date
+from datetime import datetime, date
 
 
 class TaskIn(BaseModel):
@@ -13,7 +13,7 @@ class TaskOut(BaseModel):
     id: int
     title: str
     description: str
-    created_on: date
+    created_on: datetime
     due_date: date
     priority: int
     status: str
