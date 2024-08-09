@@ -25,3 +25,6 @@ class TaskOut(BaseModel):
 
 class TaskList(BaseModel):
     tasks: List[TaskOut]
+
+class TaskStatusOnly(BaseModel):
+    status: str

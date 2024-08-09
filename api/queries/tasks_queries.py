@@ -8,7 +8,7 @@ from psycopg_pool import ConnectionPool
 from psycopg.rows import class_row
 from typing import Optional, List
 from models.users import UserWithPw
-from models.tasks import TaskIn, TaskOut, TaskList
+from models.tasks import TaskIn, TaskOut, TaskList, TaskStatusOnly
 from utils.exceptions import TaskDatabaseException
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -106,6 +106,32 @@ class TaskQueries:
                     WHERE id = %s;
                     """,
                     [task_id],
+                )
+                task = cur.fetchone()
+                return task
+
+    def update_task(self, task_id: int, task_in: TaskIn) -> TaskOut:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(TaskOut)) as cur:
+                cur.execute(
+                    """
+                    UPDATE tasks
+                    SET title = %s
+                        , description = %s
+                        , due_date = %s
+                        , priority = %s
+                        , assignee_id = %s
+                    WHERE id = %s
+                    RETURNING *;
+                    """,
+                    [
+                        task_in.title,
+                        task_in.description,
+                        task_in.due_date,
+                        task_in.priority,
+                        task_in.assignee_id,
+                        task_id,
+                    ]
                 )
                 task = cur.fetchone()
                 return task

@@ -9,7 +9,7 @@ from fastapi import (
 from queries.tasks_queries import TaskQueries
 
 from utils.exceptions import TaskDatabaseException
-from models.tasks import TaskIn, TaskOut, TaskList
+from models.tasks import TaskIn, TaskOut, TaskList, TaskStatusOnly
 from models.users import UserRequest, UserResponse
 
 from utils.authentication import try_get_jwt_user_data
@@ -20,6 +20,7 @@ router = APIRouter(prefix="/api")
 
 user_exception = HTTPException(status_code=401, detail="You must be logged in!")
 task_exception = HTTPException(status_code=404, detail="Task does not exist!")
+edit_task_exception = HTTPException(status_code=401, detail="You do not have permission to update this task")
 
 
 @router.post("/tasks")
@@ -85,3 +86,25 @@ def get_task_details(
     if task is None:
         raise task_exception
     return task
+
+
+@router.put("/tasks/{task_id}", response_model=TaskOut)
+def edit_task(
+    task_id: int,
+    task_in: TaskIn,
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: TaskQueries = Depends(),
+) -> TaskOut:
+
+    if user is None:
+        raise user_exception
+
+    task = queries.get_task(task_id)
+    if task is None:
+        raise task_exception
+
+    if user.id != task.assigner_id:
+        raise edit_task_exception
+    else:
+        task = queries.update_task(task_id, task_in)
+        return task
