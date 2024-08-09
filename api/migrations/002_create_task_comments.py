@@ -1,4 +1,4 @@
-steps = [
+     git steps = [
     [
         # "Up" SQL statement
         """
