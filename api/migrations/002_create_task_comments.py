@@ -1,4 +1,4 @@
-     git steps = [
+steps = [
     [
         # "Up" SQL statement
         """
@@ -17,7 +17,7 @@
         # "Down" SQL statement
         """
         DROP TABLE tasks;
-        """
+        """,
     ],
     [
         # "Up" SQL statement
@@ -33,6 +33,6 @@
         # "Down" SQL statement
         """
         DROP TABLE comments;
-        """
-    ]
+        """,
+    ],
 ]

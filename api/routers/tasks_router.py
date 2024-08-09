@@ -48,3 +48,14 @@ def list_all_tasks(
         raise user_exception
 
     return {"tasks": queries.list_all()}
+
+
+@router.get("/assigned-tasks/mine", response_model=TaskList)
+def list_assigned_tasks(
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: TaskQueries = Depends(),
+):
+    if user is None:
+        raise user_exception
+
+    return {"tasks": queries.list_assigned(assignee_id=user.id)}
