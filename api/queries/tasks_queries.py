@@ -77,3 +77,17 @@ class TaskQueries:
                 )
                 tasks = cur.fetchall()
                 return tasks
+
+    def list_mine(self, assigner_id: int) -> TaskList:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(TaskOut)) as cur:
+                cur.execute(
+                    """
+                    SELECT *
+                    FROM tasks
+                    WHERE assigner_id = %s;
+                    """,
+                    [assigner_id],
+                )
+                tasks = cur.fetchall()
+                return tasks
