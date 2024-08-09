@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime, date
+from typing import List
 
 
 class TaskIn(BaseModel):
@@ -8,6 +9,7 @@ class TaskIn(BaseModel):
     due_date: date
     priority: int
     assignee_id: int
+
 
 class TaskOut(BaseModel):
     id: int
@@ -19,3 +21,7 @@ class TaskOut(BaseModel):
     status: str
     assigner_id: int
     assignee_id: int
+
+
+class TaskList(BaseModel):
+    tasks: List[TaskOut]

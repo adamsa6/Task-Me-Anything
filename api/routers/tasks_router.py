@@ -6,23 +6,22 @@ from fastapi import (
     status,
     APIRouter,
 )
-from queries.tasks_queries import(
-    TaskQueries
-)
+from queries.tasks_queries import TaskQueries
 
 from utils.exceptions import TaskDatabaseException
-from models.tasks import TaskIn, TaskOut
+from models.tasks import TaskIn, TaskOut, TaskList
 from models.users import UserRequest, UserResponse
 
-from utils.authentication import (
-    try_get_jwt_user_data
-)
+from utils.authentication import try_get_jwt_user_data
 
 
 router = APIRouter(prefix="/api")
 
 
-user_exception = HTTPException(status_code=401, detail="You must be logged in!")
+user_exception = HTTPException(
+    status_code=401, detail="You must be logged in!"
+)
+
 
 @router.post("/tasks")
 def create_task(
@@ -35,6 +34,17 @@ def create_task(
     """
     if user is None:
         raise user_exception
-    print(user)
+
     task = queries.create_task(new_task=new_task, assigner_id=user.id)
     return task
+
+
+@router.get("/tasks", response_model=TaskList)
+def list_all_tasks(
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: TaskQueries = Depends(),
+):
+    if user is None:
+        raise user_exception
+
+    return {"tasks": queries.list_all()}

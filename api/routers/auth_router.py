@@ -1,6 +1,7 @@
 """
 User Authentication API Router
 """
+
 from fastapi import (
     Depends,
     Request,
@@ -44,12 +45,12 @@ async def signup(
     # Create the user in the database
     try:
         user = queries.create_user(
-                                new_user.username,
-                                hashed_password,
-                                new_user.first_name,
-                                new_user.last_name,
-                                new_user.email
-                            )
+            new_user.username,
+            hashed_password,
+            new_user.first_name,
+            new_user.last_name,
+            new_user.email,
+        )
     except UserDatabaseException as e:
         print(e)
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
@@ -117,12 +118,12 @@ async def signin(
 
     # Convert the UserWithPW to a UserOut
     return UserResponse(
-                    id=user.id,
-                    username=user.username,
-                    first_name=user.first_name,
-                    last_name=user.last_name,
-                    email=user.email
-                )
+        id=user.id,
+        username=user.username,
+        first_name=user.first_name,
+        last_name=user.last_name,
+        email=user.email,
+    )
 
 
 @router.get("/authenticate")

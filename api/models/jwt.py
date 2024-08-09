@@ -1,6 +1,7 @@
 """
 Pydantic Models for the JWT Payload
 """
+
 from pydantic import BaseModel
 
 
@@ -16,7 +17,6 @@ class JWTUserData(BaseModel):
     first_name: str
     last_name: str
     email: str
-
 
 
 # This represents the payload stored inside the JWT

@@ -5,6 +5,7 @@ from datetime import datetime
 class CommentIn(BaseModel):
     comment: str
 
+
 class CommentOut(BaseModel):
     id: int
     comment: str
