@@ -58,7 +58,9 @@ class TaskQueries:
             with conn.cursor(row_factory=class_row(TaskOut)) as cur:
                 cur.execute(
                     """
-                    SELECT * FROM tasks;
+                    SELECT *
+                    FROM tasks
+                    ORDER BY due_date, priority;
                     """
                 )
                 tasks = cur.fetchall()
@@ -71,7 +73,8 @@ class TaskQueries:
                     """
                     SELECT *
                     FROM tasks
-                    WHERE assignee_id = %s;
+                    WHERE assignee_id = %s
+                    ORDER BY due_date, priority;
                     """,
                     [assignee_id],
                 )
@@ -85,9 +88,24 @@ class TaskQueries:
                     """
                     SELECT *
                     FROM tasks
-                    WHERE assigner_id = %s;
+                    WHERE assigner_id = %s
+                    ORDER BY due_date, priority;
                     """,
                     [assigner_id],
                 )
                 tasks = cur.fetchall()
                 return tasks
+
+    def get_task(self, task_id: int) -> TaskOut:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(TaskOut)) as cur:
+                cur.execute(
+                    """
+                    SELECT *
+                    FROM tasks
+                    WHERE id = %s;
+                    """,
+                    [task_id],
+                )
+                task = cur.fetchone()
+                return task

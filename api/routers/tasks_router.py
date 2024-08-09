@@ -18,9 +18,8 @@ from utils.authentication import try_get_jwt_user_data
 router = APIRouter(prefix="/api")
 
 
-user_exception = HTTPException(
-    status_code=401, detail="You must be logged in!"
-)
+user_exception = HTTPException(status_code=401, detail="You must be logged in!")
+task_exception = HTTPException(status_code=404, detail="Task does not exist!")
 
 
 @router.post("/tasks")
@@ -70,3 +69,19 @@ def list_my_tasks(
         raise user_exception
 
     return {"tasks": queries.list_mine(assigner_id=user.id)}
+
+
+@router.get("/tasks/{task_id}", response_model=TaskOut)
+def get_task_details(
+    task_id: int,
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: TaskQueries = Depends(),
+) -> TaskOut:
+
+    if user is None:
+        raise user_exception
+
+    task = queries.get_task(task_id)
+    if task is None:
+        raise task_exception
+    return task
