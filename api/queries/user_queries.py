@@ -79,13 +79,14 @@ class UserQueries:
 
         return user
 
-    def create_user(self,
-                    username: str,
-                    hashed_password: str,
-                    first_name: str,
-                    last_name: str,
-                    email: str
-                ) -> UserWithPw:
+    def create_user(
+        self,
+        username: str,
+        hashed_password: str,
+        first_name: str,
+        last_name: str,
+        email: str,
+    ) -> UserWithPw:
         """
         Creates a new user in the database
 
@@ -106,13 +107,7 @@ class UserQueries:
                     )
                     RETURNING *;
                     """,
-                    [
-                        username,
-                        hashed_password,
-                        first_name,
-                        last_name,
-                        email
-                    ],
+                    [username, hashed_password, first_name, last_name, email],
                 )
                 user = cur.fetchone()
                 if not user:
