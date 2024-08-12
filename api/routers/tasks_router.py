@@ -1,26 +1,21 @@
 from fastapi import (
     Depends,
-    Request,
-    Response,
-    HTTPException,
-    status,
     APIRouter,
 )
+from utils.exceptions import (
+    user_exception,
+    task_exception,
+    edit_task_exception,
+    check_for_exceptions
+)
 from queries.tasks_queries import TaskQueries
-
-from utils.exceptions import TaskDatabaseException
-from models.tasks import TaskIn, TaskOut, TaskList, TaskStatusOnly
-from models.users import UserRequest, UserResponse
+from models.tasks import TaskIn, TaskOut, TaskList, TaskStatus
+from models.users import UserResponse
 
 from utils.authentication import try_get_jwt_user_data
 
 
 router = APIRouter(prefix="/api")
-
-
-user_exception = HTTPException(status_code=401, detail="You must be logged in!")
-task_exception = HTTPException(status_code=404, detail="Task does not exist!")
-edit_task_exception = HTTPException(status_code=401, detail="You do not have permission to update this task")
 
 
 @router.post("/tasks")
@@ -109,9 +104,10 @@ def edit_task(
         task = queries.update_task(task_id, task_in)
         return task
 
-@router.patch("/tasks/{task_id}/status-in-progress", response_model=TaskOut)
-def change_status_in_progress(
+@router.patch("/tasks/{task_id}/status", response_model=TaskOut)
+def change_task_status(
     task_id: int,
+    status: TaskStatus,
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
 ) -> TaskOut:
@@ -124,56 +120,7 @@ def change_status_in_progress(
     if task is None:
         raise task_exception
 
-    if user.id != task.assignee_id and user.id != task.assigner_id:
-        raise edit_task_exception
-    elif user.id == task.assignee_id and task.status == "deleted":
-        raise edit_task_exception
-    else:
-        task = queries.status_in_progress(task_id)
-        return task
+    check_for_exceptions(user, task, status)
 
-
-@router.patch("/tasks/{task_id}/status-completed", response_model=TaskOut)
-def change_status_completed(
-    task_id: int,
-    user: UserResponse = Depends(try_get_jwt_user_data),
-    queries: TaskQueries = Depends(),
-) -> TaskOut:
-
-    if user is None:
-        raise user_exception
-
-    task = queries.get_task(task_id)
-
-    if task is None:
-        raise task_exception
-
-    if user.id != task.assignee_id and user.id != task.assigner_id:
-        raise edit_task_exception
-    elif user.id == task.assignee_id and task.status == "deleted":
-        raise edit_task_exception
-    else:
-        task = queries.status_completed(task_id)
-        return task
-
-
-@router.patch("/tasks/{task_id}/status-deleted", response_model=TaskOut)
-def change_status_deleted(
-    task_id: int,
-    user: UserResponse = Depends(try_get_jwt_user_data),
-    queries: TaskQueries = Depends(),
-) -> TaskOut:
-
-    if user is None:
-        raise user_exception
-
-    task = queries.get_task(task_id)
-
-    if task is None:
-        raise task_exception
-
-    if user.id != task.assigner_id or task.status == 'completed':
-        raise edit_task_exception
-    else:
-        task = queries.status_deleted(task_id)
-        return task
+    task = queries.change_status(task_id, status)
+    return task

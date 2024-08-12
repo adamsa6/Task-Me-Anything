@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime, date
-from typing import List
+from typing import List, Literal
+from enum import Enum
 
 
 class TaskIn(BaseModel):
@@ -9,8 +10,6 @@ class TaskIn(BaseModel):
     due_date: date
     priority: int
     assignee_id: int
-
-
 
 class TaskOut(BaseModel):
     id: int
@@ -23,9 +22,8 @@ class TaskOut(BaseModel):
     assigner_id: int
     assignee_id: int
 
-
 class TaskList(BaseModel):
     tasks: List[TaskOut]
 
-class TaskStatusOnly(BaseModel):
-    status: str
+class TaskStatus(BaseModel):
+    status: Literal["Active", "In Progress", "Completed", "Deleted"]
