@@ -3,6 +3,16 @@
 * A reflection on any design conversations that you had
 * At least one ah-ha! moment that you had during your coding, however small
 
+## Journal Entry for 8/12/2024
+
+- We mob coded, with me piloting and sharing my screen. Since Yazan and I had pair programmed after our last class, we showed King and Andy the completed edit task router and query.
+- We worked together to created another router to edit the status of a task. At first, we created separate routers to change the status to each of the possible options, but then Andy and I worked together to refactor the code to be more concise / meet DRY.
+- In doing this, we wrote an additional function to check user exceptions in order to add some validation (such as making sure that the user is connected to the task as either the assignee or assigner before being able to change anything, and then adding some other conditionals depending on the situation).
+- Andy and I also worked to refactor the code, to separate out the exceptions we had written in order to have the code be more modular.
+- We refactored the queries to also be just one query to change the status.
+- We debugged an issue, and learned more about using Enum in order to use a Pydantic model just for the possible status options, but ended up deciding to import and use Literal instead.
+- It was cool to see how we can use a patch request to change just one piece of our table!
+
 ## Journal Entry for 8/9/2024
 - We mob programmed, with Yazan piloting and focused on created our list tasks. We worked together to implement the routers for list all tasks, list my tasks (tasks the user created), and list assigned tasks (tasks the user has been assigned).
 - We continued mob coding, with me piloting. We ordered the results of all the list queries by due date and priority, with the closest due date and highest priority (priority=1) showing first. The due date is the primary property to order by, and then using the priority.
@@ -12,7 +22,7 @@
 
 ## Journal Entry for 8/8/2024
 
-- We mob coded, with Yazan starting off piloting by sharing his screed. We fixed an error with our authentication, and made sure that it returned either the user or None.
+- We mob coded, with Yazan starting off piloting by sharing his screen. We fixed an error with our authentication, and made sure that it returned either the user or None.
 - we worked together to create our TaskIn, TaskOut, TaskList models (which I piloted), and then Yazan piloted the creation of the CommentIn and CommentOut models.
 - I worked together with Andy (with him piloting and sharing his screen) to create our create a task router and query.
 - I helped guide King through creating a list task router and function, and we ran into a bug that we worked together to fix.
