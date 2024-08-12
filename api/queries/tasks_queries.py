@@ -135,3 +135,50 @@ class TaskQueries:
                 )
                 task = cur.fetchone()
                 return task
+
+    def status_in_progress(self, task_id: int) -> TaskOut:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(TaskOut)) as cur:
+                cur.execute(
+                    """
+                    UPDATE tasks
+                    SET status = 'in progress'
+                    WHERE id = %s
+                    RETURNING *;
+                    """,
+                    [
+                        task_id
+                    ]
+                )
+                task = cur.fetchone()
+                return task
+
+    def status_completed(self, task_id: int) -> TaskOut:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(TaskOut)) as cur:
+                cur.execute(
+                    """
+                    UPDATE tasks
+                    SET status = 'completed'
+                    WHERE id = %s
+                    RETURNING *;
+                    """,
+                    [task_id],
+                )
+                task = cur.fetchone()
+                return task
+
+    def status_deleted(self, task_id: int) -> TaskOut:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(TaskOut)) as cur:
+                cur.execute(
+                    """
+                    UPDATE tasks
+                    SET status = 'deleted'
+                    WHERE id = %s
+                    RETURNING *;
+                    """,
+                    [task_id],
+                )
+                task = cur.fetchone()
+                return task

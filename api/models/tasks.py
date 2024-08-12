@@ -11,6 +11,7 @@ class TaskIn(BaseModel):
     assignee_id: int
 
 
+
 class TaskOut(BaseModel):
     id: int
     title: str
