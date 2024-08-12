@@ -10,4 +10,6 @@ We mob code with creation of our database tables and play a role in debugging er
 The Group and I took time creating the router and queries for the users table. Yazan, and Andrew as well as Arielle took turn with setting this up.
 
 King's Contribution -
-I was in charge of coding the router and the queries for the tasks table. We ended up having to debug and error that occured while getting the list all the tasks. An the end we were able to fix it closer to the end of the day. 
+I was in charge of coding the router and the queries for the tasks table. We ended up having to debug and error that occured while getting the list all the tasks. An the end we were able to fix it closer to the end of the day.
+## Journal Entry for 8/8/2024
+WE all help code the restrictions that allows the user to change the status of the task. After three iterations we were able to get the code to begin working.  Then I helped with checking if the code actually worked.
