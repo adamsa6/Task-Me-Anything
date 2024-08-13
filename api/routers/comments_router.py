@@ -5,6 +5,7 @@ from fastapi import (
 from utils.exceptions import (
     user_exception,
     comment_exception,
+    edit_comment_exception,
 )
 from queries.comments_queries import CommentQueries
 from models.comments import CommentIn, CommentOut, CommentList
@@ -63,8 +64,8 @@ def get_task_comment(
 
 @router.put("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
 def edit_task_comment(
-    task_id: int,
     comment_id: int,
+    comment_in: CommentIn,
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: CommentQueries = Depends(),
 ) -> CommentOut:
@@ -73,3 +74,11 @@ def edit_task_comment(
         raise user_exception
 
     comment = queries.get_comment(comment_id)
+
+    if comment is None:
+        raise comment_exception
+    if user.id != comment.user_id:
+        raise edit_comment_exception
+    else:
+        comment = queries.edit_comment(comment_id, comment_in)
+        return comment

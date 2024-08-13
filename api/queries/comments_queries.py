@@ -74,4 +74,21 @@ class CommentQueries:
                 )
                 comment = cur.fetchone()
                 return comment
-    
+
+    def edit_comment(self, comment_id: int, comment_in: CommentIn) -> CommentOut:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(CommentOut)) as cur:
+                cur.execute(
+                    """
+                    UPDATE comments
+                    SET comment = %s
+                    WHERE id = %s
+                    RETURNING *;
+                    """,
+                    [
+                        comment_in.comment,
+                        comment_id
+                    ]
+                )
+                comment = cur.fetchone()
+                return comment
