@@ -8,7 +8,7 @@ from psycopg_pool import ConnectionPool
 from psycopg.rows import class_row
 from typing import Optional, List
 from models.users import UserWithPw
-from models.comments import CommentIn, CommentOut
+from models.comments import CommentIn, CommentOut, CommentList
 from utils.exceptions import CommentDatabaseException
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -43,3 +43,20 @@ class CommentQueries:
                 if not new_comment:
                     raise CommentDatabaseException("Could not create comment")
                 return new_comment
+
+    def list_all(self, task_id:int) -> CommentList:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(CommentOut)) as cur:
+                cur.execute(
+                    """
+                    SELECT *
+                    FROM comments
+                    WHERE task_id = %s
+                    ORDER BY created_on;
+                    """,
+                    [
+                        task_id
+                    ]
+                )
+                comments = cur.fetchall()
+                return comments

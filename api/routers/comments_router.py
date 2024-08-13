@@ -9,7 +9,7 @@ from utils.exceptions import (
     check_for_exceptions,
 )
 from queries.comments_queries import CommentQueries
-from models.comments import CommentIn, CommentOut
+from models.comments import CommentIn, CommentOut, CommentList
 from models.users import UserResponse
 
 from utils.authentication import try_get_jwt_user_data
@@ -35,3 +35,13 @@ def create_comment(
     return comment
 
 
+@router.get("/tasks/{task_id}/comments", response_model=CommentList)
+def list_all_comments(
+    task_id: int,
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: CommentQueries = Depends(),
+) -> CommentList:
+    if user is None:
+        raise user_exception
+
+    return {"comments": queries.list_all(task_id=task_id)}
