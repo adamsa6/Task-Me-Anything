@@ -36,7 +36,7 @@ def create_comment(
 
 
 @router.get("/tasks/{task_id}/comments", response_model=CommentList)
-def list_all_comments(
+def list_task_comments(
     task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: CommentQueries = Depends(),
