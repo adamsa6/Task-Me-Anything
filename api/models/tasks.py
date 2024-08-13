@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime, date
 from typing import List, Literal
 from enum import Enum
+from models.comments import CommentOut
 
 
 class TaskIn(BaseModel):
@@ -27,3 +28,5 @@ class TaskList(BaseModel):
 
 class TaskStatus(BaseModel):
     status: Literal["Active", "In Progress", "Completed", "Deleted"]
+
+

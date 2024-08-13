@@ -9,7 +9,12 @@ from utils.exceptions import (
     check_for_exceptions
 )
 from queries.tasks_queries import TaskQueries
-from models.tasks import TaskIn, TaskOut, TaskList, TaskStatus
+from models.tasks import (
+    TaskIn,
+    TaskOut,
+    TaskList,
+    TaskStatus,
+)
 from models.users import UserResponse
 
 from utils.authentication import try_get_jwt_user_data

@@ -8,7 +8,12 @@ from psycopg_pool import ConnectionPool
 from psycopg.rows import class_row
 from typing import Optional, List
 from models.users import UserWithPw
-from models.tasks import TaskIn, TaskOut, TaskList, TaskStatus
+from models.tasks import (
+    TaskIn,
+    TaskOut,
+    TaskList,
+    TaskStatus,
+)
 from utils.exceptions import TaskDatabaseException
 
 DATABASE_URL = os.environ.get("DATABASE_URL")

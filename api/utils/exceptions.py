@@ -7,6 +7,9 @@ class UserDatabaseException(Exception):
 class TaskDatabaseException(Exception):
     pass
 
+class CommentDatabaseException(Exception):
+    pass
+
 
 user_exception = HTTPException(
     status_code=401, detail="You must be logged in!"
