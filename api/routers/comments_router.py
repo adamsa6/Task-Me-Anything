@@ -46,7 +46,6 @@ def list_task_comments(
 
 @router.get("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
 def get_task_comment(
-    task_id: int,
     comment_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: CommentQueries = Depends(),
@@ -62,15 +61,15 @@ def get_task_comment(
     return comment
 
 
-# @router.put("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
-# def edit_task_comment(
-#     task_id: int,
-#     comment_id: int,
-#     user: UserResponse = Depends(try_get_jwt_user_data),
-#     queries: CommentQueries = Depends(),
-# ) -> CommentOut:
+@router.put("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
+def edit_task_comment(
+    task_id: int,
+    comment_id: int,
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: CommentQueries = Depends(),
+) -> CommentOut:
 
-#     if user is None:
-#         raise user_exception
+    if user is None:
+        raise user_exception
 
-#     comment = queries.get_comment
+    comment = queries.get_comment(comment_id)
