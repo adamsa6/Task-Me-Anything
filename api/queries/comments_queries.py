@@ -60,3 +60,18 @@ class CommentQueries:
                 )
                 comments = cur.fetchall()
                 return comments
+
+    def get_comment(self, comment_id: int) -> CommentOut:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(CommentOut)) as cur:
+                cur.execute(
+                    """
+                    SELECT *
+                    FROM comments
+                    WHERE id = %s;
+                    """,
+                    [comment_id]
+                )
+                comment = cur.fetchone()
+                return comment
+    

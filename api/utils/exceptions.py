@@ -11,13 +11,10 @@ class CommentDatabaseException(Exception):
     pass
 
 
-user_exception = HTTPException(
-    status_code=401, detail="You must be logged in!"
-)
+user_exception = HTTPException(status_code=401, detail="You must be logged in!")
 task_exception = HTTPException(status_code=404, detail="Task does not exist!")
-edit_task_exception = HTTPException(
-    status_code=401, detail="You do not have permission to update this task"
-)
+edit_task_exception = HTTPException(status_code=401, detail="You do not have permission to update this task")
+comment_exception = HTTPException(status_code=404, detail="Comment does not exist!")
 
 
 def check_for_exceptions(user, task, status):

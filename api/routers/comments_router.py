@@ -4,9 +4,7 @@ from fastapi import (
 )
 from utils.exceptions import (
     user_exception,
-    task_exception,
-    edit_task_exception,
-    check_for_exceptions,
+    comment_exception,
 )
 from queries.comments_queries import CommentQueries
 from models.comments import CommentIn, CommentOut, CommentList
@@ -45,3 +43,34 @@ def list_task_comments(
         raise user_exception
 
     return {"comments": queries.list_all(task_id=task_id)}
+
+@router.get("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
+def get_task_comment(
+    task_id: int,
+    comment_id: int,
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: CommentQueries = Depends(),
+) -> CommentOut:
+
+    if user is None:
+        raise user_exception
+
+    comment = queries.get_comment(comment_id)
+
+    if comment is None:
+        raise comment_exception
+    return comment
+
+
+# @router.put("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
+# def edit_task_comment(
+#     task_id: int,
+#     comment_id: int,
+#     user: UserResponse = Depends(try_get_jwt_user_data),
+#     queries: CommentQueries = Depends(),
+# ) -> CommentOut:
+
+#     if user is None:
+#         raise user_exception
+
+#     comment = queries.get_comment
