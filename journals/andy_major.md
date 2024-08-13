@@ -17,3 +17,7 @@
 
 ## 8/12/2024
 - We finalized our update query and route as well as created our patch for our statuses.
+
+## 8/13/2024
+- We created our queries and routes for our 3rd party APIs. 1 for jokes and one for quotes.
+- We have also gotten started on our comments components completing the create comments query and route as well as listing the comments for the individual tasks.
