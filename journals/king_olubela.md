@@ -13,3 +13,9 @@ King's Contribution -
 I was in charge of coding the router and the queries for the tasks table. We ended up having to debug and error that occured while getting the list all the tasks. An the end we were able to fix it closer to the end of the day.
 ## Journal Entry for 8/8/2024
 WE all help code the restrictions that allows the user to change the status of the task. After three iterations we were able to get the code to begin working.  Then I helped with checking if the code actually worked.
+
+## Journal Entry for 8/13/2024
+- We mob-coded the comment table, and I was responsible for coding the list comment and create comment routes and queries. Additionally, I contributed to model editing.
+- Initially, Andy led the mob coding session, where we successfully implemented two third-party API requests. Later, I took the lead in mob coding for creating and listing comments for specific tasks, focusing on coding the list comment and create comment routes and queries while also assisting with model editing.
+- We encountered a bug while trying to join the tasks and comments tables for listing purposes. After consulting with our instructor, we learned that it was more RESTful to keep the tables separate, as comments already referenced their associated tasks. This allowed us to create two distinct components for the front end.
+- Later on, I piloted the mob coding session, where we implemented the "get comment details" and "edit comment" functionalities, and collaboratively developed the comment table.
