@@ -54,7 +54,7 @@ class CommentQueries:
                     SELECT *
                     FROM comments
                     WHERE task_id = %s
-                    ORDER BY created_on;
+                    ORDER BY created_on DESC;
                     """,
                     [task_id],
                 )
