@@ -14,5 +14,6 @@ class CommentOut(BaseModel):
     task_id: int
     created_on: datetime
 
+
 class CommentList(BaseModel):
     comments: List[CommentOut]

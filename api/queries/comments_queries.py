@@ -17,8 +17,11 @@ if not DATABASE_URL:
 
 pool = ConnectionPool(DATABASE_URL)
 
+
 class CommentQueries:
-    def create_comment(self, new_comment: CommentIn, user_id:int, task_id:int) -> CommentOut:
+    def create_comment(
+        self, new_comment: CommentIn, user_id: int, task_id: int
+    ) -> CommentOut:
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(CommentOut)) as cur:
                 cur.execute(
@@ -32,7 +35,6 @@ class CommentQueries:
                     )
                     RETURNING *;
                     """,
-
                     [
                         new_comment.comment,
                         user_id,
@@ -44,7 +46,7 @@ class CommentQueries:
                     raise CommentDatabaseException("Could not create comment")
                 return new_comment
 
-    def list_all(self, task_id:int) -> CommentList:
+    def list_all(self, task_id: int) -> CommentList:
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(CommentOut)) as cur:
                 cur.execute(
@@ -54,9 +56,7 @@ class CommentQueries:
                     WHERE task_id = %s
                     ORDER BY created_on;
                     """,
-                    [
-                        task_id
-                    ]
+                    [task_id],
                 )
                 comments = cur.fetchall()
                 return comments
@@ -70,12 +70,14 @@ class CommentQueries:
                     FROM comments
                     WHERE id = %s;
                     """,
-                    [comment_id]
+                    [comment_id],
                 )
                 comment = cur.fetchone()
                 return comment
 
-    def edit_comment(self, comment_id: int, comment_in: CommentIn) -> CommentOut:
+    def edit_comment(
+        self, comment_id: int, comment_in: CommentIn
+    ) -> CommentOut:
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(CommentOut)) as cur:
                 cur.execute(
@@ -85,10 +87,22 @@ class CommentQueries:
                     WHERE id = %s
                     RETURNING *;
                     """,
-                    [
-                        comment_in.comment,
-                        comment_id
-                    ]
+                    [comment_in.comment, comment_id],
                 )
                 comment = cur.fetchone()
                 return comment
+
+    def delete_comment(self, comment_id: int):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE
+                    FROM comments
+                    WHERE id = %s
+                    RETURNING id;
+                    """,
+                    [comment_id],
+                )
+                result = cur.fetchone()
+                return result

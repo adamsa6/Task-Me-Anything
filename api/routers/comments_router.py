@@ -24,13 +24,15 @@ def create_comment(
     queries: CommentQueries = Depends(),
 ) -> CommentOut:
     """
-        Creates a new comment when someone submits the comments form.
+    Creates a new comment when someone submits the comments form.
     """
 
     if user is None:
         raise user_exception
 
-    comment = queries.create_comment(new_comment=new_comment, user_id=user.id, task_id=task_id)
+    comment = queries.create_comment(
+        new_comment=new_comment, user_id=user.id, task_id=task_id
+    )
     return comment
 
 
@@ -45,7 +47,10 @@ def list_task_comments(
 
     return {"comments": queries.list_all(task_id=task_id)}
 
-@router.get("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
+
+@router.get(
+    "/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut
+)
 def get_task_comment(
     comment_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
@@ -62,7 +67,9 @@ def get_task_comment(
     return comment
 
 
-@router.put("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
+@router.put(
+    "/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut
+)
 def edit_task_comment(
     comment_id: int,
     comment_in: CommentIn,
@@ -77,8 +84,31 @@ def edit_task_comment(
 
     if comment is None:
         raise comment_exception
+
     if user.id != comment.user_id:
         raise edit_comment_exception
     else:
         comment = queries.edit_comment(comment_id, comment_in)
         return comment
+
+
+@router.delete("/tasks/{task_id}/comments/{comment_id}", status_code=204)
+def delete_task_comment(
+    comment_id: int,
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: CommentQueries = Depends(),
+):
+
+    if user is None:
+        raise user_exception
+
+    comment = queries.get_comment(comment_id)
+
+    if comment is None:
+        raise comment_exception
+
+    if user.id != comment.user_id:
+        raise edit_comment_exception
+    else:
+        result = queries.delete_comment(comment_id)
+        return
