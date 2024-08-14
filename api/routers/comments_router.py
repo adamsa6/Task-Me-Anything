@@ -4,12 +4,11 @@ from fastapi import (
 )
 from utils.exceptions import (
     user_exception,
-    task_exception,
-    edit_task_exception,
-    check_for_exceptions,
+    comment_exception,
+    edit_comment_exception,
 )
 from queries.comments_queries import CommentQueries
-from models.comments import CommentIn, CommentOut
+from models.comments import CommentIn, CommentOut, CommentList
 from models.users import UserResponse
 
 from utils.authentication import try_get_jwt_user_data
@@ -35,3 +34,51 @@ def create_comment(
     return comment
 
 
+@router.get("/tasks/{task_id}/comments", response_model=CommentList)
+def list_task_comments(
+    task_id: int,
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: CommentQueries = Depends(),
+) -> CommentList:
+    if user is None:
+        raise user_exception
+
+    return {"comments": queries.list_all(task_id=task_id)}
+
+@router.get("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
+def get_task_comment(
+    comment_id: int,
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: CommentQueries = Depends(),
+) -> CommentOut:
+
+    if user is None:
+        raise user_exception
+
+    comment = queries.get_comment(comment_id)
+
+    if comment is None:
+        raise comment_exception
+    return comment
+
+
+@router.put("/tasks/{task_id}/comments/{comment_id}", response_model=CommentOut)
+def edit_task_comment(
+    comment_id: int,
+    comment_in: CommentIn,
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: CommentQueries = Depends(),
+) -> CommentOut:
+
+    if user is None:
+        raise user_exception
+
+    comment = queries.get_comment(comment_id)
+
+    if comment is None:
+        raise comment_exception
+    if user.id != comment.user_id:
+        raise edit_comment_exception
+    else:
+        comment = queries.edit_comment(comment_id, comment_in)
+        return comment
