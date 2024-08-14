@@ -22,3 +22,7 @@
 ## Journal Entry for 8/12/2024
 
 -   tested our edit task routes and created patch requests for editing the status of a task
+
+## Journal Entry for 8/13/2024
+
+-   we worked on the third part APIs and started working on the comments for our app
