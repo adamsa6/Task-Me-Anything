@@ -1,9 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { store } from './app/store'
+import { Provider } from 'react-redux'
 
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
+import ListAllTasks from './components/ListAllTasks'
+import ListAssignedTasks from './components/ListAssignedTasks'
+import ListMyTasks from './components/ListMyTasks'
+import GetTaskDetails from './components/GetTaskDetails'
+import ListTaskComments from './components/ListTaskComments'
+import GetTaskComment from './components/GetTaskComment'
+import GetJoke from './components/GetJoke'
+import GetQuote from './components/GetQuote'
+// import CreateTask from '.components/CreateTask'
+// import EditTask from '.components/EditTask'
+// import ChangeTaskStatus from '.components/ChangeTaskStatus'
+// import CreateComment from '.components/CreateComment'
+// import EditTaskComment from './component/EditTaskComment'
 import App from './App'
 
 import './index.css'
@@ -27,6 +42,54 @@ const router = createBrowserRouter(
                     path: 'signin',
                     element: <SignInForm />,
                 },
+                {
+                    path: 'tasks',
+                    element: <ListAllTasks />,
+                },
+                {
+                    path: 'assigned-tasks/mine',
+                    element: <ListAssignedTasks />,
+                },
+                {
+                    path: 'tasks/mine',
+                    element: <ListMyTasks />,
+                },
+                {
+                    path: 'tasks/:taskId',
+                    element: <GetTaskDetails />,
+                },
+                {
+                    path: 'tasks/:taskId/comments',
+                    element: <ListTaskComments />,
+                },
+                {
+                    path: 'tasks/:taskId/comments/:commentId',
+                    element: <GetTaskComment />,
+                },
+                {
+                    path: 'joke',
+                    element: <GetJoke />,
+                },
+                {
+                    path: 'quote',
+                    element: <GetQuote />,
+                },
+                // {
+                //     path: 'tasks',
+                //     element: <CreateTask />
+                // },
+                // {
+                //     path: 'tasks/:taskId',
+                //     element: <EditTask />
+                // },
+                // {
+                //     path: 'tasks/:taskId/status',
+                //     element: <ChangeTaskStatus />
+                // },
+                // {
+                //     path: 'tasks/:taskId/comments/:commentId',
+                //     element: <EditTaskComment />
+                // },
             ],
         },
     ],
@@ -47,6 +110,8 @@ console.table(import.meta.env)
 const root = ReactDOM.createRoot(rootElement)
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
     </React.StrictMode>
 )

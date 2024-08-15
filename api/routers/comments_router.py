@@ -6,8 +6,10 @@ from utils.exceptions import (
     user_exception,
     comment_exception,
     edit_comment_exception,
+    task_exception,
 )
 from queries.comments_queries import CommentQueries
+from queries.tasks_queries import TaskQueries
 from models.comments import CommentIn, CommentOut, CommentList
 from models.users import UserResponse
 
@@ -42,6 +44,7 @@ def list_task_comments(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: CommentQueries = Depends(),
 ) -> CommentList:
+
     if user is None:
         raise user_exception
 
@@ -53,17 +56,23 @@ def list_task_comments(
 )
 def get_task_comment(
     comment_id: int,
+    task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
+    task_queries: TaskQueries = Depends(),
     queries: CommentQueries = Depends(),
 ) -> CommentOut:
 
     if user is None:
         raise user_exception
 
-    comment = queries.get_comment(comment_id)
+    task = task_queries.get_task(task_id)
+    if task is None:
+        raise task_exception
 
-    if comment is None:
+    comment = queries.get_comment(comment_id)
+    if comment is None or comment.task_id != task_id:
         raise comment_exception
+
     return comment
 
 
@@ -72,17 +81,23 @@ def get_task_comment(
 )
 def edit_task_comment(
     comment_id: int,
+    task_id: int,
     comment_in: CommentIn,
     user: UserResponse = Depends(try_get_jwt_user_data),
+    task_queries: TaskQueries = Depends(),
     queries: CommentQueries = Depends(),
 ) -> CommentOut:
 
     if user is None:
         raise user_exception
 
+    task = task_queries.get_task(task_id)
+    if task is None:
+        raise task_exception
+
     comment = queries.get_comment(comment_id)
 
-    if comment is None:
+    if comment is None or comment.task_id != task_id:
         raise comment_exception
 
     if user.id != comment.user_id:
@@ -112,3 +127,5 @@ def delete_task_comment(
     else:
         result = queries.delete_comment(comment_id)
         return
+
+#should we make a function for the comment exceptions? see repeated code above in get and edit comments, might even need in delete comment
