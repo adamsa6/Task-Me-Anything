@@ -3,12 +3,19 @@
 * A reflection on any design conversations that you had
 * At least one ah-ha! moment that you had during your coding, however small
 
+
+## Journal Entry for 8/14/2024
+- We mob coded with Yazan piloting, implementing the delete comment functionality.
+- We switched to King piloting, and he tested out the functionality that we had implemented for our comments
+- We then switched to Andy piloting, and we worked to remove the authorization that was already part of the project (in prep for using redux)
+- Since we knew we were transitioning to the front end, we decided to use the time we had left to do some individual studying and get more comfortable with implementing redux
+
 ## Journal Entry for 8/13/2024
 - We mob coded, with Andy piloting, and worked together to implement our two third party API requests.
 - Then we decided to practice time boxing, and work on our stretch goal of setting up task comments.
 - We switch to King piloting, and mob coded together to implement creating a comment for a specific task and listing comments for a specific task.
 - We did encounter a bit of a bug because we were trying to set up the list to join our tasks and comments tables. However, after discussing this with the instructor, we learned it was more restful to keep them separate (since the comments already referenced the specific tasks they are associated with). This meant we could just create two components to get each in the front end.
-- Finally, we switched to me piloting the mob coding, and worked to implement the get a comment's details as well as implementing edit a comment. 
+- Finally, we switched to me piloting the mob coding, and worked to implement the get a comment's details as well as implementing edit a comment.
 
 ## Journal Entry for 8/12/2024
 
