@@ -3,6 +3,13 @@
 * A reflection on any design conversations that you had
 * At least one ah-ha! moment that you had during your coding, however small
 
+## Journal Entry for 8/15/2024
+- We mob coded with me piloting. Our goal for today was to install and configure redux into the app, and start getting our endpoints set up.
+- We configured the store and starting writing our endpoints. We decided it would be easiest to start with the GET requests endpoints. As we wrote each endpoint, we added a path into main, and then created a component for the endpoint. The component was mostly for us to test to make sure we were getting the right data.
+- After the GET request endpoints were set up, we started working on the PUT, POST, PATCH, and DELETE requests. Since these were a little harder to test, we decided to wait to create the components for each.
+- Instead, we set up the endpoints and paths, but left them commented out. Our goal is to start working through them one by one in order to ensure each is working as intended before moving on.
+- We did run into a bug that was a bit difficult to figure out. It was helpful to see the problem solving process when we couldn't figure it out at first. It worked to back track steps, commenting everything out, and then adding small pieces back in one by one in order. This helped us find where the error was coming from exactly.
+
 
 ## Journal Entry for 8/14/2024
 - We mob coded with Yazan piloting, implementing the delete comment functionality.
