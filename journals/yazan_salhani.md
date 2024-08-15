@@ -26,3 +26,7 @@
 ## Journal Entry for 8/13/2024
 
 -   we worked on the third part APIs and started working on the comments for our app
+
+## Journal Entry for 8/14/2024
+
+-   implemented deleting comment functionality, removed some of the authorization that was already part of the project.
