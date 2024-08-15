@@ -1,5 +1,6 @@
 FROM python:3.10-bullseye
 
+
 # Upgrades pip to the latest version
 RUN python -m pip install --upgrade pip
 
