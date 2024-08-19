@@ -30,3 +30,8 @@
 ## Journal Entry for 8/14/2024
 
 -   implemented deleting comment functionality, removed some of the authorization that was already part of the project.
+
+## Journal Entry for 8/15/2024
+
+-   we mob coded where we focused on installing and configuring Redux, and setting up our endpoints.
+-   We configured the store and began with GET request endpoints, adding paths to the main module and creating components to test data retrieval.
