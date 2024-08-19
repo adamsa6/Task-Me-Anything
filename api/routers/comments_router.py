@@ -7,6 +7,7 @@ from utils.exceptions import (
     comment_exception,
     edit_comment_exception,
     task_exception,
+    check_comment_exceptions,
 )
 from queries.comments_queries import CommentQueries
 from queries.tasks_queries import TaskQueries
@@ -66,12 +67,8 @@ def get_task_comment(
         raise user_exception
 
     task = task_queries.get_task(task_id)
-    if task is None:
-        raise task_exception
-
     comment = queries.get_comment(comment_id)
-    if comment is None or comment.task_id != task_id:
-        raise comment_exception
+    check_comment_exceptions(task, comment)
 
     return comment
 
@@ -92,13 +89,8 @@ def edit_task_comment(
         raise user_exception
 
     task = task_queries.get_task(task_id)
-    if task is None:
-        raise task_exception
-
     comment = queries.get_comment(comment_id)
-
-    if comment is None or comment.task_id != task_id:
-        raise comment_exception
+    check_comment_exceptions(task, comment)
 
     if user.id != comment.user_id:
         raise edit_comment_exception
@@ -110,22 +102,21 @@ def edit_task_comment(
 @router.delete("/tasks/{task_id}/comments/{comment_id}", status_code=204)
 def delete_task_comment(
     comment_id: int,
+    task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
+    task_queries: TaskQueries = Depends(),
     queries: CommentQueries = Depends(),
 ):
 
     if user is None:
         raise user_exception
 
+    task = task_queries.get_task(task_id)
     comment = queries.get_comment(comment_id)
-
-    if comment is None:
-        raise comment_exception
+    check_comment_exceptions(task, comment)
 
     if user.id != comment.user_id:
         raise edit_comment_exception
     else:
-        result = queries.delete_comment(comment_id)
+        queries.delete_comment(comment_id)
         return
-
-#should we make a function for the comment exceptions? see repeated code above in get and edit comments, might even need in delete comment

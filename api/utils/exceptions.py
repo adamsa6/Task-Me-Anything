@@ -31,3 +31,9 @@ def check_for_exceptions(user, task, status):
 
     if status.status == "Deleted" and user.id != task.assigner_id:
         raise edit_task_exception
+
+def check_comment_exceptions(task, comment):
+    if task is None:
+        raise task_exception
+    if comment is None or comment.task_id != task.id:
+        raise comment_exception
