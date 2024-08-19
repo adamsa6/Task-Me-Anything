@@ -7,7 +7,8 @@ const ListAssignedTasks = () => {
 
     if (isLoading) return <>Loading...</>
 
-    return <>hi</>
+    return
+    ;<>test</>
 }
 
 export default ListAssignedTasks
