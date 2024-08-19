@@ -158,3 +158,4 @@ class TaskQueries:
                 )
                 task = cur.fetchone()
                 return task
+            
