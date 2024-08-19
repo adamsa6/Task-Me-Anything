@@ -49,3 +49,14 @@ class UserWithPw(BaseModel):
     first_name: str
     last_name: str
     email: str
+
+
+class User(BaseModel):
+    id: int
+    first_name: str
+    last_name: str
+
+
+class TaskUsers(BaseModel):
+    assigner: User
+    assignee: User

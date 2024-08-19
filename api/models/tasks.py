@@ -29,4 +29,3 @@ class TaskList(BaseModel):
 class TaskStatus(BaseModel):
     status: Literal["Active", "In Progress", "Completed", "Deleted"]
 
-
