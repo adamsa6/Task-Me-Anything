@@ -50,7 +50,7 @@ function App() {
             </header>
             <Outlet />
             <ErrorNotification error={error} />
-            <Construct info={launchInfo} />
+            {/* <Construct info={launchInfo} /> */}
         </div>
     )
 }

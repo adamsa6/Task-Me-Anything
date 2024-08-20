@@ -1,16 +1,35 @@
- import { useState } from 'react'
-import { Navigate, Link } from 'react-router-dom'
-
+import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSigninMutation } from '../app/api'
 
 export default function SignInForm() {
+    const [signin, signinStatus] = useSigninMutation()
+    const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+
+    useEffect(() => {
+        if (signinStatus.isSuccess) {
+            setError('')
+            navigate('/dashboard')
+        }
+        if (signinStatus.isError) {
+            setError('Incorrect username or password')
+        }
+    }, [signinStatus])
 
     async function handleFormSubmit(e) {
         e.preventDefault()
+        signin({
+            "username": username,
+            "password": password
+        })
     }
     return (
         <>
+            <h1>Sign In</h1>
+            {error && <div>{error}</div>}
             <form onSubmit={handleFormSubmit}>
                 <input
                     type="text"
@@ -20,7 +39,7 @@ export default function SignInForm() {
                     placeholder="Enter Username"
                 />
                 <input
-                    type="text"
+                    type="password"
                     name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}

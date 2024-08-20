@@ -14,14 +14,13 @@ export default function SignUpForm() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
-    console.log("****************", signupStatus)
     useEffect(() => {
         if (signupStatus.isSuccess) {
             setError('')
             navigate('/dashboard')
         }
         if (signupStatus.isError) {
-            setError('username or email already exists')
+            setError('Username or email already exists')
         }
     }, [signupStatus])
 
