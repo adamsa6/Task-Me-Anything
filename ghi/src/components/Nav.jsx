@@ -1,8 +1,13 @@
-import { Link, NavLink } from 'react-router-dom'
-import { useGetUserQuery } from '../app/api'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { useGetUserQuery, useSignoutMutation } from '../app/api'
 
 const Nav = () => {
     const { data: user } = useGetUserQuery()
+    const [signout, signoutStatus] = useSignoutMutation()
+    const navigate = useNavigate()
+
+    // const handelsignout = ()
+
     return (
         <nav>
             <div>
@@ -44,7 +49,16 @@ const Nav = () => {
                         </li>
                     )}
                 </ul>
-                {user && <button>Log Out</button>}
+                {user && (
+                    <button
+                        onClick={() => {
+                            signout()
+                            navigate('/signin')
+                        }}
+                    >
+                        Sign Out
+                    </button>
+                )}
             </div>
         </nav>
     )

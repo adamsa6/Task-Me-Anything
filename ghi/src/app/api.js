@@ -11,7 +11,7 @@ export const taskApi = createApi({
             query: () => ({
                 url: '/api/auth/authenticate',
             }),
-            // providesTags: ['User']
+            providesTags: ['User'],
         }),
         listAllTasks: builder.query({
             query: () => ({
@@ -57,6 +57,13 @@ export const taskApi = createApi({
             query: (taskId) => ({
                 url: `/api/tasks/${taskId}/users`,
             }),
+        }),
+        signout: builder.mutation({
+            query: () => ({
+                url: '/api/auth/signout',
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['User'],
         }),
         // createTask: builder.mutation({
         //     query: (body) => ({
@@ -120,6 +127,7 @@ export const {
     useListTaskCommentsQuery,
     useGetTaskCommentQuery,
     useGetTaskUsersQuery,
+    useSignoutMutation,
     // useCreateTaskMutation,
     // useEditTaskMutation,
     // useChangeTaskStatusMutation,
