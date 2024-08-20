@@ -65,6 +65,13 @@ export const taskApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
+        signup: builder.mutation({
+            query: (body) => ({
+                url: 'api/auth/signup',
+                body,
+                method: 'POST'
+            })
+        })
         // createTask: builder.mutation({
         //     query: (body) => ({
         //         url: '/api/tasks',
@@ -128,6 +135,7 @@ export const {
     useGetTaskCommentQuery,
     useGetTaskUsersQuery,
     useSignoutMutation,
+    useSignupMutation,
     // useCreateTaskMutation,
     // useEditTaskMutation,
     // useChangeTaskStatusMutation,
