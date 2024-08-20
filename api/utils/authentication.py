@@ -1,6 +1,7 @@
 """
 Helper functions for implementing authentication
 """
+
 import os
 import bcrypt
 from calendar import timegm
@@ -102,11 +103,13 @@ def generate_jwt(user: UserWithPw) -> str:
     jwt_data = JWTPayload(
         exp=exp,
         sub=user.username,
-        user=JWTUserData(username=user.username,
-                        id=user.id,
-                        first_name= user.first_name,
-                        last_name=user.last_name,
-                        email=user.email),
+        user=JWTUserData(
+            username=user.username,
+            id=user.id,
+            first_name=user.first_name,
+            last_name=user.last_name,
+            email=user.email,
+        ),
     )
     encoded_jwt = jwt.encode(
         jwt_data.model_dump(), SIGNING_KEY, algorithm=ALGORITHMS.HS256

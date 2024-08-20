@@ -3,11 +3,8 @@ Database Queries for Comments
 """
 
 import os
-import psycopg
 from psycopg_pool import ConnectionPool
 from psycopg.rows import class_row
-from typing import Optional, List
-from models.users import UserWithPw
 from models.comments import CommentIn, CommentOut, CommentList
 from utils.exceptions import CommentDatabaseException
 
