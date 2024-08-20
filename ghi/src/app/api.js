@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-
 export const taskApi = createApi({
     reducerPath: 'taskApi',
     baseQuery: fetchBaseQuery({
@@ -52,6 +51,11 @@ export const taskApi = createApi({
         getTaskComment: builder.query({
             query: ({ taskId, commentId }) => ({
                 url: `/api/tasks/${taskId}/comments/${commentId}`,
+            }),
+        }),
+        getTaskUsers: builder.query({
+            query: (taskId) => ({
+                url: `/api/tasks/${taskId}/users`,
             }),
         }),
         // createTask: builder.mutation({
@@ -115,6 +119,7 @@ export const {
     useGetQuoteQuery,
     useListTaskCommentsQuery,
     useGetTaskCommentQuery,
+    useGetTaskUsersQuery,
     // useCreateTaskMutation,
     // useEditTaskMutation,
     // useChangeTaskStatusMutation,

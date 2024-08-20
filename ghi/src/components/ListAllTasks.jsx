@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { useListAllTasksQuery } from '../app/api'
+import { useListAllTasksQuery, useGetTaskUsersQuery } from '../app/api'
+import AllTaskRow from './AllTaskRow'
 
 const ListAllTasks = () => {
     const { data, isLoading } = useListAllTasksQuery()
@@ -22,14 +23,7 @@ const ListAllTasks = () => {
                     </thead>
                     <tbody>
                         {data.tasks.map((task) => {
-                            return (
-                                <tr key={task.id}>
-                                    <td>{task.title}</td>
-                                    <td>{task.assignee_id.first_name}</td>
-                                    <td>{task.due_date}</td>
-                                    <td>{task.priority}</td>
-                                </tr>
-                            )
+                            return <AllTaskRow key={task.id} task={task} />
                         })}
                     </tbody>
                 </table>
