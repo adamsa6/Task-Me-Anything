@@ -3,7 +3,19 @@
 * A reflection on any design conversations that you had
 * At least one ah-ha! moment that you had during your coding, however small
 
-## Journal Entry for 8/15/2024
+## Journal Entry for 8/20/2024
+- We mob coded, with Yazan piloting. He had figured out our issue from the day before, and was showing us the troubleshooting he had done. We still ran into a couple errors that we had to debug, but these were mostly syntax errors. and we were able to complete the List All Tasks component (for now)
+- King started piloting, and we worked on creating the sign up form component. We added an endpoint for this, and implemented the functionality.
+- Andy shifted to piloting in order to implement our signin function.
+
+
+## Journal Entry for 8/19/2024
+- We mob coded, starting out with me piloting so that we could catch Andy up on what we had added while he was gone the previous day.
+- We adjusted our code for the back end, with Andy piloting. We started by trying to create our List All Tasks component, but quickly realized that we were unable to access our assigner and assignee information, since those are integers referencing the users table. We also restructured some of our back end functions to add validation, and created a new exception.
+- We shifted gears to the backend in order to add a new route that would allow use to get the user information for assigners and assignees. Then we created a hook for that endpoint, and used the hook in a sub component within our List All Tasks component. This allowed us to access the data that we needed, and it was really helpful to see how we could isolate different endpoints / hooks in order to get the data we needed.
+- Even though we spent a lot of the afternoon troubleshooting that, it was helpful to go through the process.
+
+# Journal Entry for 8/15/2024
 - We mob coded with me piloting. Our goal for today was to install and configure redux into the app, and start getting our endpoints set up.
 - We configured the store and starting writing our endpoints. We decided it would be easiest to start with the GET requests endpoints. As we wrote each endpoint, we added a path into main, and then created a component for the endpoint. The component was mostly for us to test to make sure we were getting the right data.
 - After the GET request endpoints were set up, we started working on the PUT, POST, PATCH, and DELETE requests. Since these were a little harder to test, we decided to wait to create the components for each.
