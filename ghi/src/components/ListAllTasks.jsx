@@ -4,7 +4,6 @@ import AllTaskRow from './AllTaskRow'
 
 const ListAllTasks = () => {
     const { data, isLoading } = useListAllTasksQuery()
-    console.log(data, isLoading)
 
     if (isLoading) return <>Loading...</>
 
