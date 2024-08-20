@@ -3,11 +3,9 @@ Database Queries for Tasks
 """
 
 import os
-import psycopg
 from psycopg_pool import ConnectionPool
 from psycopg.rows import class_row
-from typing import Optional, List
-from models.users import UserWithPw
+
 from models.tasks import (
     TaskIn,
     TaskOut,
@@ -136,7 +134,7 @@ class TaskQueries:
                         task_in.priority,
                         task_in.assignee_id,
                         task_id,
-                    ]
+                    ],
                 )
                 task = cur.fetchone()
                 return task
@@ -151,11 +149,7 @@ class TaskQueries:
                     WHERE id = %s
                     RETURNING *;
                     """,
-                    [
-                        status.status,
-                        task_id
-                    ]
+                    [status.status, task_id],
                 )
                 task = cur.fetchone()
                 return task
-            

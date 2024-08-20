@@ -10,6 +10,7 @@ from utils.exceptions import user_exception
 
 router = APIRouter(prefix="/api")
 
+
 @router.get("/joke")
 def get_joke(
     user: UserResponse = Depends(try_get_jwt_user_data),

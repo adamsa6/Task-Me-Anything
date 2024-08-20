@@ -6,7 +6,7 @@ from utils.exceptions import (
     user_exception,
     task_exception,
     edit_task_exception,
-    check_for_exceptions
+    check_for_exceptions,
 )
 from queries.tasks_queries import TaskQueries
 from queries.user_queries import UserQueries
@@ -110,6 +110,7 @@ def edit_task(
         task = queries.update_task(task_id, task_in)
         return task
 
+
 @router.patch("/tasks/{task_id}/status", response_model=TaskOut)
 def change_task_status(
     task_id: int,
@@ -132,7 +133,7 @@ def change_task_status(
     return task
 
 
-@router.get("/tasks/{task_id}/users", response_model = TaskUsers)
+@router.get("/tasks/{task_id}/users", response_model=TaskUsers)
 def get_task_users(
     task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
@@ -155,14 +156,11 @@ def get_task_users(
     assigner_out = {
         "id": assigner.id,
         "first_name": assigner.first_name,
-        "last_name": assigner.last_name
+        "last_name": assigner.last_name,
     }
     assignee_out = {
         "id": assignee.id,
         "first_name": assignee.first_name,
         "last_name": assignee.last_name,
     }
-    return {
-        "assigner": assigner_out,
-        "assignee": assignee_out
-    }
+    return {"assigner": assigner_out, "assignee": assignee_out}

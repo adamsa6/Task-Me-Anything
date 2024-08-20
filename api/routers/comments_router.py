@@ -4,9 +4,7 @@ from fastapi import (
 )
 from utils.exceptions import (
     user_exception,
-    comment_exception,
     edit_comment_exception,
-    task_exception,
     check_comment_exceptions,
 )
 from queries.comments_queries import CommentQueries
