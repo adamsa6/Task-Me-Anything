@@ -35,3 +35,16 @@
 
 -   we mob coded where we focused on installing and configuring Redux, and setting up our endpoints.
 -   We configured the store and began with GET request endpoints, adding paths to the main module and creating components to test data retrieval.
+
+## Journal Entry for 8/19/2024
+
+-   We began with mob coding, catching up on changes and adjusting the backend.
+-   Issues accessing assigner and assignee data led to restructuring functions and adding validation.
+-   A new route and hook were created to fetch user information, which was integrated into a subcomponent of List All Tasks.
+-   Troubleshooting was time-consuming but productive in learning how to handle data access and integration.
+
+## Journal Entry for 8/20/2024
+
+-   We mob coded, starting with one person piloting to resolve issues from the previous day. We fixed some syntax errors and completed the List All Tasks component.
+-   Next, another team member piloted as we created and implemented the sign-up form component and its endpoint.
+-   Finally, the focus shifted to implementing the sign-in function with a different team member piloting.

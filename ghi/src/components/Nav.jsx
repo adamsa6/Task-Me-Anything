@@ -12,7 +12,12 @@ const Nav = () => {
         <nav>
             <div>
                 <ul>
-                    <li>Logo</li>
+                    <img
+                        src="/logo.png"
+                        alt="Logo"
+                        style={{ width: '100px', height: '100px' }}
+                    />
+
                     {user && (
                         <li>
                             <NavLink to={'/dashboard'}>
