@@ -11,7 +11,7 @@ const ListAllTasks = () => {
         <>
             <div>
                 <h1>ALL TASKS</h1>
-                <table className="table table-striped">
+                <table>
                     <thead>
                         <tr>
                             <th>Task Title</th>
