@@ -15,6 +15,7 @@ import GetTaskComment from './components/GetTaskComment'
 import GetJoke from './components/GetJoke'
 import GetQuote from './components/GetQuote'
 import CreateTaskForm from './components/CreateTaskForm'
+import TaskHistory from './components/TaskHistory'
 // import EditTaskForm from './components/EditTaskForm'
 // import ChangeTaskStatus from './components/ChangeTaskStatus'
 // import CreateCommentForm from './components/CreateCommentForm'
@@ -22,6 +23,7 @@ import CreateTaskForm from './components/CreateTaskForm'
 import App from './App'
 
 import './index.css'
+
 
 const BASE_URL = import.meta.env.BASE_URL
 if (!BASE_URL) {
@@ -77,6 +79,10 @@ const router = createBrowserRouter(
                 {
                     path: 'tasks/create',
                     element: <CreateTaskForm />
+                },
+                {
+                    path: 'tasks/history',
+                    element: <TaskHistory />
                 },
                 // {
                 //     path: 'tasks/:taskId',

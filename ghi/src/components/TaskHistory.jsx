@@ -1,7 +1,7 @@
 import { useListAllTasksQuery } from '../app/api'
-import AssigneeTaskRow from './AssigneeTaskRow'
+import TaskHistoryRow from './TaskHistoryRow'
 
-const ListAllTasks = () => {
+const TaskHistory = () => {
     const { data, isLoading } = useListAllTasksQuery()
 
     if (isLoading) return <>Loading...</>
@@ -9,21 +9,21 @@ const ListAllTasks = () => {
     return (
         <>
             <div>
-                <h1>ALL TASKS</h1>
+                <h1>TASK HISTORY</h1>
                 <table>
                     <thead>
                         <tr>
                             <th>Task Title</th>
                             <th>Assignee</th>
-                            <th>Due Date</th>
-                            <th>Priority Level</th>
+                            <th>Assigner</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.tasks.map((task) => {
-                            if ((task.status != 'Completed') && (task.status != 'Deleted')) {
+                            if ((task.status != 'active') && (task.status != 'In Progress')) {
                                 return (
-                                    <AssigneeTaskRow key={task.id} task={task}/>
+                                    <TaskHistoryRow key={task.id} task={task}/>
                                 )
                             }
                         })}
@@ -34,4 +34,4 @@ const ListAllTasks = () => {
     )
 }
 
-export default ListAllTasks
+export default TaskHistory
