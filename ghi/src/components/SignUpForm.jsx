@@ -46,30 +46,31 @@ export default function SignUpForm() {
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder="First Name"
+                    required
                 />
-
                 <input
                     type="text"
                     name="lastName"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     placeholder="Last Name"
+                    required
                 />
-
                 <input
                     type="email"
                     name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email Address"
+                    required
                 />
-
                 <input
                     type="text"
                     name="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Enter Username"
+                    required
                 />
                 <input
                     type="password"
@@ -77,6 +78,7 @@ export default function SignUpForm() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter Password"
+                    required
                 />
                 <button type="submit">Sign Up</button>
             </form>

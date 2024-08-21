@@ -9,6 +9,7 @@ from routers import (
     tasks_router,
     external_api_router,
     comments_router,
+    users_router
 )
 import os
 
@@ -26,6 +27,7 @@ app.include_router(auth_router.router)
 app.include_router(tasks_router.router)
 app.include_router(external_api_router.router)
 app.include_router(comments_router.router)
+app.include_router(users_router.router)
 
 
 @app.get("/api/launch-details")

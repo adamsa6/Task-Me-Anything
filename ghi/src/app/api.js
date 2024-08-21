@@ -81,13 +81,18 @@ export const taskApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
-        // createTask: builder.mutation({
-        //     query: (body) => ({
-        //         url: '/api/tasks',
-        //         body,
-        //         method: 'POST'
-        //     }),
-        // }),
+        createTask: builder.mutation({
+            query: (body) => ({
+                url: '/api/tasks',
+                body,
+                method: 'POST'
+            }),
+        }),
+        getUsers: builder.query({
+            query: () => ({
+                url: 'api/users',
+            })
+        })
         // editTask: builder.mutation({
         //     query: (taskId) => ({
         //         url: `/api/tasks/${taskId}`,
@@ -143,10 +148,11 @@ export const {
     useListTaskCommentsQuery,
     useGetTaskCommentQuery,
     useGetTaskUsersQuery,
+    useGetUsersQuery,
     useSignoutMutation,
     useSignupMutation,
     useSigninMutation,
-    // useCreateTaskMutation,
+    useCreateTaskMutation,
     // useEditTaskMutation,
     // useChangeTaskStatusMutation,
     // useCreateCommentMutation,

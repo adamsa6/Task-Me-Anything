@@ -7,7 +7,7 @@ import psycopg
 from psycopg_pool import ConnectionPool
 from psycopg.rows import class_row
 from typing import Optional
-from models.users import UserWithPw
+from models.users import UserWithPw, User, UserList
 from utils.exceptions import UserDatabaseException
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -116,3 +116,15 @@ class UserQueries:
                         f"Could not create user with username {username}"
                     )
                 return user
+
+    def list_all(self) -> UserList:
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(User)) as cur:
+                cur.execute(
+                    """
+                    SELECT *
+                    FROM users;
+                    """
+                )
+                users = cur.fetchall()
+                return users

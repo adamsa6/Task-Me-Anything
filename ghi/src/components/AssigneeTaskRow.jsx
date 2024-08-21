@@ -1,5 +1,6 @@
 import { useGetTaskUsersQuery } from '../app/api'
-const AllTaskRow = ({ task }) => {
+
+const AssigneeTaskRow = ({ task }) => {
     const { data: usersData, isLoading } = useGetTaskUsersQuery(task.id)
 
     if (isLoading) {
@@ -31,4 +32,4 @@ const AllTaskRow = ({ task }) => {
     )
 }
 
-export default AllTaskRow
+export default AssigneeTaskRow

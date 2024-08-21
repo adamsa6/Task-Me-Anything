@@ -14,11 +14,11 @@ import ListTaskComments from './components/ListTaskComments'
 import GetTaskComment from './components/GetTaskComment'
 import GetJoke from './components/GetJoke'
 import GetQuote from './components/GetQuote'
-// import CreateTask from '.components/CreateTask'
-// import EditTask from '.components/EditTask'
-// import ChangeTaskStatus from '.components/ChangeTaskStatus'
-// import CreateComment from '.components/CreateComment'
-// import EditTaskComment from './component/EditTaskComment'
+import CreateTaskForm from './components/CreateTaskForm'
+// import EditTaskForm from './components/EditTaskForm'
+// import ChangeTaskStatus from './components/ChangeTaskStatus'
+// import CreateCommentForm from './components/CreateCommentForm'
+// import EditTaskCommentForm from './component/EditTaskCommentForm'
 import App from './App'
 
 import './index.css'
@@ -74,13 +74,13 @@ const router = createBrowserRouter(
                     path: 'quote',
                     element: <GetQuote />,
                 },
-                // {
-                //     path: 'tasks',
-                //     element: <CreateTask />
-                // },
+                {
+                    path: 'tasks/create',
+                    element: <CreateTaskForm />
+                },
                 // {
                 //     path: 'tasks/:taskId',
-                //     element: <EditTask />
+                //     element: <EditTaskForm />
                 // },
                 // {
                 //     path: 'tasks/:taskId/status',
@@ -88,7 +88,7 @@ const router = createBrowserRouter(
                 // },
                 // {
                 //     path: 'tasks/:taskId/comments/:commentId',
-                //     element: <EditTaskComment />
+                //     element: <EditTaskCommentForm />
                 // },
             ],
         },

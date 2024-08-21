@@ -48,7 +48,7 @@ const Nav = () => {
                     )}
                     {user && (
                         <li>
-                            <NavLink to={'/'}>
+                            <NavLink to={'/tasks/create'}>
                                 <button>Create Task</button>
                             </NavLink>
                         </li>

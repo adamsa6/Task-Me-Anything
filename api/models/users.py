@@ -1,8 +1,8 @@
 """
 Pydantic Models for Users.
 """
-
 from pydantic import BaseModel
+from typing import List
 
 
 class UserLogin(BaseModel):
@@ -56,6 +56,8 @@ class User(BaseModel):
     first_name: str
     last_name: str
 
+class UserList(BaseModel):
+    users: List[User]
 
 class TaskUsers(BaseModel):
     assigner: User
