@@ -1,80 +1,102 @@
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useCreateTaskMutation, useGetUsersQuery } from '../app/api'
-import './Form.css' // Import custom CSS for form styles
+import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import {
+    useEditTaskMutation,
+    useGetUsersQuery,
+    useGetTaskDetailsQuery,
+} from '../app/api'
+import './EditTaskForm.css'
 
-export default function CreateTaskForm() {
-    const [createTask, createTaskStatus] = useCreateTaskMutation()
-    const navigate = useNavigate()
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [dueDate, setDueDate] = useState('')
-    const [assigneeId, setAssigneeId] = useState('')
-    const [priority, setPriority] = useState('')
-    const [error, setError] = useState('')
-
+export default function EditTaskForm() {
+    const { taskId } = useParams()
+    const [editTask, editTaskStatus] = useEditTaskMutation()
     const { data, isLoading } = useGetUsersQuery()
+    const { data: task, isLoading: taskIsLoading } =
+        useGetTaskDetailsQuery(taskId)
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
+
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        due_date: '',
+        assignee_id: '',
+        priority: '',
+    })
 
     useEffect(() => {
-        if (createTaskStatus.isSuccess) {
-            setError('')
-            navigate('/dashboard')
+        if (task) {
+            setFormData({
+                title: task.title || '',
+                description: task.description || '',
+                due_date: task.due_date || '',
+                assignee_id: task.assignee_id || '',
+                priority: task.priority || '',
+            })
         }
-        if (createTaskStatus.isError) {
+    }, [task])
+
+    useEffect(() => {
+        if (editTaskStatus.isSuccess) {
+            setError('')
+            navigate(`/tasks/${taskId}`)
+        }
+        if (editTaskStatus.isError) {
             setError(
-                'Could not create task. Please check that all fields are filled correctly.'
+                'Could not edit task. Please check that all fields are filled correctly.'
             )
         }
-    }, [createTaskStatus])
+    }, [editTaskStatus])
 
-    async function handleFormSubmit(e) {
-        e.preventDefault()
-        createTask({
-            title: title,
-            description: description,
-            due_date: dueDate,
-            priority: priority,
-            assignee_id: assigneeId,
+    const handleFormChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
         })
     }
 
-    if (isLoading) return <>Loading...</>
+    async function handleFormSubmit(e) {
+        e.preventDefault()
+        editTask({ body: formData, taskId })
+    }
+
+    if (isLoading || taskIsLoading) return <>Loading...</>
 
     return (
         <div className="form-container">
-            <h1>Create a Task</h1>
+            <h1>Edit Task</h1>
             {error && <div className="error-message">{error}</div>}
             <form className="task-form" onSubmit={handleFormSubmit}>
                 <input
                     type="text"
                     name="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={formData.title}
+                    onChange={handleFormChange}
                     placeholder="Task Title"
                     required
                     className="form-input"
                 />
                 <textarea
                     name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    value={formData.description}
+                    onChange={handleFormChange}
                     placeholder="Task Description"
                     required
                     className="form-textarea"
                 />
                 <input
                     type="date"
-                    name="dueDate"
-                    value={dueDate}
-                    onChange={(e) => setDueDate(e.target.value)}
+                    name="due_date"
+                    value={formData.due_date}
+                    onChange={handleFormChange}
                     placeholder="Due Date"
                     required
                     className="form-input"
                 />
                 <select
                     name="priority"
-                    value={priority}
-                    onChange={(e) => setPriority(e.target.value)}
+                    value={formData.priority}
+                    onChange={handleFormChange}
                     required
                     className="form-select"
                 >
@@ -84,9 +106,9 @@ export default function CreateTaskForm() {
                     <option value="3">3: Low Priority</option>
                 </select>
                 <select
-                    name="assignee"
-                    value={assigneeId}
-                    onChange={(e) => setAssigneeId(e.target.value)}
+                    name="assignee_id"
+                    value={formData.assignee_id}
+                    onChange={handleFormChange}
                     required
                     className="form-select"
                 >
@@ -98,7 +120,7 @@ export default function CreateTaskForm() {
                     ))}
                 </select>
                 <button type="submit" className="submit-button">
-                    Create Task
+                    Update
                 </button>
             </form>
         </div>

@@ -5,6 +5,7 @@ import {
     useGetUsersQuery,
     useGetTaskDetailsQuery,
 } from '../app/api'
+import '../EditTaskForm.css'
 
 export default function EditTaskForm() {
     const { taskId: taskId } = useParams()
@@ -62,10 +63,10 @@ export default function EditTaskForm() {
     if (isLoading || taskIsLoading) return <>Loading...</>
 
     return (
-        <>
+        <div className="form-container">
             <h1>Edit Task</h1>
-            {error && <div>{error}</div>}
-            <form onSubmit={handleFormSubmit}>
+            {error && <div className="error-message">{error}</div>}
+            <form className="task-form" onSubmit={handleFormSubmit}>
                 <input
                     type="text"
                     name="title"
@@ -73,13 +74,15 @@ export default function EditTaskForm() {
                     onChange={handleFormChange}
                     placeholder="Task Title"
                     required
+                    className="form-input"
                 />
-                <input
-                    type="text"
+                <textarea
                     name="description"
                     value={formData.description}
                     onChange={handleFormChange}
                     placeholder="Task Description"
+                    required
+                    className="form-textarea"
                 />
                 <input
                     type="date"
@@ -88,14 +91,14 @@ export default function EditTaskForm() {
                     onChange={handleFormChange}
                     placeholder="Due Date"
                     required
+                    className="form-input"
                 />
                 <select
-                    type="text"
                     name="priority"
                     value={formData.priority}
                     onChange={handleFormChange}
-                    placeholder="Priority Level"
                     required
+                    className="form-select"
                 >
                     <option value="">Choose a Priority level</option>
                     <option value="1">1: High Priority</option>
@@ -103,24 +106,23 @@ export default function EditTaskForm() {
                     <option value="3">3: Low Priority</option>
                 </select>
                 <select
-                    type="text"
                     name="assignee_id"
                     value={formData.assignee_id}
                     onChange={handleFormChange}
-                    placeholder="Assignee"
                     required
+                    className="form-select"
                 >
                     <option value="">Choose an assignee</option>
-                    {data.users.map((user) => {
-                        return (
-                            <option key={user.id} value={user.id}>
-                                {user.last_name}, {user.first_name}
-                            </option>
-                        )
-                    })}
+                    {data.users.map((user) => (
+                        <option key={user.id} value={user.id}>
+                            {user.last_name}, {user.first_name}
+                        </option>
+                    ))}
                 </select>
-                <button type="submit">Update</button>
+                <button type="submit" className="submit-button">
+                    Update
+                </button>
             </form>
-        </>
+        </div>
     )
 }
