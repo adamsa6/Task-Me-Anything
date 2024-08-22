@@ -1,0 +1,22 @@
+.custom-navbar {
+    background-color: #003135;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.nav-link.active {
+    background-color: #b2dbd1;
+    color: #003135;
+}
+
+.signout-button {
+    background-color: #964734;
+    border: none;
+    color: #fff;
+}
+
+.signout-button:hover {
+    background-color: #7a3a2c;
+}
