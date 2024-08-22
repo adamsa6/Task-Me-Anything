@@ -1,88 +1,106 @@
-import { NavLink, useNavigate } from 'react-router-dom'
-import { useGetUserQuery, useSignoutMutation } from '../app/api'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './Nav.css' // Import custom CSS for additional styles
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useCreateTaskMutation, useGetUsersQuery } from '../app/api'
+import './Form.css' // Import custom CSS for form styles
 
-const Nav = () => {
-    const { data: user } = useGetUserQuery()
-    const [signout] = useSignoutMutation()
+export default function CreateTaskForm() {
+    const [createTask, createTaskStatus] = useCreateTaskMutation()
     const navigate = useNavigate()
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [dueDate, setDueDate] = useState('')
+    const [assigneeId, setAssigneeId] = useState('')
+    const [priority, setPriority] = useState('')
+    const [error, setError] = useState('')
+
+    const { data, isLoading } = useGetUsersQuery()
+
+    useEffect(() => {
+        if (createTaskStatus.isSuccess) {
+            setError('')
+            navigate('/dashboard')
+        }
+        if (createTaskStatus.isError) {
+            setError(
+                'Could not create task. Please check that all fields are filled correctly.'
+            )
+        }
+    }, [createTaskStatus])
+
+    async function handleFormSubmit(e) {
+        e.preventDefault()
+        createTask({
+            title: title,
+            description: description,
+            due_date: dueDate,
+            priority: priority,
+            assignee_id: assigneeId,
+        })
+    }
+
+    if (isLoading) return <>Loading...</>
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light fixed-top custom-navbar">
-            <div className="container-fluid">
-                <img
-                    src="/logo.png"
-                    alt="Logo"
-                    style={{ width: '100px', height: 'auto' }}
+        <div className="form-container">
+            <h1>Create a Task</h1>
+            {error && <div className="error-message">{error}</div>}
+            <form className="task-form" onSubmit={handleFormSubmit}>
+                <input
+                    type="text"
+                    name="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="Task Title"
+                    required
+                    className="form-input"
                 />
-                <div className="d-flex flex-grow-1">
-                    <div className="d-flex flex-grow-1">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            {user && (
-                                <>
-                                    <li className="nav-item">
-                                        <NavLink
-                                            to="/dashboard"
-                                            className="nav-link btn btn-light"
-                                            exact
-                                        >
-                                            Dashboard
-                                        </NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink
-                                            to="/tasks/mine"
-                                            className="nav-link btn btn-light"
-                                        >
-                                            My Tasks
-                                        </NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink
-                                            to="/assigned-tasks/mine"
-                                            className="nav-link btn btn-light"
-                                        >
-                                            Assigned Tasks
-                                        </NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink
-                                            to="/tasks"
-                                            className="nav-link btn btn-light"
-                                        >
-                                            All Tasks
-                                        </NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink
-                                            to="/tasks/create"
-                                            className="nav-link btn btn-light"
-                                        >
-                                            Create Task
-                                        </NavLink>
-                                    </li>
-                                </>
-                            )}
-                        </ul>
-                    </div>
-                    {user && (
-                        <div className="d-flex">
-                            <button
-                                className="btn signout-button me-2"
-                                onClick={() => {
-                                    signout()
-                                    navigate('/signin')
-                                }}
-                            >
-                                Sign Out
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </div>
-        </nav>
+                <textarea
+                    name="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Task Description"
+                    required
+                    className="form-textarea"
+                />
+                <input
+                    type="date"
+                    name="dueDate"
+                    value={dueDate}
+                    onChange={(e) => setDueDate(e.target.value)}
+                    placeholder="Due Date"
+                    required
+                    className="form-input"
+                />
+                <select
+                    name="priority"
+                    value={priority}
+                    onChange={(e) => setPriority(e.target.value)}
+                    required
+                    className="form-select"
+                >
+                    <option value="">Choose a Priority level</option>
+                    <option value="1">1: High Priority</option>
+                    <option value="2">2: Medium Priority</option>
+                    <option value="3">3: Low Priority</option>
+                </select>
+                <select
+                    name="assignee"
+                    value={assigneeId}
+                    onChange={(e) => setAssigneeId(e.target.value)}
+                    required
+                    className="form-select"
+                >
+                    <option value="">Choose an assignee</option>
+                    {data.users.map((user) => (
+                        <option key={user.id} value={user.id}>
+                            {user.last_name}, {user.first_name}
+                        </option>
+                    ))}
+                </select>
+                <button type="submit" className="submit-button">
+                    Create Task
+                </button>
+            </form>
+        </div>
     )
 }
-
-export default Nav
