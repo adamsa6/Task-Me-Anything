@@ -17,16 +17,19 @@ export const taskApi = createApi({
             query: () => ({
                 url: '/api/tasks',
             }),
+            providesTags: ['Tasks'],
         }),
         listAssignedTasks: builder.query({
             query: () => ({
                 url: '/api/assigned-tasks/mine',
             }),
+            providesTags: ['Tasks'],
         }),
         listMyTasks: builder.query({
             query: () => ({
                 url: '/api/tasks/mine',
             }),
+            providesTags: ['Tasks'],
         }),
         getTaskDetails: builder.query({
             query: (taskId) => ({
@@ -69,7 +72,7 @@ export const taskApi = createApi({
             query: (body) => ({
                 url: 'api/auth/signup',
                 body,
-                method: 'POST'
+                method: 'POST',
             }),
             invalidatesTags: ['User'],
         }),
@@ -77,7 +80,7 @@ export const taskApi = createApi({
             query: (body) => ({
                 url: 'api/auth/signin',
                 body,
-                method: 'POST'
+                method: 'POST',
             }),
             invalidatesTags: ['User'],
         }),
@@ -85,14 +88,15 @@ export const taskApi = createApi({
             query: (body) => ({
                 url: '/api/tasks',
                 body,
-                method: 'POST'
+                method: 'POST',
             }),
+            invalidatesTags: ['Tasks'],
         }),
         getUsers: builder.query({
             query: () => ({
                 url: 'api/users',
-            })
-        })
+            }),
+        }),
         // editTask: builder.mutation({
         //     query: (taskId) => ({
         //         url: `/api/tasks/${taskId}`,

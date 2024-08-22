@@ -9,14 +9,13 @@ from utils.exceptions import (
     check_for_exceptions,
 )
 from queries.tasks_queries import TaskQueries
-from queries.user_queries import UserQueries
 from models.tasks import (
     TaskIn,
     TaskOut,
     TaskList,
     TaskStatus,
 )
-from models.users import UserResponse, TaskUsers
+from models.users import UserResponse
 
 from utils.authentication import try_get_jwt_user_data
 
@@ -131,6 +130,3 @@ def change_task_status(
 
     task = queries.change_status(task_id, status)
     return task
-
-
-

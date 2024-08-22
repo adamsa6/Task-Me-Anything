@@ -25,6 +25,6 @@ class GetExternalApi:
         data = response.json()
 
         if response.status_code == requests.codes.ok:
-            return data[0]
+            return data
         else:
             return {"Error": response.status_code, "Text": response.text}

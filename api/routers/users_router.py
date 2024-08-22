@@ -14,6 +14,7 @@ from utils.authentication import try_get_jwt_user_data
 
 router = APIRouter(prefix="/api")
 
+
 @router.get("/tasks/{task_id}/users", response_model=TaskUsers)
 def get_task_users(
     task_id: int,
@@ -45,6 +46,7 @@ def get_task_users(
         "last_name": assignee.last_name,
     }
     return {"assigner": assigner_out, "assignee": assignee_out}
+
 
 @router.get("/users", response_model=UserList)
 def get_users(

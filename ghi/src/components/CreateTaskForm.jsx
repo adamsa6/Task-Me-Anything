@@ -12,8 +12,6 @@ export default function CreateTaskForm() {
     const [priority, setPriority] = useState('')
     const [error, setError] = useState('')
 
-    console.log(createTaskStatus)
-
     const { data, isLoading } = useGetUsersQuery()
 
     useEffect(() => {

@@ -9,7 +9,7 @@ from routers import (
     tasks_router,
     external_api_router,
     comments_router,
-    users_router
+    users_router,
 )
 import os
 

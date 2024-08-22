@@ -13,9 +13,9 @@ import GetTaskDetails from './components/GetTaskDetails'
 import ListTaskComments from './components/ListTaskComments'
 import GetTaskComment from './components/GetTaskComment'
 import GetJoke from './components/GetJoke'
-import GetQuote from './components/GetQuote'
 import CreateTaskForm from './components/CreateTaskForm'
 import TaskHistory from './components/TaskHistory'
+import Dashboard from './components/Dashboard'
 // import EditTaskForm from './components/EditTaskForm'
 // import ChangeTaskStatus from './components/ChangeTaskStatus'
 // import CreateCommentForm from './components/CreateCommentForm'
@@ -73,10 +73,6 @@ const router = createBrowserRouter(
                     element: <GetJoke />,
                 },
                 {
-                    path: 'quote',
-                    element: <GetQuote />,
-                },
-                {
                     path: 'tasks/create',
                     element: <CreateTaskForm />
                 },
@@ -84,6 +80,10 @@ const router = createBrowserRouter(
                     path: 'tasks/history',
                     element: <TaskHistory />
                 },
+                {
+                    path: 'dashboard',
+                    element: <Dashboard />
+                }
                 // {
                 //     path: 'tasks/:taskId',
                 //     element: <EditTaskForm />
