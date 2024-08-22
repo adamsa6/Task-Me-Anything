@@ -28,27 +28,33 @@ export default function SignInForm() {
         })
     }
     return (
-        <>
-            <h1>Sign In</h1>
-            {error && <div>{error}</div>}
-            <form onSubmit={handleFormSubmit}>
-                <input
-                    type="text"
-                    name="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="Enter Username"
-                />
-                <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter Password"
-                />
-                <button type="submit">Sign In</button>
-            </form>
-            <Link to="/signup">Create An Account</Link>
-        </>
+        <div className="signin-container">
+            <div className="card card-info">
+                <h1>Welcome to Our App</h1>
+                <p>Here you can manage your tasks, stay organized, and more!</p>
+            </div>
+            <div className="card card-form">
+                <h1>Sign In</h1>
+                {error && <div>{error}</div>}
+                <form onSubmit={handleFormSubmit}>
+                    <input
+                        type="text"
+                        name="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Enter Username"
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Enter Password"
+                    />
+                    <button type="submit">Sign In</button>
+                </form>
+                <Link to="/signup">Dont have an Account? SignUp</Link>
+            </div>
+        </div>
     )
 }
