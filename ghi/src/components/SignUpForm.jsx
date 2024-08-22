@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSignupMutation } from '../app/api'
-
-
+import '../SignUpForm.css'
 
 export default function SignUpForm() {
-    const [ signup, signupStatus ] = useSignupMutation()
+    const [signup, signupStatus] = useSignupMutation()
     const navigate = useNavigate()
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -25,21 +24,20 @@ export default function SignUpForm() {
     }, [signupStatus])
 
     async function handleFormSubmit(e) {
-
         e.preventDefault()
         signup({
-            "first_name": firstName,
-            "last_name": lastName,
-            "email": email,
-            "username": username,
-            "password": password
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            username: username,
+            password: password,
         })
     }
     return (
-        <>
+        <div className="form-container">
             <h1>Sign Up</h1>
-            {error && <div>{error}</div>}
-            <form onSubmit={handleFormSubmit}>
+            {error && <div className="error-message">{error}</div>}
+            <form className="sign-up-form" onSubmit={handleFormSubmit}>
                 <input
                     type="text"
                     name="firstName"
@@ -47,6 +45,7 @@ export default function SignUpForm() {
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder="First Name"
                     required
+                    className="form-input"
                 />
                 <input
                     type="text"
@@ -55,6 +54,7 @@ export default function SignUpForm() {
                     onChange={(e) => setLastName(e.target.value)}
                     placeholder="Last Name"
                     required
+                    className="form-input"
                 />
                 <input
                     type="email"
@@ -63,6 +63,7 @@ export default function SignUpForm() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email Address"
                     required
+                    className="form-input"
                 />
                 <input
                     type="text"
@@ -71,6 +72,7 @@ export default function SignUpForm() {
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Enter Username"
                     required
+                    className="form-input"
                 />
                 <input
                     type="password"
@@ -79,9 +81,12 @@ export default function SignUpForm() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter Password"
                     required
+                    className="form-input"
                 />
-                <button type="submit">Sign Up</button>
+                <button type="submit" className="submit-button">
+                    Sign Up
+                </button>
             </form>
-        </>
+        </div>
     )
 }

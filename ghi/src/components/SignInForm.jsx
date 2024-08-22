@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSigninMutation } from '../app/api'
+import '../SignInForm.css'
 
 export default function SignInForm() {
     const [signin, signinStatus] = useSigninMutation()
@@ -22,8 +23,8 @@ export default function SignInForm() {
     async function handleFormSubmit(e) {
         e.preventDefault()
         signin({
-            "username": username,
-            "password": password
+            username: username,
+            password: password,
         })
     }
     return (

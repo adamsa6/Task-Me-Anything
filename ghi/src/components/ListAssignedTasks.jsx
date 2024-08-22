@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useListAssignedTasksQuery } from '../app/api'
+import '../EditTaskForm.css'
 
-const ListAssignedTasks = ({isLimited}) => {
+const ListAssignedTasks = ({ isLimited }) => {
     const { data, isLoading } = useListAssignedTasksQuery()
     const [tasksToList, setTasksToList] = useState([])
 
@@ -26,13 +27,13 @@ const ListAssignedTasks = ({isLimited}) => {
                 </thead>
                 <tbody>
                     {tasksToList.map((task) => {
-                            return (
-                                <tr key={task.id}>
-                                    <td>{task.title}</td>
-                                    <td>{task.due_date}</td>
-                                    <td>{task.priority}</td>
-                                </tr>
-                            )
+                        return (
+                            <tr key={task.id}>
+                                <td>{task.title}</td>
+                                <td>{task.due_date}</td>
+                                <td>{task.priority}</td>
+                            </tr>
+                        )
                     })}
                 </tbody>
             </table>

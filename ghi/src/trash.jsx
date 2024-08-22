@@ -1,126 +1,91 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import {
-    useEditTaskMutation,
-    useGetUsersQuery,
-    useGetTaskDetailsQuery,
-} from '../app/api'
-import './EditTaskForm.css'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSignupMutation } from '../app/api'
+import './SignUpForm.css'
 
-export default function EditTaskForm() {
-    const { taskId } = useParams()
-    const [editTask, editTaskStatus] = useEditTaskMutation()
-    const { data, isLoading } = useGetUsersQuery()
-    const { data: task, isLoading: taskIsLoading } =
-        useGetTaskDetailsQuery(taskId)
-    const [error, setError] = useState('')
+export default function SignUpForm() {
+    const [signup, signupStatus] = useSignupMutation()
     const navigate = useNavigate()
-
-    const [formData, setFormData] = useState({
-        title: '',
-        description: '',
-        due_date: '',
-        assignee_id: '',
-        priority: '',
-    })
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
 
     useEffect(() => {
-        if (task) {
-            setFormData({
-                title: task.title || '',
-                description: task.description || '',
-                due_date: task.due_date || '',
-                assignee_id: task.assignee_id || '',
-                priority: task.priority || '',
-            })
-        }
-    }, [task])
-
-    useEffect(() => {
-        if (editTaskStatus.isSuccess) {
+        if (signupStatus.isSuccess) {
             setError('')
-            navigate(`/tasks/${taskId}`)
+            navigate('/dashboard')
         }
-        if (editTaskStatus.isError) {
-            setError(
-                'Could not edit task. Please check that all fields are filled correctly.'
-            )
+        if (signupStatus.isError) {
+            setError('Username or email already exists')
         }
-    }, [editTaskStatus])
-
-    const handleFormChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        })
-    }
+    }, [signupStatus])
 
     async function handleFormSubmit(e) {
         e.preventDefault()
-        editTask({ body: formData, taskId })
+        signup({
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            username: username,
+            password: password,
+        })
     }
-
-    if (isLoading || taskIsLoading) return <>Loading...</>
 
     return (
         <div className="form-container">
-            <h1>Edit Task</h1>
+            <h1>Sign Up</h1>
             {error && <div className="error-message">{error}</div>}
-            <form className="task-form" onSubmit={handleFormSubmit}>
+            <form className="sign-up-form" onSubmit={handleFormSubmit}>
                 <input
                     type="text"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleFormChange}
-                    placeholder="Task Title"
+                    name="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="First Name"
                     required
                     className="form-input"
-                />
-                <textarea
-                    name="description"
-                    value={formData.description}
-                    onChange={handleFormChange}
-                    placeholder="Task Description"
-                    required
-                    className="form-textarea"
                 />
                 <input
-                    type="date"
-                    name="due_date"
-                    value={formData.due_date}
-                    onChange={handleFormChange}
-                    placeholder="Due Date"
+                    type="text"
+                    name="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder="Last Name"
                     required
                     className="form-input"
                 />
-                <select
-                    name="priority"
-                    value={formData.priority}
-                    onChange={handleFormChange}
+                <input
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email Address"
                     required
-                    className="form-select"
-                >
-                    <option value="">Choose a Priority level</option>
-                    <option value="1">1: High Priority</option>
-                    <option value="2">2: Medium Priority</option>
-                    <option value="3">3: Low Priority</option>
-                </select>
-                <select
-                    name="assignee_id"
-                    value={formData.assignee_id}
-                    onChange={handleFormChange}
+                    className="form-input"
+                />
+                <input
+                    type="text"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter Username"
                     required
-                    className="form-select"
-                >
-                    <option value="">Choose an assignee</option>
-                    {data.users.map((user) => (
-                        <option key={user.id} value={user.id}>
-                            {user.last_name}, {user.first_name}
-                        </option>
-                    ))}
-                </select>
+                    className="form-input"
+                />
+                <input
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter Password"
+                    required
+                    className="form-input"
+                />
                 <button type="submit" className="submit-button">
-                    Update
+                    Sign Up
                 </button>
             </form>
         </div>
