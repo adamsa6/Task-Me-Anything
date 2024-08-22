@@ -97,36 +97,29 @@ export const taskApi = createApi({
                 url: 'api/users',
             }),
         }),
-        // editTask: builder.mutation({
-        //     query: (taskId) => ({
-        //         url: `/api/tasks/${taskId}`,
-        //         body,
-        //         method: 'PUT',
-        //     }),
-        // }),
-        // editTask: builder.mutation({
-        //     query: (taskId) => ({
-        //         url: `/api/tasks/${taskId}`,
-        //         body,
-        //         method: 'PUT',
-        //     }),
-        // }),
+        editTask: builder.mutation({
+            query: ({ body, taskId }) => ({
+                url: `/api/tasks/${taskId}`,
+                body,
+                method: 'PUT',
+            }),
+        }),
         // changeTaskStatus: builder.mutation({
-        //     query: (taskId) => ({
+        //     query: ({body, taskId}) => ({
         //         url: `/api/tasks/${taskId}/status`,
         //         body,
         //         method: 'PATCH',
         //     }),
         // }),
         // createComment: builder.mutation({
-        //     query: (taskId) => ({
+        //     query: ({body, taskId}) => ({
         //         url: `/api/tasks/${taskId}/status`,
         //         body,
         //         method: 'POST',
         //     }),
         // }),
         // editTaskComment: builder.mutation({
-        //     query: ({ taskId, commentId }) => ({
+        //     query: ({ body, taskId, commentId }) => ({
         //         url: `/api/tasks/${taskId}/comments/${comment_id}`,
         //         body,
         //         method: 'PUT',
@@ -157,7 +150,7 @@ export const {
     useSignupMutation,
     useSigninMutation,
     useCreateTaskMutation,
-    // useEditTaskMutation,
+    useEditTaskMutation,
     // useChangeTaskStatusMutation,
     // useCreateCommentMutation,
     // useEditTaskCommentMutation,

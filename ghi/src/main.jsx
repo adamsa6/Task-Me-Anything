@@ -16,14 +16,13 @@ import GetJoke from './components/GetJoke'
 import CreateTaskForm from './components/CreateTaskForm'
 import TaskHistory from './components/TaskHistory'
 import Dashboard from './components/Dashboard'
-// import EditTaskForm from './components/EditTaskForm'
+import EditTaskForm from './components/EditTaskForm'
 // import ChangeTaskStatus from './components/ChangeTaskStatus'
 // import CreateCommentForm from './components/CreateCommentForm'
 // import EditTaskCommentForm from './component/EditTaskCommentForm'
 import App from './App'
 
 import './index.css'
-
 
 const BASE_URL = import.meta.env.BASE_URL
 if (!BASE_URL) {
@@ -74,20 +73,20 @@ const router = createBrowserRouter(
                 },
                 {
                     path: 'tasks/create',
-                    element: <CreateTaskForm />
+                    element: <CreateTaskForm />,
                 },
                 {
                     path: 'tasks/history',
-                    element: <TaskHistory />
+                    element: <TaskHistory />,
                 },
                 {
                     path: 'dashboard',
-                    element: <Dashboard />
-                }
-                // {
-                //     path: 'tasks/:taskId',
-                //     element: <EditTaskForm />
-                // },
+                    element: <Dashboard />,
+                },
+                {
+                    path: 'tasks/:taskId/update',
+                    element: <EditTaskForm />,
+                },
                 // {
                 //     path: 'tasks/:taskId/status',
                 //     element: <ChangeTaskStatus />
