@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCreateTaskMutation, useGetUsersQuery } from '../app/api'
+import '../CreateTaskForm.css'
 
 export default function CreateTaskForm() {
     const [createTask, createTaskStatus] = useCreateTaskMutation()
@@ -20,28 +21,30 @@ export default function CreateTaskForm() {
             navigate('/dashboard')
         }
         if (createTaskStatus.isError) {
-            setError('Could not create task. Please check that all fields are filled correctly.')
+            setError(
+                'Could not create task. Please check that all fields are filled correctly.'
+            )
         }
     }, [createTaskStatus])
 
     async function handleFormSubmit(e) {
         e.preventDefault()
         createTask({
-            "title": title,
-            "description": description,
-            "due_date": dueDate,
-            "priority": priority,
-            "assignee_id": assigneeId
+            title: title,
+            description: description,
+            due_date: dueDate,
+            priority: priority,
+            assignee_id: assigneeId,
         })
     }
 
     if (isLoading) return <>Loading...</>
 
     return (
-        <>
+        <div className="form-container">
             <h1>Create a Task</h1>
-            {error && <div>{error}</div>}
-            <form onSubmit={handleFormSubmit}>
+            {error && <div className="error-message">{error}</div>}
+            <form className="task-form" onSubmit={handleFormSubmit}>
                 <input
                     type="text"
                     name="title"
@@ -49,13 +52,15 @@ export default function CreateTaskForm() {
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Task Title"
                     required
+                    className="form-input"
                 />
-                <input
-                    type="text"
+                <textarea
                     name="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Task Description"
+                    required
+                    className="form-textarea"
                 />
                 <input
                     type="date"
@@ -64,14 +69,14 @@ export default function CreateTaskForm() {
                     onChange={(e) => setDueDate(e.target.value)}
                     placeholder="Due Date"
                     required
+                    className="form-input"
                 />
                 <select
-                    type="text"
                     name="priority"
                     value={priority}
                     onChange={(e) => setPriority(e.target.value)}
-                    placeholder="Priority Level"
                     required
+                    className="form-select"
                 >
                     <option value="">Choose a Priority level</option>
                     <option value="1">1: High Priority</option>
@@ -79,24 +84,23 @@ export default function CreateTaskForm() {
                     <option value="3">3: Low Priority</option>
                 </select>
                 <select
-                    type="text"
                     name="assignee"
                     value={assigneeId}
                     onChange={(e) => setAssigneeId(e.target.value)}
-                    placeholder="Assignee"
                     required
+                    className="form-select"
                 >
                     <option value="">Choose an assignee</option>
-                    {data.users.map((user) => {
-                        return (
-                            <option key={user.id} value={user.id}>
-                                {user.last_name}, {user.first_name}
-                            </option>
-                        )
-                    })}
+                    {data.users.map((user) => (
+                        <option key={user.id} value={user.id}>
+                            {user.last_name}, {user.first_name}
+                        </option>
+                    ))}
                 </select>
-                <button type="submit">Create Task</button>
+                <button type="submit" className="submit-button">
+                    Create Task
+                </button>
             </form>
-        </>
+        </div>
     )
 }
