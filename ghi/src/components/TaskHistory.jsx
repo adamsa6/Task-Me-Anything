@@ -8,7 +8,7 @@ const TaskHistory = () => {
 
     return (
         <>
-            <div>
+            <div className="container">
                 <h1>TASK HISTORY</h1>
                 <table>
                     <thead>
@@ -21,9 +21,12 @@ const TaskHistory = () => {
                     </thead>
                     <tbody>
                         {data.tasks.map((task) => {
-                            if ((task.status != 'active') && (task.status != 'In Progress')) {
+                            if (
+                                task.status != 'active' &&
+                                task.status != 'In Progress'
+                            ) {
                                 return (
-                                    <TaskHistoryRow key={task.id} task={task}/>
+                                    <TaskHistoryRow key={task.id} task={task} />
                                 )
                             }
                         })}

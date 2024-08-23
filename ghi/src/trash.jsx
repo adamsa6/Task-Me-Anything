@@ -1,49 +1,18 @@
-import { useListAllTasksQuery } from '../app/api'
-import AssigneeTaskRow from './AssigneeTaskRow'
-import { Link } from 'react-router-dom'
-import '../ListAllTasks.css'
-
-const ListAllTasks = () => {
-    const { data, isLoading } = useListAllTasksQuery()
-
-    if (isLoading) return <>Loading...</>
-
-    return (
-        <div className="container">
-            <div className="buttons-container">
-                <button>Filter By</button>
-                <Link to="/tasks/history" className="link-button">
-                    <button>Task History</button>
-                </Link>
+return (
+    <tr className="task-row" onClick={handleRowClick}>
+        <td colSpan="4">
+            <div className="task-row-wrapper">
+                <div className="task-cell">{task.title}</div>
+                <div className="task-cell">
+                    {usersData.assignee.last_name},{' '}
+                    {usersData.assignee.first_name}
+                </div>
+                <div className="task-cell">
+                    {usersData.assigner.last_name},{' '}
+                    {usersData.assigner.first_name}
+                </div>
+                <div className="task-cell">{task.status}</div>
             </div>
-            <div className="search-bar-container">
-                <input type="text" placeholder="Search here..." />
-                <button>Search</button>
-            </div>
-            <h1>ALL TASKS</h1>
-            <table className="task-table">
-                <thead>
-                    <tr>
-                        <th>Task Title</th>
-                        <th>Assignee</th>
-                        <th>Due Date</th>
-                        <th>Priority Level</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.tasks.map((task) => {
-                        if (
-                            task.status !== 'Completed' &&
-                            task.status !== 'Deleted'
-                        ) {
-                            return <AssigneeTaskRow key={task.id} task={task} />
-                        }
-                        return null
-                    })}
-                </tbody>
-            </table>
-        </div>
-    )
-}
-
-export default ListAllTasks
+        </td>
+    </tr>
+)
