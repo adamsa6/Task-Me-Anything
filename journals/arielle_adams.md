@@ -3,6 +3,12 @@
 * A reflection on any design conversations that you had
 * At least one ah-ha! moment that you had during your coding, however small
 
+## Journal Entry for 8/21/2024
+- We mob coded, with Yazan driving. Our main goal was to implement our Edit Task feature on the front-end. This took up most of the day, as this was one of the more challenging features for us.
+- We had some bugs right away, and after some troubleshooting, realized that they error was coming from a completely different part of the component than we initially thought. It helped to comment out pieces of the component to see when the error disappeared.
+- We worked through the rest of the bugs that came up throughout the day, trying to take it piece by piece in order to isolate the issues and where they were coming from.
+- After we finished implementing the Edit Task, we moved on to start working on our Task Detail page. Even though we didn't have time to finish implementing this, we were able to get started and set up a plan for tomorrow.
+
 
 ## Journal Entry for 8/21/2024
 - We started out pair programming, and King and I worked on implementing the Create Task component. This started off fairly straightforward, as it was similar to how we implemented our SignUp component. However, King and I realized that we would need to be able to access all of the users in order to assign the task to a specific user as the assignee.
@@ -10,7 +16,7 @@
 - We found an interesting bug when we realized that our drop down for setting the task priority did not have an extra option telling the user to select a priority. This meant that the default option of priority 1 was already selected, but the task wouldn't be created for that priority. We realized that we were actually setting the default priority to an empty string, but since we never actually changed the state of the priority for priority level 1 (since it was already selected), the form was trying to create the task with the empty string set as the priority. A quick fix, but interesting!
 - We transitioned to Andy leading the coding, and we worked on creating our other components for Task Lists. We started by working on the Dashboard, but realized that it would actually be easier to create the components for List Assigned Tasks and List My Tasks first. Doing so would allow us to reuse those components within our Dashboard component.
 - We also found a few bugs throughout this process that were interesting, and decided to adjust the back end queries for each of these lists to only return tasks that have a status of 'active' or 'In Progress', which eliminated the need to filter tasks by those in the front end.
-- We also learned how to conditionally limit the list of tasks returned to the dashboard by each component by setting an isLimited property, where if it was true, the List components would only return the first 5 tasks. This allowed us to only show the top priority tasks on our Dashboard, while still using the same components to list all of the tasks on their own pages. 
+- We also learned how to conditionally limit the list of tasks returned to the dashboard by each component by setting an isLimited property, where if it was true, the List components would only return the first 5 tasks. This allowed us to only show the top priority tasks on our Dashboard, while still using the same components to list all of the tasks on their own pages.
 
 ## Journal Entry for 8/20/2024
 - We mob coded, with Yazan piloting. He had figured out our issue from the day before, and was showing us the troubleshooting he had done. We still ran into a couple errors that we had to debug, but these were mostly syntax errors. and we were able to complete the List All Tasks component (for now)

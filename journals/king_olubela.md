@@ -43,3 +43,9 @@ We started by pair programming to build the Create Task component, which was ini
 We encountered a bug with the task priority dropdown, which defaulted to an empty string instead of a valid priority, but fixed it quickly. With Andy leading, we then focused on creating List Assigned Tasks and List My Tasks components before working on the Dashboard, allowing us to reuse these components effectively.
 
 We addressed additional bugs and modified backend queries to return only 'active' or 'In Progress' tasks, simplifying frontend filtering. We also added a feature to limit the task list on the Dashboard to the top 5 tasks, while keeping the same components for detailed task views.
+
+
+## Journal Entry for 08/21/2024
+The day ended with me mob coding the Task Details page and handling many of the errors.
+
+Yazan began the day by piloting the portion that dealt with the Edit Task form.

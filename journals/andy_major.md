@@ -41,3 +41,6 @@
 
 ## Journal Entry for 8/21/2024
 - We created multiple components to display a variety of lists. We started with arielle piloting and finished our create task component. Then moved on to me piloting and we completed our dashboard, assigned tasks, and my tasks components.
+
+## Journal Entry for 8/21/2024
+- with yazan piloting we created our editTaskForm where we get the preexisting data for the task and are able to change the data and update the task. We also have almost completed our getTaskDetail component. The editTaskForm was very tricky and gave us a lot of trouble but we found surprisingly simple fixes to our issues that took us a long time to figure out.
