@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useGetTaskDetailsQuery, useGetTaskUsersQuery, useGetUserQuery  } from '../app/api'
 import InProgressButton from './InProgressButton'
 import DeleteButton from './DeletedButton'
+import CompletedButton from './CompletedButton'
 
 const GetTaskDetails = () => {
     const { taskId } = useParams()
@@ -44,6 +45,7 @@ const GetTaskDetails = () => {
             <div>
                 <InProgressButton key={task.id} task={task}/>
                 <DeleteButton task={task}/>
+                <CompletedButton task={task}/>
             </div>
         </div>
     )
