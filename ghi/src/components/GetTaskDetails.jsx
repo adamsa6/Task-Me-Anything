@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useGetTaskDetailsQuery, useGetTaskUsersQuery, useGetUserQuery  } from '../app/api'
+import { useGetTaskDetailsQuery, useGetTaskUsersQuery, useGetUserQuery, useGetJokeQuery  } from '../app/api'
 import InProgressButton from './InProgressButton'
 import DeleteButton from './DeletedButton'
 import CompletedButton from './CompletedButton'
@@ -9,11 +9,10 @@ const GetTaskDetails = () => {
     const { taskId } = useParams()
     const { data: task, isLoading } = useGetTaskDetailsQuery(taskId)
     const { data: userData, isLoading: userDataIsLoading} = useGetUserQuery()
-    console.log("^^^^^^^^^^^^^^^^^", userData)
-
+    const { data: joke, isLoading: jokeIsLoading } = useGetJokeQuery()
     const { data: users, isLoading: userIsLoading } = useGetTaskUsersQuery(taskId)
 
-    if (isLoading || userIsLoading || userDataIsLoading) return <>Loading...</>
+    if (isLoading || userIsLoading || userDataIsLoading || jokeIsLoading) return <>Loading...</>
 
     return (
         <div>
@@ -47,7 +46,25 @@ const GetTaskDetails = () => {
                 <DeleteButton task={task}/>
                 <CompletedButton task={task}/>
             </div>
-        </div>
+            <div className="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-2" id="staticBackdropLabel">Congrats</h1>
+                        </div>
+                        <div>
+                            <h1 className="modal-title fs-5" id="staticBackdropLabel">Heres a JOKE to celebrate a job well done!</h1>
+                        </div>
+                        <div className="modal-body fs-4">
+                            <h1>{joke}</h1>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
     )
 }
 

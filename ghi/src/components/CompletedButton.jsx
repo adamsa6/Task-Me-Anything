@@ -13,7 +13,7 @@ export default function CompletedButton({task}) {
     }
     if (task.status != "Completed" && task.status != "Deleted"){
         if (task.assignee_id == userData.id || task.assigner_id == userData.id) {
-            return (<button onClick={handleStatusChange}>Complete</button>)
+            return (<button onClick={handleStatusChange}type="button" data-bs-toggle="modal" data-bs-target="#myModal">Complete</button>)
         }
         return
     }
