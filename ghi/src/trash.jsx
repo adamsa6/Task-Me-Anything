@@ -1,61 +1,41 @@
-import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useSigninMutation } from '../app/api'
-import '../SignInForm.css'
+import { useListAllTasksQuery } from '../app/api'
+import AssigneeTaskRow from './AssigneeTaskRow'
+import { Link } from 'react-router-dom'
+import '../ListAllTasks.css'
 
-export default function SignInForm() {
-    const [signin, signinStatus] = useSigninMutation()
-    const navigate = useNavigate()
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
+const ListAllTasks = () => {
+    const { data, isLoading } = useListAllTasksQuery()
 
-    useEffect(() => {
-        if (signinStatus.isSuccess) {
-            setError('')
-            navigate('/dashboard')
-        }
-        if (signinStatus.isError) {
-            setError('Incorrect username or password')
-        }
-    }, [signinStatus])
-
-    async function handleFormSubmit(e) {
-        e.preventDefault()
-        signin({
-            username: username,
-            password: password,
-        })
-    }
+    if (isLoading) return <>Loading...</>
 
     return (
-        <div className="signin-container">
-            <div className="card card-info">
-                <h1>Welcome to Our App</h1>
-                <p>Here you can manage your tasks, stay organized, and more!</p>
+        <div className="container">
+            <div className="buttons-container">
+                <button>Filter By</button>
+                <Link to="/tasks/history" className="link-button">
+                    <button>Task History</button>
+                </Link>
             </div>
-            <div className="card card-form">
-                <h1>Sign In</h1>
-                {error && <div>{error}</div>}
-                <form onSubmit={handleFormSubmit}>
-                    <input
-                        type="text"
-                        name="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Enter Username"
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Enter Password"
-                    />
-                    <button type="submit">Sign In</button>
-                </form>
-                <Link to="/signup">Create An Account</Link>
+            <div className="search-bar-container">
+                <input type="text" placeholder="Search here..." />
+                <button>Search</button>
+            </div>
+            <h1>ALL TASKS</h1>
+            <div className="task-list-container">
+                <ul className="task-list">
+                    {data.tasks.map((task) => {
+                        if (
+                            task.status !== 'Completed' &&
+                            task.status !== 'Deleted'
+                        ) {
+                            return <AssigneeTaskRow key={task.id} task={task} />
+                        }
+                        return null
+                    })}
+                </ul>
             </div>
         </div>
     )
 }
+
+export default ListAllTasks

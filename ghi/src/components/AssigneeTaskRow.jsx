@@ -1,4 +1,6 @@
 import { useGetTaskUsersQuery } from '../app/api'
+import { Link } from 'react-router-dom'
+import '../AssigneeTaskRow.css'
 
 const AssigneeTaskRow = ({ task }) => {
     const { data: usersData, isLoading } = useGetTaskUsersQuery(task.id)
@@ -13,14 +15,16 @@ const AssigneeTaskRow = ({ task }) => {
 
     if ({ usersData }) {
         return (
-            <tr>
-                <td>{task.title}</td>
-                <td>
-                    {usersData.assignee.last_name},{' '}
-                    {usersData.assignee.first_name}
-                </td>
-                <td>{task.due_date}</td>
-                <td>{task.priority}</td>
+            <tr className="task-row">
+                <Link to="/tasks/history" className="row-link">
+                    <td>{task.title}</td>
+                    <td>
+                        {usersData.assignee.last_name},{' '}
+                        {usersData.assignee.first_name}
+                    </td>
+                    <td>{task.due_date}</td>
+                    <td>{task.priority}</td>
+                </Link>
             </tr>
         )
     }

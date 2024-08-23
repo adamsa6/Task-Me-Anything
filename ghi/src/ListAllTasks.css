@@ -1,0 +1,97 @@
+.container {
+    padding-top: 80px; /* Increased padding to move content further from navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons-container {
+    position: fixed;
+    top: 100px; /* Adjust based on navbar height */
+    left: 20px; /* Positioning buttons to the far left */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between buttons */
+}
+
+.link-button button {
+    width: 200px;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #964734;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.link-button button:hover {
+    background-color: #7b382c;
+}
+
+.search-bar-container {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #024950;
+    border-radius: 5px;
+}
+
+.search-bar-container button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #024950;
+    color: white;
+    border: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar-container button:hover {
+    background-color: #023740;
+}
+
+h1 {
+    color: #0fa4af;
+    text-align: center;
+    margin-top: 40px; /* Added margin to separate from search bar */
+}
+
+table {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px 0;
+    border-collapse: collapse;
+    background-color: #d9cdc4; /* Ensure table background matches theme */
+    border-radius: 10px;
+    overflow: hidden; /* To apply border-radius to table */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #003135;
+    color: white;
+}
+
+/* Additional spacing between rows */
+.task-row td {
+    padding: 20px; /* Increased padding for more space */
+}

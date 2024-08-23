@@ -1,0 +1,22 @@
+.task-row {
+    cursor: pointer;
+    overflow: hidden;
+    border-bottom: 30px solid #d9cdc4;
+}
+
+.task-row > a {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    background-color: #faf9f6;
+    color: #07757f;
+    border-radius: 10px;
+}
+
+.task-row > a > td {
+    padding: 15px;
+}
+
+.task-row:hover > a {
+    background-color: #dbdad8;
+}
