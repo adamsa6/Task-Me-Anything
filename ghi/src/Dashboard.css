@@ -1,0 +1,52 @@
+.container {
+    padding-top: 80px; /* Increased padding to move content further from navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-card {
+    background-color: #faf9f6; /* Same background color as your tasks */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the card */
+    width: 100%;
+    max-width: 800px; /* Maximum width of the card */
+    margin-top: 20px; /* Space above the card */
+    text-align: center; /* Center-align the text inside the card */
+}
+
+.quote {
+    margin-top: 10px; /* Space between each quote */
+    color: #07757f; /* Same text color as your tasks */
+}
+
+.quote p {
+    margin: 0; /* Remove default margin */
+}
+
+.tasks-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Adjust based on your layout */
+    margin-top: 20px; /* Space above the container */
+}
+
+.tasks-column {
+    flex: 1;
+    padding: 0; /* Remove any padding inside the column */
+    margin: 0 10px; /* Space between columns */
+    background-color: #faf9f6; /* Same background color as your tasks */
+    border-radius: 10px; /* Rounded corners for the columns */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the columns */
+    /* Remove any extra top margin */
+}
+
+.tasks-container > div {
+    padding-top: 0; /* Ensure no extra padding on the top of columns */
+}
+
+h2 {
+    color: #07757f;
+}
