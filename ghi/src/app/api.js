@@ -35,6 +35,7 @@ export const taskApi = createApi({
             query: (taskId) => ({
                 url: `/api/tasks/${taskId}`,
             }),
+            providesTags: ['Status'],
         }),
         getJoke: builder.query({
             query: () => ({
@@ -104,13 +105,14 @@ export const taskApi = createApi({
                 method: 'PUT',
             }),
         }),
-        // changeTaskStatus: builder.mutation({
-        //     query: ({body, taskId}) => ({
-        //         url: `/api/tasks/${taskId}/status`,
-        //         body,
-        //         method: 'PATCH',
-        //     }),
-        // }),
+        changeTaskStatus: builder.mutation({
+            query: ({body, taskId}) => ({
+                url: `/api/tasks/${taskId}/status`,
+                body,
+                method: 'PATCH',
+            }),
+            invalidatesTags: ['Status'],
+        }),
         // createComment: builder.mutation({
         //     query: ({body, taskId}) => ({
         //         url: `/api/tasks/${taskId}/status`,
@@ -151,7 +153,7 @@ export const {
     useSigninMutation,
     useCreateTaskMutation,
     useEditTaskMutation,
-    // useChangeTaskStatusMutation,
+    useChangeTaskStatusMutation,
     // useCreateCommentMutation,
     // useEditTaskCommentMutation,
     // useDeleteTaskCommentMutation,
