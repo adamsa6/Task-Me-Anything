@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useGetTaskDetailsQuery, useGetTaskUsersQuery, useGetUserQuery, useGetJokeQuery  } from '../app/api'
 import InProgressButton from './InProgressButton'
 import DeleteButton from './DeletedButton'
@@ -11,6 +10,11 @@ const GetTaskDetails = () => {
     const { data: userData, isLoading: userDataIsLoading} = useGetUserQuery()
     const { data: joke, isLoading: jokeIsLoading } = useGetJokeQuery()
     const { data: users, isLoading: userIsLoading } = useGetTaskUsersQuery(taskId)
+    const navigate = useNavigate()
+
+    async function handleNavigateClick() {
+        navigate('/dashboard')
+    }       
 
     if (isLoading || userIsLoading || userDataIsLoading || jokeIsLoading) return <>Loading...</>
 
@@ -59,7 +63,7 @@ const GetTaskDetails = () => {
                             <h1>{joke}</h1>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button onClick={handleNavigateClick} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
