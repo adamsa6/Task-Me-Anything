@@ -76,8 +76,8 @@ class TaskQueries:
                     """
                     SELECT *
                     FROM tasks
-                    WHERE assignee_id = %s
-                    AND status = 'In Progress' OR status = 'active'
+                    WHERE (assignee_id = %s)
+                    AND (status = 'In Progress' OR status = 'active')
                     ORDER BY due_date, priority;
                     """,
                     [assignee_id],
@@ -92,8 +92,8 @@ class TaskQueries:
                     """
                     SELECT *
                     FROM tasks
-                    WHERE assigner_id = %s
-                    AND status = 'In Progress' OR status = 'active'
+                    WHERE (assigner_id = %s)
+                    AND (status = 'In Progress' OR status = 'active')
                     ORDER BY due_date, priority;
                     """,
                     [assigner_id],
