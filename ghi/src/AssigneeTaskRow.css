@@ -1,22 +1,24 @@
 .task-row {
     cursor: pointer;
     overflow: hidden;
-    border-bottom: 30px solid #d9cdc4;
+    border-bottom: 1px solid #d9cdc4; /* Reduced border size to 1px */
 }
 
-.task-row > a {
+.task-row-wrapper {
     display: flex;
     width: 100%;
-    text-decoration: none;
-    background-color: #faf9f6;
-    color: #07757f;
-    border-radius: 10px;
+    background-color: #faf9f6; /* Original background color */
+    color: #07757f; /* Original text color */
+    border-radius: 10px; /* Rounded corners for the entire box */
+    overflow: hidden; /* Ensures content stays within rounded corners */
 }
 
-.task-row > a > td {
-    padding: 15px;
+.task-cell {
+    padding: 8px; /* Reduced padding to bring cells closer */
+    flex: 1; /* Ensures cells take equal space */
+    box-sizing: border-box; /* Ensures padding is included in width calculation */
 }
 
-.task-row:hover > a {
-    background-color: #dbdad8;
+.task-row:hover .task-row-wrapper {
+    background-color: #dbdad8; /* Original hover background color */
 }

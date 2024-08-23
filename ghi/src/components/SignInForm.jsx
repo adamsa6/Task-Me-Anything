@@ -30,7 +30,7 @@ export default function SignInForm() {
     return (
         <div className="signin-container">
             <div className="card card-info">
-                <h1>Welcome to Our App</h1>
+                <h1>Task Me Anything</h1>
                 <p>Here you can manage your tasks, stay organized, and more!</p>
             </div>
             <div className="card card-form">

@@ -21,8 +21,16 @@ const ListAllTasks = () => {
                 <button>Search</button>
             </div>
             <h1>ALL TASKS</h1>
-            <div className="task-list-container">
-                <ul className="task-list">
+            <table className="task-table">
+                <thead>
+                    <tr>
+                        <th>Task Title</th>
+                        <th>Assignee</th>
+                        <th>Due Date</th>
+                        <th>Priority Level</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {data.tasks.map((task) => {
                         if (
                             task.status !== 'Completed' &&
@@ -32,8 +40,8 @@ const ListAllTasks = () => {
                         }
                         return null
                     })}
-                </ul>
-            </div>
+                </tbody>
+            </table>
         </div>
     )
 }
