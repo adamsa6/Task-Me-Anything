@@ -1,7 +1,13 @@
+import { useNavigate } from 'react-router-dom'
 import { useGetTaskUsersQuery } from '../app/api'
 
 const TaskHistoryRow = ({ task }) => {
     const { data: usersData, isLoading } = useGetTaskUsersQuery(task.id)
+    const navigate = useNavigate()
+
+    const handleRowClick = () => {
+        navigate(`/tasks/${task.id}`)
+    }
 
     if (isLoading) {
         return (
@@ -13,7 +19,7 @@ const TaskHistoryRow = ({ task }) => {
 
     if ({ usersData }) {
         return (
-            <tr>
+            <tr onClick={handleRowClick}>
                 <td>{task.title}</td>
                 <td>
                     {usersData.assignee.last_name},{' '}
