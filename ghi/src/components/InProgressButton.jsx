@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useChangeTaskStatusMutation, useGetUserQuery} from '../app/api'
 
 
