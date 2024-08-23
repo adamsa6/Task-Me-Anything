@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useListAssignedTasksQuery } from '../app/api'
-import '../EditTaskForm.css'
+import { useNavigate } from 'react-router-dom'
+import '../ListAssignedTasks.css'
 
 const ListAssignedTasks = ({ isLimited }) => {
     const { data, isLoading } = useListAssignedTasksQuery()
     const [tasksToList, setTasksToList] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (data) {
@@ -12,11 +14,15 @@ const ListAssignedTasks = ({ isLimited }) => {
         }
     }, [data, isLimited])
 
+    const handleRowClick = () => {
+        navigate(`/tasks/history`)
+    }
+
     if (isLoading) return <>Loading...</>
 
     return (
-        <div>
-            <h2>Tasks Assigned to Me</h2>
+        <div className="container">
+            <h1>Tasks Assigned to Me</h1>
             <table>
                 <thead>
                     <tr>
@@ -26,15 +32,27 @@ const ListAssignedTasks = ({ isLimited }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {tasksToList.map((task) => {
-                        return (
-                            <tr key={task.id}>
-                                <td>{task.title}</td>
-                                <td>{task.due_date}</td>
-                                <td>{task.priority}</td>
-                            </tr>
-                        )
-                    })}
+                    {tasksToList.map((task) => (
+                        <tr
+                            key={task.id}
+                            className="task-row"
+                            onClick={handleRowClick}
+                        >
+                            <td colSpan="3">
+                                <div className="task-row-wrapper">
+                                    <div className="task-cell">
+                                        {task.title}
+                                    </div>
+                                    <div className="task-cell">
+                                        {task.due_date}
+                                    </div>
+                                    <div className="task-cell">
+                                        {task.priority}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>
