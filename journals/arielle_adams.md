@@ -4,12 +4,21 @@
 * At least one ah-ha! moment that you had during your coding, however small
 
 ## Journal Entry for 8/23/2024
+- We mob coded with me piloting at first. We first talked about what work we still have to complete and made a checklist. Then we started by adding our edit task button to our Task detail page. This helped us find a small bug for when if the assigner and the assignee were the same user (it wouldn't display correctly).
+- After some brainstorming, we decided to refactor our code and break this piece down into subcomponents (where before we had used one component, but with if statements to change what was shown). Breaking it down into more modular components made the logic a lot more straightforward, and easy to implement.
+- We transitioned to implementing one of our stretch goals (of listing task comments), and we realized that we had set our character limit for this too small.
+- So we decided to adjust our database table for the comments, and had to rebuild.
+- From there, we worked on being able to implement listing comments for a specific task. To do so, we had to create a new endpoint on the back end that allowed us to get a specific user by their id (without returning the password). This made it so that we could display the user's first and last name on the comment they had written.
+- Andy took over piloting to implement the add a comment feature. We used what we had learned last week to make this a modal that was also our comment submit form!
+- It was cool to see how we could change the modal to be whatever we wanted it to be! 
+
+## Journal Entry for 8/23/2024
 - We mob coded, with King piloting as we continued to work on our Task Details page. We decided that in order to add the buttons, it would be best to create a subcomponent for each button. Since each button had specific conditions on whether or not it shows up for the user (and if the user is allowed to actually update the status / task). We were able to complete the In Progress, Completed, and Deleted buttons (but still have plans to add the update button).
 - Andy piloted as we mob coded in order to create the buttons. As part of the Completed buttons, we had to research how to create a modal in Bootstrap. We experiemented with how that works for awhile, before settling on how we wanted it to look and be implemented.
 - Also as part of the modal, we had to implement our Get Joke Query, so that the modal would show a random joke when the task status is changed to completed.
 - We also changed it to redirect to the user's dashboard once the modal is closed.
 - We continued mob coding, but I started piloting for the last bit of class. Due to the limited time left, we wanted to fix some smaller things. We added navigation links from each specific task (on the list pages and the dashboard) to the page for that task.
-- In doing this, we also realized a bug that existed when we changed our SQL statements earlier in the week (when filtering the lists). Our syntax was slightly wrong, so while it was still filtering for the different task statuses that we wanted, it was no longer filtering by assigner id. We fixed the syntax and confirmed that it was working! 
+- In doing this, we also realized a bug that existed when we changed our SQL statements earlier in the week (when filtering the lists). Our syntax was slightly wrong, so while it was still filtering for the different task statuses that we wanted, it was no longer filtering by assigner id. We fixed the syntax and confirmed that it was working!
 
 ## Journal Entry for 8/22/2024
 - We mob coded, with Yazan driving. Our main goal was to implement our Edit Task feature on the front-end. This took up most of the day, as this was one of the more challenging features for us.
