@@ -9,7 +9,7 @@ const TaskHistory = () => {
     return (
         <>
             <div className="container">
-                <h1>TASK HISTORY</h1>
+                <h1>Task History</h1>
                 <table>
                     <thead>
                         <tr>

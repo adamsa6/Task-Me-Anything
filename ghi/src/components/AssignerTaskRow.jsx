@@ -2,8 +2,7 @@ import { useGetTaskUsersQuery, useGetUserQuery } from '../app/api'
 import { useNavigate } from 'react-router-dom'
 import '../AssigneeTaskRow.css'
 
-
-const AssigneeTaskRow = ({ task }) => {
+const AssignerTaskRow = ({ task }) => {
     const { data: usersData, isLoading } = useGetTaskUsersQuery(task.id)
     const { data: user, isLoading: userIsLoading } = useGetUserQuery()
     const navigate = useNavigate()
@@ -27,8 +26,8 @@ const AssigneeTaskRow = ({ task }) => {
                     <div className="task-row-wrapper">
                         <div className="task-cell">{task.title}</div>
                         <div className="task-cell">
-                            {usersData.assignee.last_name},{' '}
-                            {usersData.assignee.first_name}
+                            {usersData.assigner.last_name},{' '}
+                            {usersData.assigner.first_name}
                         </div>
                         <div className="task-cell">{task.due_date}</div>
                         <div className="task-cell">{task.priority}</div>
@@ -45,4 +44,4 @@ const AssigneeTaskRow = ({ task }) => {
     )
 }
 
-export default AssigneeTaskRow
+export default AssignerTaskRow

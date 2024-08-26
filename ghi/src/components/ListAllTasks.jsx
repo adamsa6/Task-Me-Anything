@@ -1,5 +1,5 @@
 import { useListAllTasksQuery } from '../app/api'
-import AssigneeTaskRow from './AssigneeTaskRow'
+import AllTaskRow from './AllTaskRow'
 import { Link } from 'react-router-dom'
 import '../ListAllTasks.css'
 
@@ -20,12 +20,13 @@ const ListAllTasks = () => {
                 <input type="text" placeholder="Search here..." />
                 <button>Search</button>
             </div>
-            <h1>ALL TASKS</h1>
+            <h1>All Tasks</h1>
             <table>
                 <thead>
                     <tr>
                         <th>Task Title</th>
                         <th>Assignee</th>
+                        <th>Assigner</th>
                         <th>Due Date</th>
                         <th>Priority Level</th>
                     </tr>
@@ -36,7 +37,7 @@ const ListAllTasks = () => {
                             task.status !== 'Completed' &&
                             task.status !== 'Deleted'
                         ) {
-                            return <AssigneeTaskRow key={task.id} task={task} />
+                            return <AllTaskRow key={task.id} task={task} />
                         }
                         return null
                     })}

@@ -1,18 +1,16 @@
-import { useGetTaskUsersQuery, useGetUserQuery } from '../app/api'
 import { useNavigate } from 'react-router-dom'
+import { useGetTaskUsersQuery } from '../app/api'
 import '../AssigneeTaskRow.css'
 
-
-const AssigneeTaskRow = ({ task }) => {
+const AllTaskRow = ({ task }) => {
     const { data: usersData, isLoading } = useGetTaskUsersQuery(task.id)
-    const { data: user, isLoading: userIsLoading } = useGetUserQuery()
     const navigate = useNavigate()
 
     const handleRowClick = () => {
         navigate(`/tasks/${task.id}`)
     }
 
-    if (isLoading || userIsLoading) {
+    if (isLoading) {
         return (
             <tr>
                 <td>Loading...</td>
@@ -23,12 +21,16 @@ const AssigneeTaskRow = ({ task }) => {
     if ({ usersData }) {
         return (
             <tr className="task-row" onClick={handleRowClick}>
-                <td colSpan="4">
+                <td colSpan="5">
                     <div className="task-row-wrapper">
                         <div className="task-cell">{task.title}</div>
                         <div className="task-cell">
                             {usersData.assignee.last_name},{' '}
                             {usersData.assignee.first_name}
+                        </div>
+                        <div className="task-cell">
+                            {usersData.assigner.last_name},{' '}
+                            {usersData.assigner.first_name}
                         </div>
                         <div className="task-cell">{task.due_date}</div>
                         <div className="task-cell">{task.priority}</div>
@@ -45,4 +47,4 @@ const AssigneeTaskRow = ({ task }) => {
     )
 }
 
-export default AssigneeTaskRow
+export default AllTaskRow

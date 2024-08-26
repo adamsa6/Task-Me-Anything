@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useListAssignedTasksQuery } from '../app/api'
-import AssigneeTaskRow from './AssigneeTaskRow'
+import AssignerTaskRow from './AssignerTaskRow'
 import '../ListMyTasks.css'
 
 
@@ -30,7 +30,7 @@ const ListAssignedTasks = ({ isLimited }) => {
                 </thead>
                 <tbody>
                     {tasksToList.map((task) => {
-                        return <AssigneeTaskRow key={task.id} task={task} />
+                        return <AssignerTaskRow key={task.id} task={task} />
                     })}
                 </tbody>
             </table>
