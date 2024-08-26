@@ -1,18 +1,27 @@
 return (
-    <tr className="task-row" onClick={handleRowClick}>
-        <td colSpan="4">
-            <div className="task-row-wrapper">
-                <div className="task-cell">{task.title}</div>
-                <div className="task-cell">
-                    {usersData.assignee.last_name},{' '}
-                    {usersData.assignee.first_name}
-                </div>
-                <div className="task-cell">
-                    {usersData.assigner.last_name},{' '}
-                    {usersData.assigner.first_name}
-                </div>
-                <div className="task-cell">{task.status}</div>
-            </div>
-        </td>
-    </tr>
+    <>
+        <div className="container">
+            <h1>Task History</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task Title</th>
+                        <th>Assignee</th>
+                        <th>Assigner</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.tasks.map((task) => {
+                        if (
+                            task.status != 'active' &&
+                            task.status != 'In Progress'
+                        ) {
+                            return <TaskHistoryRow key={task.id} task={task} />
+                        }
+                    })}
+                </tbody>
+            </table>
+        </div>
+    </>
 )

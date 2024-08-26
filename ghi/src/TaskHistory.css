@@ -14,22 +14,6 @@
     gap: 15px; /* Space between buttons */
 }
 
-.link-button button {
-    width: 200px;
-    padding: 15px;
-    font-size: 18px;
-    background-color: #964734;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.link-button button:hover {
-    background-color: #7b382c;
-}
-
 .search-bar-container {
     margin-top: 20px;
     width: 100%;
@@ -46,7 +30,7 @@
     border-radius: 5px;
 }
 
-search-bar-container button {
+.search-bar-container button {
     padding: 10px 20px;
     font-size: 18px;
     background-color: #024950;
