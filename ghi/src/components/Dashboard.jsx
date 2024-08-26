@@ -26,10 +26,13 @@ const Dashboard = () => {
                 <h1>My Top Priority Tasks</h1>
                 <div className="tasks-container">
                     <div className="tasks-column">
-                        <ListMyTasks isLimited={true} />
+                        <ListMyTasks isLimited={true} showControls={false} />
                     </div>
                     <div className="tasks-column">
-                        <ListAssignedTasks isLimited={true} />
+                        <ListAssignedTasks
+                            isLimited={true}
+                            showControls={false}
+                        />
                     </div>
                 </div>
             </div>

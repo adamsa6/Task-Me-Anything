@@ -4,7 +4,7 @@ import AssigneeTaskRow from './AssigneeTaskRow'
 import { Link } from 'react-router-dom'
 import '../ListMyTasks.css'
 
-const ListMyTasks = ({ isLimited }) => {
+const ListMyTasks = ({ isLimited, showControls = true }) => {
     const { data, isLoading } = useListMyTasksQuery()
     const [tasksToList, setTasksToList] = useState([])
 
@@ -18,16 +18,20 @@ const ListMyTasks = ({ isLimited }) => {
 
     return (
         <div className="container">
-            <div className="buttons-container">
-                <button>Filter By</button>
-                <Link to="/tasks/history" className="link-button">
-                    <button>Task History</button>
-                </Link>
-            </div>
-            <div className="search-bar-container">
-                <input type="text" placeholder="Search here..." />
-                <button>Search</button>
-            </div>
+            {showControls && (
+                <>
+                    <div className="buttons-container">
+                        <button>Filter By</button>
+                        <Link to="/tasks/history" className="link-button">
+                            <button>Task History</button>
+                        </Link>
+                    </div>
+                    <div className="search-bar-container">
+                        <input type="text" placeholder="Search here..." />
+                        <button>Search</button>
+                    </div>
+                </>
+            )}
             <h1>Tasks I Have Created</h1>
             <table>
                 <thead>
