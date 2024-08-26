@@ -22,7 +22,7 @@ const TaskHistory = () => {
                     <tbody>
                         {data.tasks.map((task) => {
                             if (
-                                task.status != 'active' &&
+                                task.status != 'Active' &&
                                 task.status != 'In Progress'
                             ) {
                                 return (

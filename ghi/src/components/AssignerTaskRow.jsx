@@ -4,7 +4,6 @@ import '../AssigneeTaskRow.css'
 
 const AssignerTaskRow = ({ task }) => {
     const { data: usersData, isLoading } = useGetTaskUsersQuery(task.id)
-    //const { data: user, isLoading: userIsLoading } = useGetUserQuery()
     const navigate = useNavigate()
 
     const handleRowClick = () => {
