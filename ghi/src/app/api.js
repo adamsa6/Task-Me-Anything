@@ -17,19 +17,19 @@ export const taskApi = createApi({
             query: () => ({
                 url: '/api/tasks',
             }),
-            providesTags: ['Tasks'],
+            providesTags: ['Tasks', 'Status'],
         }),
         listAssignedTasks: builder.query({
             query: () => ({
                 url: '/api/assigned-tasks/mine',
             }),
-            providesTags: ['Tasks'],
+            providesTags: ['Tasks', 'Status'],
         }),
         listMyTasks: builder.query({
             query: () => ({
                 url: '/api/tasks/mine',
             }),
-            providesTags: ['Tasks'],
+            providesTags: ['Tasks', 'Status'],
         }),
         getTaskDetails: builder.query({
             query: (taskId) => ({
@@ -106,7 +106,7 @@ export const taskApi = createApi({
             }),
         }),
         changeTaskStatus: builder.mutation({
-            query: ({body, taskId}) => ({
+            query: ({ body, taskId }) => ({
                 url: `/api/tasks/${taskId}/status`,
                 body,
                 method: 'PATCH',

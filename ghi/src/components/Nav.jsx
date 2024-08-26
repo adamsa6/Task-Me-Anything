@@ -34,7 +34,7 @@ const Nav = () => {
                                             to="/tasks/mine"
                                             className="nav-link btn btn-light"
                                         >
-                                            My Tasks
+                                            My Created Tasks
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
@@ -42,7 +42,7 @@ const Nav = () => {
                                             to="/assigned-tasks/mine"
                                             className="nav-link btn btn-light"
                                         >
-                                            Assigned Tasks
+                                            My Assigned Tasks
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
