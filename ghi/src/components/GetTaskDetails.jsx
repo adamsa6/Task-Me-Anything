@@ -3,6 +3,7 @@ import { useGetTaskDetailsQuery, useGetTaskUsersQuery, useGetUserQuery, useGetJo
 import InProgressButton from './InProgressButton'
 import DeleteButton from './DeletedButton'
 import CompletedButton from './CompletedButton'
+import ListTaskComments from './ListTaskComments'
 
 const GetTaskDetails = () => {
     const { taskId } = useParams()
@@ -55,6 +56,9 @@ const GetTaskDetails = () => {
                 <CompletedButton task={task}/>
                 { userData.id == users.assigner.id &&
                 <button onClick={handleEditClick}>Edit Task</button>}
+            </div>
+            <div>
+                <ListTaskComments key={task.id} task={task} />
             </div>
             <div className="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">

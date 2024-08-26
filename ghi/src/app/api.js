@@ -13,6 +13,11 @@ export const taskApi = createApi({
             }),
             providesTags: ['User'],
         }),
+        getSingleUser: builder.query({
+            query: (userId) => ({
+                url: `/api/users/${userId}`,
+            }),
+        }),
         listAllTasks: builder.query({
             query: () => ({
                 url: '/api/tasks',
@@ -51,6 +56,7 @@ export const taskApi = createApi({
             query: (taskId) => ({
                 url: `/api/tasks/${taskId}/comments`,
             }),
+            providesTags: ['Comments']
         }),
         getTaskComment: builder.query({
             query: ({ taskId, commentId }) => ({
@@ -67,7 +73,7 @@ export const taskApi = createApi({
                 url: '/api/auth/signout',
                 method: 'DELETE',
             }),
-            invalidatesTags: ['User'],
+            invalidatesTags: ['User', 'Tasks'],
         }),
         signup: builder.mutation({
             query: (body) => ({
@@ -114,13 +120,14 @@ export const taskApi = createApi({
             }),
             invalidatesTags: ['Task'],
         }),
-        // createComment: builder.mutation({
-        //     query: ({body, taskId}) => ({
-        //         url: `/api/tasks/${taskId}/status`,
-        //         body,
-        //         method: 'POST',
-        //     }),
-        // }),
+        createComment: builder.mutation({
+            query: ({body, taskId}) => ({
+                url: `/api/tasks/${taskId}/status`,
+                body,
+                method: 'POST',
+            }),
+            invalidatesTags: ['Comments']
+        }),
         // editTaskComment: builder.mutation({
         //     query: ({ body, taskId, commentId }) => ({
         //         url: `/api/tasks/${taskId}/comments/${comment_id}`,
@@ -139,6 +146,9 @@ export const taskApi = createApi({
 
 export const {
     useGetUserQuery,
+    useGetSingleUserQuery,
+    useGetTaskUsersQuery,
+    useGetUsersQuery,
     useListAllTasksQuery,
     useListAssignedTasksQuery,
     useListMyTasksQuery,
@@ -147,8 +157,6 @@ export const {
     useGetQuoteQuery,
     useListTaskCommentsQuery,
     useGetTaskCommentQuery,
-    useGetTaskUsersQuery,
-    useGetUsersQuery,
     useSignoutMutation,
     useSignupMutation,
     useSigninMutation,

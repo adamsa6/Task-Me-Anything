@@ -8,7 +8,7 @@ from utils.exceptions import (
 )
 from queries.tasks_queries import TaskQueries
 from queries.user_queries import UserQueries
-from models.users import UserResponse, TaskUsers, UserList
+from models.users import User, UserResponse, TaskUsers, UserList
 
 from utils.authentication import try_get_jwt_user_data
 
@@ -57,3 +57,17 @@ def get_users(
     if user is None:
         raise user_exception
     return {"users": queries.list_all()}
+
+
+@router.get("/users/{user_id}", response_model=User)
+def get_single_user(
+    user_id: int,
+    signed_in_user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: UserQueries = Depends(),
+) -> User:
+
+    if signed_in_user is None:
+        raise user_exception
+
+    user = queries.get_by_id(user_id)
+    return user

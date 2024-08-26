@@ -9,7 +9,7 @@ steps = [
             created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
             due_date DATE NOT NULL,
             priority INTEGER CONSTRAINT priority_check CHECK (priority IN (1, 2, 3)) NOT NULL,
-            status VARCHAR(100) DEFAULT 'active' NOT NULL,
+            status VARCHAR(100) DEFAULT 'Active' NOT NULL,
             assigner_id INTEGER REFERENCES users (id),
             assignee_id INTEGER REFERENCES users (id)
         );
@@ -24,7 +24,7 @@ steps = [
         """
         CREATE TABLE comments(
             id SERIAL PRIMARY KEY NOT NULL,
-            comment VARCHAR(300) NOT NULL,
+            comment VARCHAR(1000) NOT NULL,
             user_id INTEGER REFERENCES users (id),
             task_id INTEGER REFERENCES tasks (id),
             created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL

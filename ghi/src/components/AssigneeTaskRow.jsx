@@ -5,14 +5,13 @@ import '../AssigneeTaskRow.css'
 
 const AssigneeTaskRow = ({ task }) => {
     const { data: usersData, isLoading } = useGetTaskUsersQuery(task.id)
-    const { data: user, isLoading: userIsLoading } = useGetUserQuery()
     const navigate = useNavigate()
 
     const handleRowClick = () => {
         navigate(`/tasks/${task.id}`)
     }
 
-    if (isLoading || userIsLoading) {
+    if (isLoading) {
         return (
             <tr>
                 <td>Loading...</td>
