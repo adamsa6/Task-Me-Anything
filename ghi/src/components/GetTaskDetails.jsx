@@ -40,7 +40,7 @@ const GetTaskDetails = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{task.title}</td>
+                        <td>{task.description}</td>
                         <td>{task.created_on}</td>
                         <td>{task.due_date}</td>
                         <td>{users.assignee.last_name}, {users.assignee.first_name}</td>

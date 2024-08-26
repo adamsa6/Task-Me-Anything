@@ -122,7 +122,7 @@ export const taskApi = createApi({
         }),
         createComment: builder.mutation({
             query: ({body, taskId}) => ({
-                url: `/api/tasks/${taskId}/status`,
+                url: `/api/tasks/${taskId}/comments`,
                 body,
                 method: 'POST',
             }),
@@ -163,7 +163,7 @@ export const {
     useCreateTaskMutation,
     useEditTaskMutation,
     useChangeTaskStatusMutation,
-    // useCreateCommentMutation,
+    useCreateCommentMutation,
     // useEditTaskCommentMutation,
     // useDeleteTaskCommentMutation,
 } = taskApi
