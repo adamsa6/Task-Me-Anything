@@ -14,7 +14,11 @@ const GetTaskDetails = () => {
 
     async function handleNavigateClick() {
         navigate('/dashboard')
-    }       
+    }
+
+    async function handleEditClick() {
+        navigate(`/tasks/${taskId}/update`)
+    }
 
     if (isLoading || userIsLoading || userDataIsLoading || jokeIsLoading) return <>Loading...</>
 
@@ -49,6 +53,8 @@ const GetTaskDetails = () => {
                 <InProgressButton key={task.id} task={task}/>
                 <DeleteButton task={task}/>
                 <CompletedButton task={task}/>
+                { userData.id == users.assigner.id &&
+                <button onClick={handleEditClick}>Edit Task</button>}
             </div>
             <div className="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
@@ -68,7 +74,7 @@ const GetTaskDetails = () => {
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     )
 }
 

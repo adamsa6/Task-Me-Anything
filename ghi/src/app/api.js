@@ -17,25 +17,25 @@ export const taskApi = createApi({
             query: () => ({
                 url: '/api/tasks',
             }),
-            providesTags: ['Tasks', 'Status'],
+            providesTags: ['Tasks', 'Task'],
         }),
         listAssignedTasks: builder.query({
             query: () => ({
                 url: '/api/assigned-tasks/mine',
             }),
-            providesTags: ['Tasks', 'Status'],
+            providesTags: ['Tasks', 'Task'],
         }),
         listMyTasks: builder.query({
             query: () => ({
                 url: '/api/tasks/mine',
             }),
-            providesTags: ['Tasks', 'Status'],
+            providesTags: ['Tasks', 'Task'],
         }),
         getTaskDetails: builder.query({
             query: (taskId) => ({
                 url: `/api/tasks/${taskId}`,
             }),
-            providesTags: ['Status'],
+            providesTags: ['Task'],
         }),
         getJoke: builder.query({
             query: () => ({
@@ -104,6 +104,7 @@ export const taskApi = createApi({
                 body,
                 method: 'PUT',
             }),
+            invalidatesTags: ['Task'],
         }),
         changeTaskStatus: builder.mutation({
             query: ({ body, taskId }) => ({
@@ -111,7 +112,7 @@ export const taskApi = createApi({
                 body,
                 method: 'PATCH',
             }),
-            invalidatesTags: ['Status'],
+            invalidatesTags: ['Task'],
         }),
         // createComment: builder.mutation({
         //     query: ({body, taskId}) => ({
