@@ -128,3 +128,31 @@ class UserQueries:
                 )
                 users = cur.fetchall()
                 return users
+
+
+    def get_user_by_id(self, id: int) -> Optional[User]:
+        """
+        Gets a user from the database by user id
+
+        Returns None if the user isn't found
+        """
+        try:
+            with pool.connection() as conn:
+                with conn.cursor(row_factory=class_row(User)) as cur:
+                    cur.execute(
+                        """
+                            SELECT
+                                *
+                            FROM users
+                            WHERE id = %s
+                            """,
+                        [id],
+                    )
+                    user = cur.fetchone()
+                    if not user:
+                        return None
+        except psycopg.Error as e:
+            print(e)
+            raise UserDatabaseException(f"Error getting user with id {id}")
+
+        return user
