@@ -49,3 +49,9 @@ We addressed additional bugs and modified backend queries to return only 'active
 The day ended with me mob coding the Task Details page and handling many of the errors.
 
 Yazan began the day by piloting the portion that dealt with the Edit Task form.
+
+## Journal Entry for 08/26/2024
+he team began with Arriele piloting, discussing the remaining tasks, and creating a checklist. They then added an "edit task" button to the Task detail page, which helped uncover a bug when the assigner and assignee were the same user.
+After some brainstorming, the team decided to refactor the code by breaking it down into smaller, modular subcomponents. This approach replaced the previous use of a single component with conditional logic, simplifying the implementation and improving the code's clarity.
+The team moved on to a stretch goal of displaying task comments but realized the character limit for comments was too restrictive. They adjusted the database schema to increase the character limit, necessitating a rebuild.
+To list comments for a specific task, the team created a new backend endpoint to retrieve user details by ID (excluding passwords), enabling the display of the user's first and last name on their comments. Andy took over piloting to implement the "add a comment" feature. The team applied their previous week's learning to create a modal that also served as the comment submission form, showcasing the flexibility of modals in the application.
