@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
     useGetTaskDetailsQuery,
@@ -9,6 +10,7 @@ import InProgressButton from './InProgressButton'
 import DeleteButton from './DeletedButton'
 import CompletedButton from './CompletedButton'
 import ListTaskComments from './ListTaskComments'
+import Confetti from 'react-confetti'
 import '../GetTaskDetails.css'
 
 const GetTaskDetails = () => {
@@ -19,6 +21,7 @@ const GetTaskDetails = () => {
     const { data: users, isLoading: userIsLoading } =
         useGetTaskUsersQuery(taskId)
     const navigate = useNavigate()
+    const [showConfetti, setShowConfetti] = useState(false)
 
     async function handleNavigateClick() {
         navigate('/dashboard')
@@ -28,11 +31,27 @@ const GetTaskDetails = () => {
         navigate(`/tasks/${taskId}/update`)
     }
 
+    function handleCompleteClick() {
+        // Use a delay to ensure the modal is fully shown before starting the confetti
+        setTimeout(() => {
+            setShowConfetti(true)
+            setTimeout(() => setShowConfetti(false), 10000) // Hide confetti after 3 seconds
+        }, 300) // Adjust the delay if needed
+    }
+
     if (isLoading || userIsLoading || userDataIsLoading || jokeIsLoading)
         return <>Loading...</>
 
     return (
         <div className="task-container">
+            {showConfetti && (
+                <Confetti
+                    width={window.innerWidth}
+                    height={window.innerHeight}
+                    numberOfPieces={2000}
+                    style={{ position: 'fixed', top: 0, left: 0, zIndex: 1050 }}
+                />
+            )}
             <div className="task-left-column">
                 <div className="task-details-card">
                     <h1>{task.title}:</h1>
@@ -58,9 +77,12 @@ const GetTaskDetails = () => {
                     <li>Status: {task.status}</li>
                 </ul>
                 <div className="task-buttons">
-                    <CompletedButton key={task.id} task={task} />
+                    <CompletedButton
+                        key={task.id}
+                        task={task}
+                        onComplete={handleCompleteClick}
+                    />
                     <InProgressButton key={task.id} task={task} />
-                    {/* <DeleteButton task={task} /> */}
                     {userData.id === users.assigner.id && (
                         <button
                             onClick={handleEditClick}
