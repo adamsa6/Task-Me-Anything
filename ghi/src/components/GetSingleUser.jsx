@@ -7,18 +7,16 @@ const GetSingleUser = ({ comment }) => {
 
     if (isLoading) {
         return (
-            <tr>
                 <td>Loading...</td>
-            </tr>
         )
     }
 
     return (
-        <tr>
+        <>
             <td>{comment.comment}</td>
             <td>{data.last_name}, {data.first_name}</td>
             <td>{comment.created_on}</td>
-        </tr>
+        </>
     )
 }
 

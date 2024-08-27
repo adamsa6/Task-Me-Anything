@@ -4,13 +4,13 @@ import {useCreateCommentMutation} from '../app/api'
 
 
 
-const CreateComment = () => {
-    const { taskId } = useParams()
+const EditComment = () => {
+    const { taskId, commentId } = useParams()
     const [ createComment, createCommentStatus ] = useCreateCommentMutation()
     const [comment, setComment] = useState('')
     const navigate = useNavigate()
     const [error, setError] = useState('')
-
+    console.log(taskId, commentId)
     useEffect(() => {
         if (createCommentStatus.isSuccess) {
             setError('')

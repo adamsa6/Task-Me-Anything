@@ -128,13 +128,14 @@ export const taskApi = createApi({
             }),
             invalidatesTags: ['Comments']
         }),
-        // editTaskComment: builder.mutation({
-        //     query: ({ body, taskId, commentId }) => ({
-        //         url: `/api/tasks/${taskId}/comments/${comment_id}`,
-        //         body,
-        //         method: 'PUT',
-        //     }),
-        // }),
+        editTaskComment: builder.mutation({
+            query: ({ body, taskId, commentId }) => ({
+                url: `/api/tasks/${taskId}/comments/${commentId}`,
+                body,
+                method: 'PUT',
+            }),
+            invalidatesTags: ['Comments']
+        }),
         // deleteTaskComment: builder.mutation({
         //     query: ({ taskId, commentId }) => ({
         //         url: `/api/tasks/${taskId}/comments/${comment_id}`,
@@ -164,6 +165,6 @@ export const {
     useEditTaskMutation,
     useChangeTaskStatusMutation,
     useCreateCommentMutation,
-    // useEditTaskCommentMutation,
+    useEditTaskCommentMutation,
     // useDeleteTaskCommentMutation,
 } = taskApi
