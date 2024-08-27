@@ -17,7 +17,6 @@ import TaskHistory from './components/TaskHistory'
 import Dashboard from './components/Dashboard'
 import EditTaskForm from './components/EditTaskForm'
 import Home from './components/Home'
-// import EditTaskCommentForm from './component/EditTaskCommentForm'
 import App from './App'
 
 import './index.css'
@@ -85,10 +84,6 @@ const router = createBrowserRouter(
                     path: 'tasks/:taskId/update',
                     element: <EditTaskForm />,
                 },
-                // {
-                //     path: 'tasks/:taskId/comments/:commentId',
-                //     element: <EditTaskCommentForm />
-                // },
             ],
         },
     ],
