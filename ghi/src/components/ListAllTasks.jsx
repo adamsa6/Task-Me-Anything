@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useListAllTasksQuery } from '../app/api'
 import AllTaskRow from './AllTaskRow'
 import { Link } from 'react-router-dom'
@@ -5,6 +6,12 @@ import '../ListAllTasks.css'
 
 const ListAllTasks = () => {
     const { data, isLoading } = useListAllTasksQuery()
+    const [searchInput, setSearchInput] = useState('')
+
+    function handleSearchInputChange(e) {
+        const search = e.target.value.toLowerCase()
+        setSearchInput(search)
+    }
 
     if (isLoading) return <>Loading...</>
 
@@ -17,7 +24,11 @@ const ListAllTasks = () => {
                 </Link>
             </div>
             <div className="search-bar-container">
-                <input type="text" placeholder="Search here..." />
+                <input
+                    type="text"
+                    placeholder="Search here..."
+                    onChange={handleSearchInputChange}
+                />
                 <button>Search</button>
             </div>
             <h1>All Tasks</h1>
@@ -37,9 +48,16 @@ const ListAllTasks = () => {
                             task.status !== 'Completed' &&
                             task.status !== 'Deleted'
                         ) {
-                            return <AllTaskRow key={task.id} task={task} />
+                            if (searchInput == '') {
+                                return <AllTaskRow key={task.id} task={task} />
+                            } else {
+                                if (task.title.toLowerCase().includes(searchInput)) {
+                                    return (
+                                        <AllTaskRow key={task.id} task={task} />
+                                    )
+                                }
+                            }
                         }
-                        return null
                     })}
                 </tbody>
             </table>
