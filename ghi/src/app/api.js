@@ -136,12 +136,13 @@ export const taskApi = createApi({
             }),
             invalidatesTags: ['Comments']
         }),
-        // deleteTaskComment: builder.mutation({
-        //     query: ({ taskId, commentId }) => ({
-        //         url: `/api/tasks/${taskId}/comments/${comment_id}`,
-        //         method: 'DELETE',
-        //     }),
-        // }),
+        deleteTaskComment: builder.mutation({
+            query: ({ taskId, commentId }) => ({
+                url: `/api/tasks/${taskId}/comments/${commentId}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['Comments']
+        }),
     }),
 })
 
@@ -166,5 +167,5 @@ export const {
     useChangeTaskStatusMutation,
     useCreateCommentMutation,
     useEditTaskCommentMutation,
-    // useDeleteTaskCommentMutation,
+    useDeleteTaskCommentMutation,
 } = taskApi

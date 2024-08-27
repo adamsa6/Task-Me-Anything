@@ -4,6 +4,7 @@ import { useListTaskCommentsQuery, useGetUserQuery } from '../app/api'
 import GetSingleUser from './GetSingleUser'
 import CreateComment from './CreateTaskComment'
 import EditComment from './EditComment'
+import DeleteComment from './DeleteComment'
 
 const ListTaskComments = () => {
     const { taskId } = useParams()
@@ -32,16 +33,19 @@ const ListTaskComments = () => {
                         return (
                             <tr key={comment.id} >
                                 <GetSingleUser  comment={comment}/>
-                                {user.id == comment.user_id && 
+                                {user.id == comment.user_id &&
                                     <td>
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#edit-comment">Edit</button>
                                         <div><EditComment comment={comment}/></div>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#delete-comment">Delete</button>
+                                        <div><DeleteComment comment={comment}/></div>
                                     </td>}
-                            </tr>)    
-                    })}  
+
+                            </tr>)
+                    })}
                 </tbody>
             </table>
-            
+
         </div>
     )
 }
