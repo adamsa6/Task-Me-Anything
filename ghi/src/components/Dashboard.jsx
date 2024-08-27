@@ -1,19 +1,21 @@
-import { useGetQuoteQuery } from '../app/api'
+import { useGetQuoteQuery, useGetUserQuery } from '../app/api'
+import { Link } from 'react-router-dom'
 import ListAssignedTasks from './ListAssignedTasks'
 import ListMyTasks from './ListMyTasks'
 import '../Dashboard.css'
 
 const Dashboard = () => {
     const { data: quotes, isLoading: quoteIsLoading } = useGetQuoteQuery()
+    const { data: user, isLoading: userIsLoading } = useGetUserQuery()
 
-    if (quoteIsLoading) return <>Loading...</>
+    if (quoteIsLoading || userIsLoading) return <>Loading...</>
 
     return (
         <>
             <div className="container">
                 <h1>Dashboard</h1>
                 <div className="welcome-card">
-                    <h2>Welcome!</h2>
+                    <h2>Welcome, {user.first_name}!</h2>
                     {quotes.map((quote) => {
                         return (
                             <div key={quote.q} className="quote">
@@ -27,12 +29,18 @@ const Dashboard = () => {
                 <div className="tasks-container">
                     <div className="tasks-column">
                         <ListMyTasks isLimited={true} showControls={false} />
+                        <Link to="/tasks/mine" className="link-button">
+                            <button>View All My Created Tasks</button>
+                        </Link>
                     </div>
                     <div className="tasks-column">
                         <ListAssignedTasks
                             isLimited={true}
                             showControls={false}
                         />
+                        <Link to="/assigned-tasks/mine" className="link-button">
+                            <button>View All My Assigned Tasks</button>
+                        </Link>
                     </div>
                 </div>
             </div>

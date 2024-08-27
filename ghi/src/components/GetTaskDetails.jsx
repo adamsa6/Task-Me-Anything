@@ -76,6 +76,7 @@ const GetTaskDetails = () => {
                     <li>Priority Level: {task.priority}</li>
                     <li>Status: {task.status}</li>
                 </ul>
+<<<<<<< HEAD
                 <div className="task-buttons">
                     <CompletedButton
                         key={task.id}
@@ -83,6 +84,11 @@ const GetTaskDetails = () => {
                         onComplete={handleCompleteClick}
                     />
                     <InProgressButton key={task.id} task={task} />
+=======
+                <div className="task-buttons" key={task.id}>
+                    <CompletedButton  task={task} />
+                    <InProgressButton  task={task} />
+>>>>>>> main
                     {userData.id === users.assigner.id && (
                         <button
                             onClick={handleEditClick}

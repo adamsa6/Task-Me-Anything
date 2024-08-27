@@ -30,8 +30,30 @@ export default function SignInForm() {
     return (
         <div className="signin-container">
             <div className="card card-info">
-                <h1>Task Me Anything</h1>
-                <p>Here you can manage your tasks, stay organized, and more!</p>
+                <h1>Task Me Anything: Your Task-Taming Sidekick!</h1>
+                <p>
+                    Say goodbye to task-induced stress and hello to a
+                    productivity paradise! Task Me Anything is designed to
+                    gently nudge you into a productive flow, sprinkling in
+                    delightful serotonin boosts along the way. Each time you log
+                    in, you'll be greeted by an inspiring quote to ignite your
+                    motivation. Creating and managing tasks (yours or those
+                    you've cleverly delegated) is a breeze. And when you mark a
+                    task "Completed"? Prepare for a little digital confetti
+                    shower – because you deserve it!
+                </p>
+                <p>
+                    Crafted in 2024 by a team of passionate, quick-witted
+                    software engineers (each boasting an IQ well above room
+                    temperature!), this app aims to be your very cutesy, very
+                    mindful, and very demure organized task management
+                    companion.
+                </p>
+                <p>
+                    So, whether you're juggling work projects, personal goals,
+                    or that ever-growing to-do list, Task Me Anything is here to
+                    help you stay on top of it all with a smile
+                </p>
             </div>
             <div className="card card-form">
                 <h1>Sign In</h1>

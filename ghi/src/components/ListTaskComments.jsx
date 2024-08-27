@@ -15,9 +15,15 @@ const ListTaskComments = () => {
     return (
         <div>
             <h1>Comments</h1>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#add-comment">Add Comment</button>
+            <button
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#add-comment"
+            >
+                Add Comment
+            </button>
             <div>
-                <CreateComment/>
+                <CreateComment />
             </div>
             <table>
                 <thead>
@@ -31,21 +37,37 @@ const ListTaskComments = () => {
                 <tbody>
                     {data.comments.map((comment) => {
                         return (
-                            <tr key={comment.id} >
-                                <GetSingleUser  comment={comment}/>
-                                {user.id == comment.user_id &&
+                            <tr key={comment.id}>
+                                <GetSingleUser comment={comment} />
+                                {user.id == comment.user_id && (
                                     <td>
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#edit-comment">Edit</button>
-                                        <div><EditComment comment={comment}/></div>
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#delete-comment">Delete</button>
-                                        <div><DeleteComment comment={comment}/></div>
-                                    </td>}
-
-                            </tr>)
+                                        <button
+                                            type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#edit-comment"
+                                        >
+                                            Edit
+                                        </button>
+                                        <div>
+                                            <EditComment comment={comment} />
+                                        </div>
+                                        <button
+                                            type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#delete-comment"
+                                        >
+                                            Delete
+                                        </button>
+                                        <div>
+                                            <DeleteComment comment={comment} />
+                                        </div>
+                                    </td>
+                                )}
+                            </tr>
+                        )
                     })}
                 </tbody>
             </table>
-
         </div>
     )
 }

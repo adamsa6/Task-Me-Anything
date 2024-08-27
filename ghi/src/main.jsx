@@ -11,13 +11,11 @@ import ListAssignedTasks from './components/ListAssignedTasks'
 import ListMyTasks from './components/ListMyTasks'
 import GetTaskDetails from './components/GetTaskDetails'
 import ListTaskComments from './components/ListTaskComments'
-import GetTaskComment from './components/GetTaskComment'
 import CreateTaskForm from './components/CreateTaskForm'
 import TaskHistory from './components/TaskHistory'
 import Dashboard from './components/Dashboard'
 import EditTaskForm from './components/EditTaskForm'
 import Home from './components/Home'
-// import EditTaskCommentForm from './component/EditTaskCommentForm'
 import App from './App'
 
 import './index.css'
@@ -66,10 +64,6 @@ const router = createBrowserRouter(
                     element: <ListTaskComments />,
                 },
                 {
-                    path: 'tasks/:taskId/comments/:commentId',
-                    element: <GetTaskComment />,
-                },
-                {
                     path: 'tasks/create',
                     element: <CreateTaskForm />,
                 },
@@ -85,10 +79,6 @@ const router = createBrowserRouter(
                     path: 'tasks/:taskId/update',
                     element: <EditTaskForm />,
                 },
-                // {
-                //     path: 'tasks/:taskId/comments/:commentId',
-                //     element: <EditTaskCommentForm />
-                // },
             ],
         },
     ],
