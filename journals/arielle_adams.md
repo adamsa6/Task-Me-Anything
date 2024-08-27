@@ -3,14 +3,22 @@
 * A reflection on any design conversations that you had
 * At least one ah-ha! moment that you had during your coding, however small
 
-## Journal Entry for 8/23/2024
+## Journal Entry for 8/27/2024
+- We mob coded with Andy piloting in order to continue the feature we had been working on at the end of yesterday's class. Although we had implemented our "add a comment" feature to a specific task, we discussed refactoring the code to make it more modular. So we first spent some time doing this, creating a new subcomponent that was specifically for our add comment modal (on our task details page).
+- We also discovered a few bugs, as we worked through this, and handled those along the way. Then we transitioned to our Edit Comment feature
+- Although we had more information about modals, with a plan to make a subcomponent for this, we expected it to be a little challenging because we wanted to be able to click to edit a specific comment, and have the input tag already filled in with the original comment's content. We spent some time experimenting with this, and we were able to use useState to set the default value of the contents before then re-setting the comment with the new contents.
+- As we worked on this, one of the bugs we encountered was that even though it filled with the default value, we weren't able to change it. We learned that we were accessing the comment's contents inconsistently, leading to some bugs. Once we quickly fixed those, our feature was working!
+- We also implemented our Delete comment feature, which was probably one of the easier features (after creating and editing a comment), but we continued to make it more modular, while also choosing to have a modal that confirmed the user's choice to delete.
+- We started implementing a search bar, which is functional, but we do have some plans to expand on the functionality if we have time. This will take a bit more discussion about our design, and exactly what we want it to be able to do before we can figure out how to implement it though.
+
+## Journal Entry for 8/26/2024
 - We mob coded with me piloting at first. We first talked about what work we still have to complete and made a checklist. Then we started by adding our edit task button to our Task detail page. This helped us find a small bug for when if the assigner and the assignee were the same user (it wouldn't display correctly).
 - After some brainstorming, we decided to refactor our code and break this piece down into subcomponents (where before we had used one component, but with if statements to change what was shown). Breaking it down into more modular components made the logic a lot more straightforward, and easy to implement.
 - We transitioned to implementing one of our stretch goals (of listing task comments), and we realized that we had set our character limit for this too small.
 - So we decided to adjust our database table for the comments, and had to rebuild.
 - From there, we worked on being able to implement listing comments for a specific task. To do so, we had to create a new endpoint on the back end that allowed us to get a specific user by their id (without returning the password). This made it so that we could display the user's first and last name on the comment they had written.
 - Andy took over piloting to implement the add a comment feature. We used what we had learned last week to make this a modal that was also our comment submit form!
-- It was cool to see how we could change the modal to be whatever we wanted it to be! 
+- It was cool to see how we could change the modal to be whatever we wanted it to be!
 
 ## Journal Entry for 8/23/2024
 - We mob coded, with King piloting as we continued to work on our Task Details page. We decided that in order to add the buttons, it would be best to create a subcomponent for each button. Since each button had specific conditions on whether or not it shows up for the user (and if the user is allowed to actually update the status / task). We were able to complete the In Progress, Completed, and Deleted buttons (but still have plans to add the update button).
