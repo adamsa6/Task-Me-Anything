@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useListTaskCommentsQuery, useGetUserQuery } from '../app/api'
 import GetSingleUser from './GetSingleUser'
 import CreateComment from './CreateTaskComment'
+import EditComment from './EditComment'
 
 const ListTaskComments = () => {
     const { taskId } = useParams()
@@ -32,7 +33,10 @@ const ListTaskComments = () => {
                             <tr key={comment.id} >
                                 <GetSingleUser  comment={comment}/>
                                 {user.id == comment.user_id && 
-                                    <td><button>Edit</button></td>}
+                                    <td>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#edit-comment">Edit</button>
+                                        <div><EditComment comment={comment}/></div>
+                                    </td>}
                             </tr>)    
                     })}  
                 </tbody>
