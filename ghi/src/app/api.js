@@ -58,11 +58,6 @@ export const taskApi = createApi({
             }),
             providesTags: ['Comments']
         }),
-        getTaskComment: builder.query({
-            query: ({ taskId, commentId }) => ({
-                url: `/api/tasks/${taskId}/comments/${commentId}`,
-            }),
-        }),
         getTaskUsers: builder.query({
             query: (taskId) => ({
                 url: `/api/tasks/${taskId}/users`,
@@ -158,7 +153,6 @@ export const {
     useGetJokeQuery,
     useGetQuoteQuery,
     useListTaskCommentsQuery,
-    useGetTaskCommentQuery,
     useSignoutMutation,
     useSignupMutation,
     useSigninMutation,

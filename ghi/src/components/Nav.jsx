@@ -62,6 +62,14 @@ const Nav = () => {
                                             Create Task
                                         </NavLink>
                                     </li>
+                                    <li className="nav-item">
+                                        <NavLink
+                                            to="/tasks/history"
+                                            className="nav-link btn btn-light"
+                                        >
+                                            Task History
+                                        </NavLink>
+                                    </li>
                                 </>
                             )}
                         </ul>

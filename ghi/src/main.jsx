@@ -11,7 +11,6 @@ import ListAssignedTasks from './components/ListAssignedTasks'
 import ListMyTasks from './components/ListMyTasks'
 import GetTaskDetails from './components/GetTaskDetails'
 import ListTaskComments from './components/ListTaskComments'
-import GetTaskComment from './components/GetTaskComment'
 import CreateTaskForm from './components/CreateTaskForm'
 import TaskHistory from './components/TaskHistory'
 import Dashboard from './components/Dashboard'
@@ -63,10 +62,6 @@ const router = createBrowserRouter(
                 {
                     path: 'tasks/:taskId/comments',
                     element: <ListTaskComments />,
-                },
-                {
-                    path: 'tasks/:taskId/comments/:commentId',
-                    element: <GetTaskComment />,
                 },
                 {
                     path: 'tasks/create',

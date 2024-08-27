@@ -1,4 +1,5 @@
 import { useGetQuoteQuery, useGetUserQuery } from '../app/api'
+import { Link } from 'react-router-dom'
 import ListAssignedTasks from './ListAssignedTasks'
 import ListMyTasks from './ListMyTasks'
 import '../Dashboard.css'
@@ -28,12 +29,18 @@ const Dashboard = () => {
                 <div className="tasks-container">
                     <div className="tasks-column">
                         <ListMyTasks isLimited={true} showControls={false} />
+                        <Link to="/tasks/mine" className="link-button">
+                            <button>View All My Created Tasks</button>
+                        </Link>
                     </div>
                     <div className="tasks-column">
                         <ListAssignedTasks
                             isLimited={true}
                             showControls={false}
                         />
+                        <Link to="/assigned-tasks/mine" className="link-button">
+                            <button>View All My Assigned Tasks</button>
+                        </Link>
                     </div>
                 </div>
             </div>
