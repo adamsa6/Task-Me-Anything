@@ -5,6 +5,7 @@ from fastapi import (
 from utils.exceptions import (
     user_exception,
     edit_comment_exception,
+    task_exception,
     check_comment_exceptions,
 )
 from queries.comments_queries import CommentQueries
@@ -23,6 +24,7 @@ def create_comment(
     task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: CommentQueries = Depends(),
+    task_queries: TaskQueries = Depends(),
 ) -> CommentOut:
     """
     Creates a new comment when someone submits the comments form.
@@ -30,6 +32,11 @@ def create_comment(
 
     if user is None:
         raise user_exception
+
+    task = task_queries.get_task(task_id)
+
+    if task is None:
+        raise task_exception
 
     comment = queries.create_comment(
         new_comment=new_comment, user_id=user.id, task_id=task_id

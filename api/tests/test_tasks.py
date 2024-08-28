@@ -152,10 +152,10 @@ def test_create_task_200():
     result = client.post("/api/tasks", json=body)
     assert result.status_code == 200
     data = result.json()
-    assert data["title"] == "Make presentation"
-    assert data["description"] == "Should be 30 minutes long"
-    assert data["due_date"] == "2024-08-27"
-    assert data["assignee_id"] == 10
+    assert data["title"] == body["title"]
+    assert data["description"] == body["description"]
+    assert data["due_date"] == body["due_date"]
+    assert data["assignee_id"] == body["assignee_id"]
     assert data["status"] == 'Active'
     assert data["assigner_id"] == 1337
 
@@ -295,7 +295,7 @@ def test_edit_task_200():
     data = result.json()
     assert data["title"] == body['title']
     assert data["description"] == body["description"]
-    assert data["due_date"] == "2024-08-27"
+    assert data["due_date"] == body["due_date"]
     assert data["assignee_id"] == body["assignee_id"]
     assert data["status"] == "Active"
     assert data["assigner_id"] == 1337
