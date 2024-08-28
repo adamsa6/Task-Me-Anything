@@ -32,8 +32,16 @@ class FakeCommentQueries:
             created_on="2024-08-27T19:20:46.770731",
         )
 
-    # def list_all(self, task_id: int):
-    #     pass
+    def list_all(self, task_id: int):
+        return [
+            CommentOut(
+                id=1222,
+                comment="comment",
+                user_id=1,
+                task_id=task_id,
+                created_on="2024-08-27T19:20:46.770731",
+            )
+        ]
 
     # def get_comment(self, comment_id: int):
     #     pass
@@ -84,8 +92,37 @@ def test_create_comment_200():
     assert data["task_id"] == 2
 
 
-# def test_list_task_comments():
-#     pass
+def test_list_task_comments_401():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    result = client.get("api/tasks/2/comments")
+    assert result.status_code == 401
+
+def test_list_task_comments_404():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    result = client.get("api/tasks/1/comments")
+    assert result.status_code == 404
+
+def test_list_task_overrides_200():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    result = client.get("api/tasks/14/comments")
+    assert result.status_code == 200
+    data = result.json()
+    assert len(data['comments']) == 1
+    assert data["comments"][0]["task_id"] == 14
+
+
 
 # def test_get_task_comment():
 #     pass
