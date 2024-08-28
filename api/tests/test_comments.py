@@ -50,15 +50,23 @@ class FakeCommentQueries:
         return CommentOut(
             id=comment_id,
             comment="chocolate milky is the best",
-            user_id=1,
+            user_id=1337,
             task_id=2,
             created_on="2024-08-27T19:20:46.770731",
         )
 
-    # def edit_comment(
-    #     self, comment_id: int, comment_in: CommentIn
-    # ):
-    #     pass
+    def edit_comment(
+        self, comment_id: int, comment_in: CommentIn
+    ):
+        if comment_id == 1:
+            return None
+        return CommentOut(
+            id=comment_id,
+            comment= comment_in.comment,
+            user_id=1337,
+            task_id=2,
+            created_on="2024-08-27T19:20:46.770731",
+        )
 
     # def delete_comment(self, comment_id: int):
     #     pass
@@ -178,8 +186,55 @@ def test_get_task_comment_200():
     assert data["task_id"] == 2
 
 
-# def test_edit_task_comment():
-#     pass
+def test_edit_task_comment_401():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    body = {"comment": "test edit comment"}
+    result = client.put("/api/tasks/2/comments/3", json=body)
+    assert result.status_code == 401
+
+
+def test_edit_task_comment_task_404():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    body = {"comment": "test edit comment"}
+    result = client.put("/api/tasks/1/comments/3", json=body)
+    assert result.status_code == 404
+
+
+def test_edit_task_comment_comment_404():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    body = {"comment": "test edit comment"}
+    result = client.put("/api/tasks/2/comments/1", json=body)
+    assert result.status_code == 404
+
+
+def test_edit_task_comment_200():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    body = {"comment": "test edit comment"}
+    result = client.put("/api/tasks/2/comments/3", json=body)
+    assert result.status_code == 200
+    data = result.json()
+    assert data["task_id"] == 2
+    assert data["id"] == 3
+    assert data["user_id"] == 1337
+    assert data["comment"] == body["comment"]
+
 
 # def test_delete_task_comment():
 #     pass
