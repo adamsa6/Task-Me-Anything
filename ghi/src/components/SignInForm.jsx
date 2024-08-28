@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useSigninMutation } from '../app/api'
+import { useSigninMutation, useGetUserQuery } from '../app/api'
 import '../SignInForm.css'
 
 export default function SignInForm() {
     const [signin, signinStatus] = useSigninMutation()
+    const { refetch, data } = useGetUserQuery()
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -13,12 +14,18 @@ export default function SignInForm() {
     useEffect(() => {
         if (signinStatus.isSuccess) {
             setError('')
-            navigate('/dashboard')
+            refetch()
         }
         if (signinStatus.isError) {
             setError('Incorrect username or password')
         }
     }, [signinStatus])
+
+    useEffect(() => {
+        if (data) {
+            navigate('/dashboard')
+        }
+    }, [data])
 
     async function handleFormSubmit(e) {
         e.preventDefault()
@@ -30,7 +37,8 @@ export default function SignInForm() {
     return (
         <div className="signin-container">
             <div className="card card-info">
-                <h1>Task Me Anything: Your Task-Taming Sidekick!</h1>
+                <h1>Task Me Anything: </h1>
+                <h2>Your Task-Taming Sidekick!</h2>
                 <p>
                     Say goodbye to task-induced stress and hello to a
                     productivity paradise! Task Me Anything is designed to

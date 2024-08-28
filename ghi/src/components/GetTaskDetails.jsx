@@ -18,8 +18,7 @@ const GetTaskDetails = () => {
     const { data: task, isLoading } = useGetTaskDetailsQuery(taskId)
     const { data: userData, isLoading: userDataIsLoading } = useGetUserQuery()
     const { data: joke, isLoading: jokeIsLoading } = useGetJokeQuery()
-    const { data: users, isLoading: userIsLoading } =
-        useGetTaskUsersQuery(taskId)
+    const { data: users, isLoading: userIsLoading } = useGetTaskUsersQuery(taskId)
     const navigate = useNavigate()
     const [showConfetti, setShowConfetti] = useState(false)
 

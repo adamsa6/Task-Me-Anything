@@ -152,6 +152,7 @@ export const {
     useGetTaskDetailsQuery,
     useGetJokeQuery,
     useGetQuoteQuery,
+    useLazyGetQuoteQuery,
     useListTaskCommentsQuery,
     useSignoutMutation,
     useSignupMutation,

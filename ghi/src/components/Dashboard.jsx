@@ -1,21 +1,39 @@
-import { useGetQuoteQuery, useGetUserQuery } from '../app/api'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useLazyGetQuoteQuery , useGetUserQuery } from '../app/api'
+import { Link, useNavigate } from 'react-router-dom'
 import ListAssignedTasks from './ListAssignedTasks'
 import ListMyTasks from './ListMyTasks'
 import '../Dashboard.css'
 
 const Dashboard = () => {
-    const { data: quotes, isLoading: quoteIsLoading } = useGetQuoteQuery()
+    const [getQuotesTrigger, quotesResults] = useLazyGetQuoteQuery()
     const { data: user, isLoading: userIsLoading } = useGetUserQuery()
+    const [quotes, setQuotes] = useState([])
+    const navigate = useNavigate()
 
-    if (quoteIsLoading || userIsLoading) return <>Loading...</>
+
+    useEffect(() => {
+        if (user === null) {
+            navigate('/signin')
+        } else if (user && !userIsLoading) {
+            getQuotesTrigger()
+        }
+    }, [user])
+
+    useEffect(() => {
+        if (quotesResults.isSuccess) {
+            setQuotes(quotesResults.data)
+        }
+    }, [quotesResults])
+
+    if (userIsLoading) return <>Loading...</>
 
     return (
         <>
             <div className="container">
                 <h1>Dashboard</h1>
                 <div className="welcome-card">
-                    <h2>Welcome, {user.first_name}!</h2>
+                    <h2>Welcome, {user?.first_name}!</h2>
                     {quotes.map((quote) => {
                         return (
                             <div key={quote.q} className="quote">

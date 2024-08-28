@@ -5,7 +5,7 @@ const GetSingleUser = ({ comment }) => {
     const { data, isLoading } = useGetSingleUserQuery(userId)
 
     if (isLoading) {
-        return <td>Loading...</td>
+        return <div>Loading...</div>
     }
 
     return (

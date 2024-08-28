@@ -1,4 +1,5 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useGetUserQuery, useSignoutMutation } from '../app/api'
 import '../Nav.css'
 
@@ -6,6 +7,12 @@ const Nav = () => {
     const { data: user } = useGetUserQuery()
     const [signout, signoutStatus] = useSignoutMutation()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (signoutStatus.isSuccess) {
+            navigate('/signin')
+        }
+    }, [signoutStatus])
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light fixed-top custom-navbar">
@@ -80,7 +87,6 @@ const Nav = () => {
                                 className="btn signout-button me-2"
                                 onClick={() => {
                                     signout()
-                                    navigate('/signin')
                                 }}
                             >
                                 Sign Out

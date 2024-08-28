@@ -30,6 +30,12 @@
 .card-info h1,
 .card-info p {
     margin: 0;
+    color: #003135;
+}
+
+.card-info h2,
+.card-info p {
+    margin: 0;
     color: #0fa4af;
 }
 

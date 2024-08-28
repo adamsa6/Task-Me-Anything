@@ -2,8 +2,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import {useCreateCommentMutation} from '../app/api'
 
-
-
 const CreateComment = () => {
     const { taskId } = useParams()
     const [ createComment, createCommentStatus ] = useCreateCommentMutation()
@@ -57,7 +55,7 @@ const CreateComment = () => {
                                 <button type="submit" data-bs-toggle="modal" data-bs-target="#add-comment" className="submit-button">
                                     Submit
                                 </button>
-                            </form>      
+                            </form>
                         </div>
                         <div className="modal-footer">
                             <button onClick={handleNavigateClick} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
