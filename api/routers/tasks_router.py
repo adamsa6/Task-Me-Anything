@@ -43,7 +43,7 @@ def create_task(
 def list_all_tasks(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
-):
+) -> TaskList:
     if user is None:
         raise user_exception
 
@@ -54,7 +54,8 @@ def list_all_tasks(
 def list_assigned_tasks(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
-):
+) -> TaskList:
+
     if user is None:
         raise user_exception
 
@@ -65,7 +66,8 @@ def list_assigned_tasks(
 def list_my_tasks(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
-):
+) -> TaskList:
+
     if user is None:
         raise user_exception
 
