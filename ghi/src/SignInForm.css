@@ -1,11 +1,11 @@
 .signin-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Align items to the top */
     min-height: 100vh;
-    /* background-color: #d11414; Adjust the background color as needed */
-    padding: 20px;
-    gap: 20%; /* Increase space between the two cards */
+    padding: 100px;
+    gap: 50px; /* Space between the two cards */
+    width: 100%;
 }
 
 .card {
@@ -14,7 +14,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 30px;
     width: 100%;
-    max-width: 500px; /* Increase the maximum width of the card */
+    max-width: 500px; /* This will be applied to both cards */
 }
 
 .card-info {
@@ -23,27 +23,31 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex: 2; /* Allows the info card to be wider */
+    max-width: 700px; /* Ensure it can be wider than the sign-in form */
 }
 
 .card-info h1,
 .card-info p {
     margin: 0;
-    color: #0fa4af; /* Adjust color as needed */
+    color: #0fa4af;
 }
 
 .card-info p {
     margin-top: 10px;
-    color: #333; /* Adjust color as needed */
+    color: #333;
 }
 
 .card-form {
     display: flex;
     flex-direction: column;
+    flex: 1; /* Adjust the form width relative to the info card */
+    max-width: 400px; /* Ensure the form is narrower */
 }
 
 .card-form input,
 .card-form button {
-    margin-bottom: 15px; /* Increase margin between form elements */
+    margin-bottom: 15px;
 }
 
 .card-form input {
@@ -62,7 +66,7 @@
 }
 
 .card-form button:hover {
-    background-color: #023740; /* Darker shade for hover effect */
+    background-color: #023740;
 }
 
 .card-form a {

@@ -1,162 +1,72 @@
-// return (
-//     <div className="task-comments-container">
-//         <h1 className="comments-title">Comments</h1>
-//         <button
-//             type="button"
-//             data-bs-toggle="modal"
-//             data-bs-target="#add-comment"
-//             className="add-comment-btn"
-//         >
-//             Add Comment
-//         </button>
-//         <div>
-//             <CreateComment />
-//         </div>
-//         <table className="comments-table">
-//             <thead>
-//                 <tr>
-//                     <th>Comment</th>
-//                     <th>User</th>
-//                     <th>Created On</th>
-//                     <th></th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 {data.comments.map((comment) => (
-//                     <tr key={comment.id} className="comment-row">
-//                         <td colSpan="4">
-//                             <div className="comment-row-wrapper">
-//                                 <div className="comment-details">
-//                                     <GetSingleUser comment={comment} />
-//                                 </div>
-//                                 {user.id === comment.user_id && (
-//                                     <div className="comment-actions">
-//                                         <button
-//                                             type="button"
-//                                             data-bs-toggle="modal"
-//                                             data-bs-target="#edit-comment"
-//                                             className="edit-comment-btn"
-//                                         >
-//                                             <img
-//                                                 src="/pencil-square.svg"
-//                                                 alt="Edit"
-//                                                 width="16"
-//                                                 height="16"
-//                                             />
-//                                         </button>
-//                                         <div>
-//                                             <EditComment comment={comment} />
-//                                         </div>
-//                                         <button
-//                                             type="button"
-//                                             data-bs-toggle="modal"
-//                                             data-bs-target="#delete-comment"
-//                                             className="delete-comment-btn"
-//                                         >
-//                                             <img
-//                                                 src="/trash3.svg"
-//                                                 alt="Delete"
-//                                                 width="16"
-//                                                 height="16"
-//                                             />
-//                                         </button>
-//                                         <div>
-//                                             <DeleteComment comment={comment} />
-//                                         </div>
-//                                     </div>
-//                                 )}
-//                             </div>
-//                         </td>
-//                     </tr>
-//                 ))}
-//             </tbody>
-//         </table>
-//     </div>
-// )
-
-// .task-comments-container {
-//     padding: 20px;
-// }
-
-// .comments-title {
-//     font-size: 24px;
-//     margin-bottom: 20px;
-// }
-
-// .add-comment-btn {
-//     background-color: #024950;
-//     color: #fff;
-//     padding: 10px 20px;
-//     border: none;
-//     border-radius: 5px;
-//     cursor: pointer;
-//     margin-bottom: 20px;
-// }
-
-// .comments-table {
+// .signin-container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     min-height: 100vh;
+//     /* background-color: #d11414; Adjust the background color as needed */
+//     padding: 100px;
+//     gap: 10%; /* Increase space between the two cards */
 //     width: 100%;
-//     border-collapse: collapse;
 // }
 
-// .comments-table th,
-// .comments-table td {
-//     padding: 8px;
-//     text-align: left;
-//     border-bottom: 1px solid #d9cdc4;
+// .card {
+//     background-color: #ffffff;
+//     border-radius: 8px;
+//     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+//     padding: 30px;
+//     width: 100%;
+//     max-width: 500px; /* Increase the maximum width of the card */
 // }
 
-// .comment-row {
-//     cursor: pointer;
-//     overflow: hidden;
-// }
-
-// .comment-row-wrapper {
+// .card-info {
 //     display: flex;
-//     justify-content: space-between;
+//     flex-direction: column;
+//     justify-content: center;
 //     align-items: center;
-//     background-color: #faf9f6;
-//     color: #07757f;
-//     border-radius: 10px;
-//     padding: 10px;
-//     margin-bottom: 10px;
-//     overflow: hidden;
+//     text-align: center;
+//     width: 1500px;
 // }
 
-// .comment-row-wrapper:hover {
-//     background-color: #dbdad8;
+// .card-info h1,
+// .card-info p {
+//     margin: 0;
+//     color: #0fa4af; /* Adjust color as needed */
 // }
 
-// .comment-details {
-//     flex: 1;
-//     padding: 8px;
+// .card-info p {
+//     margin-top: 10px;
+//     color: #333; /* Adjust color as needed */
 // }
 
-// .comment-actions {
+// .card-form {
 //     display: flex;
-//     align-items: center;
+//     flex-direction: column;
 // }
 
-// .edit-comment-btn,
-// .delete-comment-btn {
-//     background-color: #718c70; /* Edit */
+// .card-form input,
+// .card-form button {
+//     margin-bottom: 15px; /* Increase margin between form elements */
+// }
+
+// .card-form input {
+//     padding: 15px;
+//     border: 1px solid #ddd;
+//     border-radius: 4px;
+// }
+
+// .card-form button {
+//     padding: 15px;
 //     border: none;
-//     color: white;
-//     padding: 5px 10px;
-//     border-radius: 5px;
+//     border-radius: 4px;
+//     background-color: #024950;
+//     color: #ffffff;
 //     cursor: pointer;
 // }
 
-// .delete-comment-btn {
-//     background-color: #c44900; /* Delete */
+// .card-form button:hover {
+//     background-color: #023740; /* Darker shade for hover effect */
 // }
 
-// .edit-comment-btn:hover,
-// .delete-comment-btn:hover {
-//     opacity: 0.8;
-// }
-
-// .edit-comment-btn img,
-// .delete-comment-btn img {
-//     filter: invert(18%) sepia(64%) saturate(593%) hue-rotate(326deg)
-//         brightness(94%) contrast(88%);
+// .card-form a {
+//     color: #024950;
 // }
