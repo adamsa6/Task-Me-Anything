@@ -32,11 +32,10 @@ const GetTaskDetails = () => {
     }
 
     function handleCompleteClick() {
-        // Use a delay to ensure the modal is fully shown before starting the confetti
         setTimeout(() => {
             setShowConfetti(true)
-            setTimeout(() => setShowConfetti(false), 10000) // Hide confetti after 3 seconds
-        }, 300) // Adjust the delay if needed
+            setTimeout(() => setShowConfetti(false), 10000)
+        }, 300)
     }
 
     if (isLoading || userIsLoading || userDataIsLoading || jokeIsLoading)
@@ -63,18 +62,16 @@ const GetTaskDetails = () => {
             </div>
             <div className="task-right-column">
                 <ul>
-                    <li>Created On: {task.created_on}</li>
-                    <li>Due Date: {task.due_date}</li>
-                    <li>
-                        Assignee: {users.assignee.last_name},{' '}
-                        {users.assignee.first_name}
+                    <li data-label="Created On:">{task.created_on}</li>
+                    <li data-label="Due Date:">{task.due_date}</li>
+                    <li data-label="Assignee:">
+                        {users.assignee.last_name}, {users.assignee.first_name}
                     </li>
-                    <li>
-                        Assigner: {users.assigner.last_name},{' '}
-                        {users.assigner.first_name}
+                    <li data-label="Assigner:">
+                        {users.assigner.last_name}, {users.assigner.first_name}
                     </li>
-                    <li>Priority Level: {task.priority}</li>
-                    <li>Status: {task.status}</li>
+                    <li data-label="Priority Level:">{task.priority}</li>
+                    <li data-label="Status:">{task.status}</li>
                 </ul>
                 <div className="task-buttons" key={task.id}>
                     <CompletedButton
