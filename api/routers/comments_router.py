@@ -3,10 +3,10 @@ from fastapi import (
     APIRouter,
 )
 from utils.exceptions import (
-    user_exception,
     edit_comment_exception,
-    task_exception,
+    check_user_exceptions,
     check_comment_exceptions,
+    check_task_exception,
 )
 from queries.comments_queries import CommentQueries
 from queries.tasks_queries import TaskQueries
@@ -30,13 +30,10 @@ def create_comment(
     Creates a new comment when someone submits the comments form.
     """
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     task = task_queries.get_task(task_id)
-
-    if task is None:
-        raise task_exception
+    check_task_exception(task)
 
     comment = queries.create_comment(
         new_comment=new_comment, user_id=user.id, task_id=task_id
@@ -49,10 +46,13 @@ def list_task_comments(
     task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: CommentQueries = Depends(),
+    task_queries: TaskQueries = Depends(),
 ) -> CommentList:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
+
+    task = task_queries.get_task(task_id)
+    check_task_exception(task)
 
     return {"comments": queries.list_all(task_id=task_id)}
 
@@ -68,8 +68,7 @@ def get_task_comment(
     queries: CommentQueries = Depends(),
 ) -> CommentOut:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     task = task_queries.get_task(task_id)
     comment = queries.get_comment(comment_id)
@@ -90,8 +89,7 @@ def edit_task_comment(
     queries: CommentQueries = Depends(),
 ) -> CommentOut:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     task = task_queries.get_task(task_id)
     comment = queries.get_comment(comment_id)
@@ -112,9 +110,7 @@ def delete_task_comment(
     task_queries: TaskQueries = Depends(),
     queries: CommentQueries = Depends(),
 ):
-
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     task = task_queries.get_task(task_id)
     comment = queries.get_comment(comment_id)

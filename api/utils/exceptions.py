@@ -43,6 +43,14 @@ def check_for_exceptions(user, task, status):
         raise edit_task_exception
 
 
+def check_user_exceptions(user):
+    if user is None:
+        raise user_exception
+
+def check_task_exception(task):
+    if task is None:
+        raise task_exception
+
 def check_comment_exceptions(task, comment):
     if task is None:
         raise task_exception
