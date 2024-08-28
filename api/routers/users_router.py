@@ -3,8 +3,8 @@ from fastapi import (
     APIRouter,
 )
 from utils.exceptions import (
-    user_exception,
-    task_exception,
+    check_user_exceptions,
+    check_task_exception,
 )
 from queries.tasks_queries import TaskQueries
 from queries.user_queries import UserQueries
@@ -23,13 +23,11 @@ def get_task_users(
     queries: TaskQueries = Depends(),
 ) -> TaskUsers:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     task = queries.get_task(task_id)
 
-    if task is None:
-        raise task_exception
+    check_task_exception(task)
 
     assigner_id = task.assigner_id
     assignee_id = task.assignee_id
@@ -54,20 +52,19 @@ def get_users(
     queries: UserQueries = Depends(),
 ) -> UserList:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
+
     return {"users": queries.list_all()}
 
 
 @router.get("/users/{user_id}", response_model=User)
 def get_single_user(
     user_id: int,
-    signed_in_user: UserResponse = Depends(try_get_jwt_user_data),
+    user: UserResponse = Depends(try_get_jwt_user_data),
     queries: UserQueries = Depends(),
 ) -> User:
 
-    if signed_in_user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
-    user = queries.get_by_id(user_id)
-    return user
+    single_user = queries.get_by_id(user_id)
+    return single_user

@@ -3,10 +3,10 @@ from fastapi import (
     APIRouter,
 )
 from utils.exceptions import (
-    user_exception,
-    task_exception,
     edit_task_exception,
     check_for_exceptions,
+    check_user_exceptions,
+    check_task_exception,
 )
 from queries.tasks_queries import TaskQueries
 from models.tasks import (
@@ -32,8 +32,7 @@ def create_task(
     """
     Creates a new task when someone submits the task form
     """
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     task = queries.create_task(new_task=new_task, assigner_id=user.id)
     return task
@@ -44,8 +43,8 @@ def list_all_tasks(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
 ) -> TaskList:
-    if user is None:
-        raise user_exception
+
+    check_user_exceptions(user)
 
     return {"tasks": queries.list_all()}
 
@@ -56,8 +55,7 @@ def list_assigned_tasks(
     queries: TaskQueries = Depends(),
 ) -> TaskList:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     return {"tasks": queries.list_assigned(assignee_id=user.id)}
 
@@ -68,8 +66,7 @@ def list_my_tasks(
     queries: TaskQueries = Depends(),
 ) -> TaskList:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     return {"tasks": queries.list_mine(assigner_id=user.id)}
 
@@ -81,12 +78,11 @@ def get_task_details(
     queries: TaskQueries = Depends(),
 ) -> TaskOut:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     task = queries.get_task(task_id)
-    if task is None:
-        raise task_exception
+    check_task_exception(task)
+
     return task
 
 
@@ -98,12 +94,10 @@ def edit_task(
     queries: TaskQueries = Depends(),
 ) -> TaskOut:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     task = queries.get_task(task_id)
-    if task is None:
-        raise task_exception
+    check_task_exception(task)
 
     if user.id != task.assigner_id:
         raise edit_task_exception
@@ -120,13 +114,10 @@ def change_task_status(
     queries: TaskQueries = Depends(),
 ) -> TaskOut:
 
-    if user is None:
-        raise user_exception
+    check_user_exceptions(user)
 
     task = queries.get_task(task_id)
-
-    if task is None:
-        raise task_exception
+    check_task_exception(task)
 
     check_for_exceptions(user, task, status)
 
