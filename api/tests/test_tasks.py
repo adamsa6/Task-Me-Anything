@@ -8,14 +8,16 @@ from models.users import UserResponse
 
 client = TestClient(app)
 
+
 def fake_try_get_jwt_user_data():
     return UserResponse(
         id=1337,
         username="aadams",
         first_name="Archie",
         last_name="Adams",
-        email="a@email.com"
+        email="a@email.com",
     )
+
 
 class FakeTaskQueries:
     def create_task(self, new_task: TaskIn, assigner_id: int):
@@ -39,10 +41,10 @@ class FakeTaskQueries:
                 description="asdf",
                 created_on="2024-08-27T19:20:46.770731",
                 due_date="2024-08-23",
-                priority= 2,
-                status= "Active",
-                assigner_id= 1,
-                assignee_id= 2
+                priority=2,
+                status="Active",
+                assigner_id=1,
+                assignee_id=2,
             )
         ]
 
@@ -156,14 +158,14 @@ def test_create_task_200():
     assert data["description"] == body["description"]
     assert data["due_date"] == body["due_date"]
     assert data["assignee_id"] == body["assignee_id"]
-    assert data["status"] == 'Active'
+    assert data["status"] == "Active"
     assert data["assigner_id"] == 1337
 
 
 def test_list_all_tasks_401():
     app.dependency_overrides = {}
     app.dependency_overrides[TaskQueries] = FakeTaskQueries
-    result = client.get('/api/tasks')
+    result = client.get("/api/tasks")
     assert result.status_code == 401
 
 
@@ -176,8 +178,8 @@ def test_list_all_tasks_200():
     result = client.get("/api/tasks")
     assert result.status_code == 200
     data = result.json()
-    assert len(data['tasks']) == 1
-    assert data['tasks'][0]['id'] == 10
+    assert len(data["tasks"]) == 1
+    assert data["tasks"][0]["id"] == 10
 
 
 def test_list_assigned_tasks_401():
@@ -197,7 +199,8 @@ def test_list_assigned_tasks_200():
     assert result.status_code == 200
     data = result.json()
     assert len(data) == 1
-    assert data['tasks'][0]['assignee_id'] == 1337
+    assert data["tasks"][0]["assignee_id"] == 1337
+
 
 def test_list_my_tasks_401():
     app.dependency_overrides = {}
@@ -222,8 +225,9 @@ def test_list_my_tasks_200():
 def test_get_task_details_401():
     app.dependency_overrides = {}
     app.dependency_overrides[TaskQueries] = FakeTaskQueries
-    result = client.get('/api/tasks/10')
+    result = client.get("/api/tasks/10")
     assert result.status_code == 401
+
 
 def test_get_task_details_404():
     app.dependency_overrides = {}
@@ -231,8 +235,9 @@ def test_get_task_details_404():
     app.dependency_overrides[try_get_jwt_user_data] = (
         fake_try_get_jwt_user_data
     )
-    result = client.get('/api/tasks/1')
+    result = client.get("/api/tasks/1")
     assert result.status_code == 404
+
 
 def test_get_task_details_200():
     app.dependency_overrides = {}
@@ -243,7 +248,7 @@ def test_get_task_details_200():
     result = client.get("/api/tasks/10")
     assert result.status_code == 200
     data = result.json()
-    assert data['id'] == 10
+    assert data["id"] == 10
 
 
 def test_edit_task_401():
@@ -293,7 +298,7 @@ def test_edit_task_200():
     result = client.put("/api/tasks/5", json=body)
     assert result.status_code == 200
     data = result.json()
-    assert data["title"] == body['title']
+    assert data["title"] == body["title"]
     assert data["description"] == body["description"]
     assert data["due_date"] == body["due_date"]
     assert data["assignee_id"] == body["assignee_id"]
@@ -304,9 +309,7 @@ def test_edit_task_200():
 def test_change_task_status_401():
     app.dependency_overrides = {}
     app.dependency_overrides[TaskQueries] = FakeTaskQueries
-    body = {
-        "status": "In Progress"
-    }
+    body = {"status": "In Progress"}
     result = client.patch("/api/tasks/7/status", json=body)
     assert result.status_code == 401
 
@@ -317,9 +320,7 @@ def test_change_task_status_404():
     app.dependency_overrides[try_get_jwt_user_data] = (
         fake_try_get_jwt_user_data
     )
-    body = {
-        "status": "In Progress"
-        }
+    body = {"status": "In Progress"}
     result = client.patch("/api/tasks/1/status", json=body)
     assert result.status_code == 404
 
@@ -330,11 +331,9 @@ def test_change_task_status_200():
     app.dependency_overrides[try_get_jwt_user_data] = (
         fake_try_get_jwt_user_data
     )
-    body = {
-        "status": "In Progress"
-        }
+    body = {"status": "In Progress"}
     result = client.patch("/api/tasks/7/status", json=body)
     assert result.status_code == 200
     data = result.json()
-    assert data['status'] == body['status']
-    assert data['assigner_id'] == 1337
+    assert data["status"] == body["status"]
+    assert data["assigner_id"] == 1337

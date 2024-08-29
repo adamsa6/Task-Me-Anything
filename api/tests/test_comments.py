@@ -55,14 +55,12 @@ class FakeCommentQueries:
             created_on="2024-08-27T19:20:46.770731",
         )
 
-    def edit_comment(
-        self, comment_id: int, comment_in: CommentIn
-    ):
+    def edit_comment(self, comment_id: int, comment_in: CommentIn):
         if comment_id == 1:
             return None
         return CommentOut(
             id=comment_id,
-            comment= comment_in.comment,
+            comment=comment_in.comment,
             user_id=1337,
             task_id=2,
             created_on="2024-08-27T19:20:46.770731",
