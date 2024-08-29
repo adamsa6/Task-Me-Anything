@@ -64,7 +64,7 @@ const GetTaskDetails = () => {
         <div className="task-buttons" key={task.id}>
           <CompletedButton task={task} onComplete={handleCompleteClick} />
           <InProgressButton task={task} />
-          {userData.id === users.assigner.id && task.status != "Deleted" && (
+          {userData.id === users.assigner.id && task.status != "Deleted" && task.status!= "Completed" && (
             <button onClick={handleEditClick} className="edit-button">
               Edit Task
             </button>
