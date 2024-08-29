@@ -3,9 +3,8 @@ from main import app
 from queries.comments_queries import CommentQueries
 from queries.tasks_queries import TaskQueries
 from utils.authentication import try_get_jwt_user_data
-from models.tasks import TaskOut, TaskIn, TaskStatus
 from models.users import UserResponse
-from models.comments import CommentIn, CommentOut, CommentList
+from models.comments import CommentIn, CommentOut
 from test_tasks import FakeTaskQueries
 
 client = TestClient(app)
@@ -55,14 +54,12 @@ class FakeCommentQueries:
             created_on="2024-08-27T19:20:46.770731",
         )
 
-    def edit_comment(
-        self, comment_id: int, comment_in: CommentIn
-    ):
+    def edit_comment(self, comment_id: int, comment_in: CommentIn):
         if comment_id == 1:
             return None
         return CommentOut(
             id=comment_id,
-            comment= comment_in.comment,
+            comment=comment_in.comment,
             user_id=1337,
             task_id=2,
             created_on="2024-08-27T19:20:46.770731",

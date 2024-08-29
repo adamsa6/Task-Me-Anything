@@ -3,6 +3,13 @@
 * A reflection on any design conversations that you had
 * At least one ah-ha! moment that you had during your coding, however small
 
+
+## Journal Entry for 8/28/2024
+- We started off by pairing up (but in the same room), but each pair working on something different. I worked on figuring out the unit tests to make sure I had an understanding of them. Working in a branch, I practiced writing them for our tasks until I was able to get all of them to pass. While doing that, the other pair was working on troubleshooting some CSS design (like the comment edit and delete buttons, etc).
+- Once we both got to a good stopping point, we started mob coding with me leading. I walked the others through the unit tests I had written and made sure we all understood the process before pushing / merging my changes.
+- Then each other person took turns driving the mob coding to write their own unit tests. Since the once for tasks were done, we focused on writing the unit tests for comments. Each other person was able to write at least 3 per route for the comments.
+- While testing throughout the day, we also found a bug, where if you signed in and were redirected to the dashboard, the data wasn't loading because the user information hadn't loaded yet. We worked with Riley to trouble shoot this, and we ended up implementing a useEffect on the sign in page that re-fetched the user data if the sign in status, and then using the "Lazy" version of our quote query. Even though working through this meant working through additional bugs that popped up, we did eventually get to a point where they were mostly handled. There was one issue where an error was showing in the console on the sign in page after logging out, that said unauthorized GET requests. However, Riley checked our code and was unsure why we were getting the error, so recommended we move on since it was actually working as intended (despite the error).
+
 ## Journal Entry for 8/27/2024
 - We mob coded with Andy piloting in order to continue the feature we had been working on at the end of yesterday's class. Although we had implemented our "add a comment" feature to a specific task, we discussed refactoring the code to make it more modular. So we first spent some time doing this, creating a new subcomponent that was specifically for our add comment modal (on our task details page).
 - We also discovered a few bugs, as we worked through this, and handled those along the way. Then we transitioned to our Edit Comment feature

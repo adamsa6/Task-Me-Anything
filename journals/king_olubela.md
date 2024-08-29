@@ -55,3 +55,8 @@ he team began with Arriele piloting, discussing the remaining tasks, and creatin
 After some brainstorming, the team decided to refactor the code by breaking it down into smaller, modular subcomponents. This approach replaced the previous use of a single component with conditional logic, simplifying the implementation and improving the code's clarity.
 The team moved on to a stretch goal of displaying task comments but realized the character limit for comments was too restrictive. They adjusted the database schema to increase the character limit, necessitating a rebuild.
 To list comments for a specific task, the team created a new backend endpoint to retrieve user details by ID (excluding passwords), enabling the display of the user's first and last name on their comments. Andy took over piloting to implement the "add a comment" feature. The team applied their previous week's learning to create a modal that also served as the comment submission form, showcasing the flexibility of modals in the application.
+
+## Journal Entry for 08/26/2024
+The day involved much of the unit testing, Arielle spearheaded this as she coded the majority of the unit test. We all followed suit and coded the required allocated unit test for each member. After which I coded the remainder of the unit-test before the day ended.
+Another aspect that took much of the day had to deal with the css. Yazan has very much spearheaded this however him, andrew and I spent much time fix some of css component for bootstrap icon which wasn't being legible and matching the aesthetic of the weekend.
+Yazan implemented the confetti feature which was shown after the task was marked completed. 

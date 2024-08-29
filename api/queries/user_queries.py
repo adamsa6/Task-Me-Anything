@@ -129,7 +129,6 @@ class UserQueries:
                 users = cur.fetchall()
                 return users
 
-
     def get_user_by_id(self, id: int) -> Optional[User]:
         """
         Gets a user from the database by user id
