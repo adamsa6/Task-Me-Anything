@@ -1,7 +1,6 @@
-/* SignUpForm.css */
 .form-container {
-    width: 50%; /* Cover 50% of the page width */
-    max-width: 600px; /* Optional: Set a maximum width */
+    width: 50%;
+    max-width: 600px;
     margin: auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -9,35 +8,44 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.sign-up-form {
+.task-form {
     display: flex;
     flex-direction: column;
 }
 
-.form-input {
+.form-input,
+.form-select,
+.form-textarea {
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.form-input:focus {
-    border-color: #003135; /* Match navbar color */
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: #003135;
     outline: none;
+}
+
+.form-textarea {
+    height: 150px;
+    resize: vertical;
 }
 
 .submit-button {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
-    background-color: #024950; /* Set to requested color */
+    background-color: #024950;
     color: #fff;
     cursor: pointer;
     font-size: 16px;
 }
 
 .submit-button:hover {
-    background-color: #00323e; /* Slightly darker shade for hover effect */
+    background-color: #00323e;
 }
 
 .error-message {
@@ -46,5 +54,5 @@
 }
 
 h1 {
-    color: #003135; /* Set to requested color */
+    color: #003135;
 }

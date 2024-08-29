@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useListAllTasksQuery } from '../app/api'
 import AllTaskRow from './AllTaskRow'
 import { Link } from 'react-router-dom'
-import '../ListAllTasks.css'
+import './ListAllTasks.css'
 
 const ListAllTasks = () => {
     const { data, isLoading } = useListAllTasksQuery()

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useGetUserQuery, useSignoutMutation } from '../app/api'
-import '../Nav.css'
+import './Nav.css'
 
 const Nav = () => {
     const { data: user } = useGetUserQuery()

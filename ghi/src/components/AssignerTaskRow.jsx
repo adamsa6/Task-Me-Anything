@@ -1,4 +1,4 @@
-import { useGetTaskUsersQuery, useGetUserQuery } from '../app/api'
+import { useGetTaskUsersQuery } from '../app/api'
 import { useNavigate } from 'react-router-dom'
 import '../AssigneeTaskRow.css'
 

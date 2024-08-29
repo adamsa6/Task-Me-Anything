@@ -1,5 +1,5 @@
 .container {
-    padding-top: 80px; /* Increased padding to move content further from navbar */
+    padding-top: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,11 +7,11 @@
 
 .buttons-container {
     position: fixed;
-    top: 100px; /* Adjust based on navbar height */
-    left: 20px; /* Positioning buttons to the far left */
+    top: 100px;
+    left: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Space between buttons */
+    gap: 15px;
 }
 
 .link-button button {
@@ -46,7 +46,7 @@
     border-radius: 5px;
 }
 
-search-bar-container button {
+.search-bar-container button {
     padding: 10px 20px;
     font-size: 18px;
     background-color: #024950;
@@ -65,7 +65,7 @@ search-bar-container button {
 h1 {
     color: #0fa4af;
     text-align: center;
-    margin-top: 40px; /* Added margin to separate from search bar */
+    margin-top: 40px;
 }
 
 table {
@@ -73,9 +73,9 @@ table {
     max-width: 900px;
     margin: 20px 0;
     border-collapse: collapse;
-    background-color: #d9cdc4; /* Ensure table background matches theme */
+    background-color: #d9cdc4;
     border-radius: 10px;
-    overflow: hidden; /* To apply border-radius to table */
+    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -91,7 +91,6 @@ th {
     color: white;
 }
 
-/* Additional spacing between rows */
 .task-row td {
-    padding: 20px; /* Increased padding for more space */
+    padding: 20px;
 }

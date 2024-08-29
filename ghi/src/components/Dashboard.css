@@ -1,0 +1,51 @@
+.container {
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-card {
+    background-color: #faf9f6;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.quote {
+    margin-top: 10px;
+    color: #07757f;
+}
+
+.quote p {
+    margin: 0;
+}
+
+.tasks-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 20px;
+}
+
+.tasks-column {
+    flex: 1;
+    padding: 0;
+    margin: 0 10px;
+    background-color: #faf9f6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tasks-container > div {
+    padding-top: 0;
+}
+
+h2 {
+    color: #035057;
+}

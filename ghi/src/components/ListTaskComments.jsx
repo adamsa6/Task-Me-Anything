@@ -4,7 +4,7 @@ import GetSingleUser from './GetSingleUser'
 import CreateComment from './CreateTaskComment'
 import EditComment from './EditComment'
 import DeleteComment from './DeleteComment'
-import '../ListTaskComments.css'
+import './ListTaskComments.css'
 
 const ListTaskComments = () => {
     const { taskId } = useParams()

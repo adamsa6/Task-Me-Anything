@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
     useEditTaskMutation,
     useGetUsersQuery,
     useGetTaskDetailsQuery,
 } from '../app/api'
-import '../EditTaskForm.css'
+import './EditTaskForm.css'
 
 export default function EditTaskForm() {
     const { taskId: taskId } = useParams()

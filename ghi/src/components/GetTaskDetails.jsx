@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useGetTaskDetailsQuery, useGetTaskUsersQuery, useGetUserQuery, useGetJokeQuery } from '../app/api';
 import InProgressButton from './InProgressButton';
@@ -6,7 +6,7 @@ import DeleteButton from './DeletedButton';
 import CompletedButton from './CompletedButton';
 import ListTaskComments from './ListTaskComments';
 import GetConfetti from './Confetti';
-import '../GetTaskDetails.css';
+import './GetTaskDetails.css';
 
 const GetTaskDetails = () => {
   const { taskId } = useParams();

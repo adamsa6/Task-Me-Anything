@@ -1,10 +1,10 @@
 .signin-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align items to the top */
+    align-items: flex-start;
     min-height: 100vh;
     padding: 100px;
-    gap: 50px; /* Space between the two cards */
+    gap: 50px;
     width: 100%;
 }
 
@@ -14,7 +14,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 30px;
     width: 100%;
-    max-width: 500px; /* This will be applied to both cards */
+    max-width: 500px;
 }
 
 .card-info {
@@ -23,8 +23,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    flex: 2; /* Allows the info card to be wider */
-    max-width: 700px; /* Ensure it can be wider than the sign-in form */
+    flex: 2;
+    max-width: 700px;
 }
 
 .card-info h1,
@@ -47,8 +47,8 @@
 .card-form {
     display: flex;
     flex-direction: column;
-    flex: 1; /* Adjust the form width relative to the info card */
-    max-width: 400px; /* Ensure the form is narrower */
+    flex: 1;
+    max-width: 400px;
 }
 
 .card-form input,

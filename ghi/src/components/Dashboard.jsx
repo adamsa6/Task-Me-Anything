@@ -3,7 +3,7 @@ import { useLazyGetQuoteQuery , useGetUserQuery } from '../app/api'
 import { Link, useNavigate } from 'react-router-dom'
 import ListAssignedTasks from './ListAssignedTasks'
 import ListMyTasks from './ListMyTasks'
-import '../Dashboard.css'
+import './Dashboard.css'
 
 const Dashboard = () => {
     const [getQuotesTrigger, quotesResults] = useLazyGetQuoteQuery()

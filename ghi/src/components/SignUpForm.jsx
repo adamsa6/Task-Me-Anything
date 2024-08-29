@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSignupMutation } from '../app/api'
-import '../SignUpForm.css'
+import './SignUpForm.css'
 
 export default function SignUpForm() {
     const [signup, signupStatus] = useSignupMutation()
