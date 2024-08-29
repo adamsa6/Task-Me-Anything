@@ -10,7 +10,7 @@ const GetSingleUser = ({ comment }) => {
 
     return (
         <div>
-            <h2 className="comment-text">{comment.comment}</h2>
+            <p className="comment-text">{comment.comment}</p>
             <div className="comment-user">
                 {data.last_name}, {data.first_name}
             </div>

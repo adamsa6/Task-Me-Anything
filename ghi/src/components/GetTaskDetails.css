@@ -1,12 +1,16 @@
 .task-container {
     display: flex;
+    flex-direction: row;
     padding: 20px;
     padding-top: 140px;
+    width: 90%;
 }
 
 .task-left-column {
     width: 70%;
     padding-right: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .task-details-card {
@@ -14,17 +18,35 @@
     color: #024950;
     padding: 20px;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.task-details-card h1 {
+    font-size: 22px;
+}
+
+.task-details-card p {
+    font-size: 16px;
+}
+
 .task-right-column {
-    width: 30%;
+    width: 40%;
     background-color: #f5f5f5;
-    padding: 20px;
+    /* padding: 20px; */
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    height: 550px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-column-content {
+    width: 90%;
+    height: auto;
+    padding: 20px;
 }
 
 .task-right-column ul {
