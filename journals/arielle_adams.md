@@ -4,6 +4,11 @@
 * At least one ah-ha! moment that you had during your coding, however small
 
 
+## Journal Entry for 8/29/2024
+- We started off pair programming with King and I working on setting up the pipeline.
+- Afterwards, we all made a plan for what work still needed to be completed and made a plan for the rest of the day. King and Yazan were focusing on troubleshooting our CSS to improve it, while Andy and I worked on the ReadMe (but then Andy ended up troubleshooting a feature that we wanted to implement).
+- I mostly worked on the ReadMe, but I did check in with my group members throughout the day to make sure no one needed help with anything. 
+
 ## Journal Entry for 8/28/2024
 - We started off by pairing up (but in the same room), but each pair working on something different. I worked on figuring out the unit tests to make sure I had an understanding of them. Working in a branch, I practiced writing them for our tasks until I was able to get all of them to pass. While doing that, the other pair was working on troubleshooting some CSS design (like the comment edit and delete buttons, etc).
 - Once we both got to a good stopping point, we started mob coding with me leading. I walked the others through the unit tests I had written and made sure we all understood the process before pushing / merging my changes.
