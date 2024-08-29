@@ -12,7 +12,6 @@ Task Me Anything - your task taming sidekick!
 - [API design](docs/apis.md)
 - [Data model](docs/data-model.md)
 - [GHI](docs/ghi.md)
-- [Integrations](docs/integrations.md)
 
 ## Intended Market
 
@@ -48,7 +47,7 @@ Currently, the app is built for just one business, with all of the users being a
 ## Project Initialization
 
 To fully enjoy this application on your local machine, please make sure to follow these steps:
-1. Clone the repository down to your local machine.
+1. Fork and clone the repository down to your local machine.
 2. CD into the new project directory
 3. Run `docker compose up -- build`
 
