@@ -17,9 +17,9 @@ const TaskHistory = () => {
     return (
         <>
             <div className="container">
-                <div className="buttons-container">
+                {/* <div className="buttons-container">
                     <button>Filter By</button>
-                </div>
+                </div> */}
                 <div className="search-bar-container">
                     <input
                         type="text"

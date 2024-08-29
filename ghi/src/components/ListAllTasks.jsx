@@ -17,12 +17,9 @@ const ListAllTasks = () => {
 
     return (
         <div className="container">
-            <div className="buttons-container">
+            {/* <div className="buttons-container">
                 <button>Filter By</button>
-                <Link to="/tasks/history" className="link-button">
-                    <button>Task History</button>
-                </Link>
-            </div>
+            </div> */}
             <div className="search-bar-container">
                 <input
                     type="text"
