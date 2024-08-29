@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useGetTaskUsersQuery } from '../app/api'
-import '../AssigneeTaskRow.css'
+import './AssigneeTaskRow.css'
 
 const TaskHistoryRow = ({ task }) => {
     const { data: usersData, isLoading } = useGetTaskUsersQuery(task.id)

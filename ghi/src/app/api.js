@@ -46,6 +46,7 @@ export const taskApi = createApi({
             query: () => ({
                 url: '/api/joke',
             }),
+            providesTags: ['Joke']
         }),
         getQuote: builder.query({
             query: () => ({
@@ -113,7 +114,7 @@ export const taskApi = createApi({
                 body,
                 method: 'PATCH',
             }),
-            invalidatesTags: ['Task'],
+            invalidatesTags: ['Task', 'Joke'],
         }),
         createComment: builder.mutation({
             query: ({body, taskId}) => ({

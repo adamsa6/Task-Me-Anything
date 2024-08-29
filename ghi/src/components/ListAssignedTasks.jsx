@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useListAssignedTasksQuery } from '../app/api'
 import AssignerTaskRow from './AssignerTaskRow'
 import { Link } from 'react-router-dom'
-import '../ListMyTasks.css'
+import './ListMyTasks.css'
 
 const ListAssignedTasks = ({ isLimited, showControls = true }) => {
     const { data, isLoading } = useListAssignedTasksQuery()

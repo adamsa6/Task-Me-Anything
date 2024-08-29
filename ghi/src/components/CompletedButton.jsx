@@ -9,7 +9,7 @@ export default function CompletedButton({ task, onComplete }) {
             body: { status: 'Completed' },
             taskId: task.id,
         })
-        if (onComplete) onComplete() // Call the onComplete function
+        if (onComplete) onComplete()
     }
 
     if (task.status !== 'Completed' && task.status !== 'Deleted') {
