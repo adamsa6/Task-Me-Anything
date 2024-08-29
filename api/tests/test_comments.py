@@ -3,9 +3,8 @@ from main import app
 from queries.comments_queries import CommentQueries
 from queries.tasks_queries import TaskQueries
 from utils.authentication import try_get_jwt_user_data
-from models.tasks import TaskOut, TaskIn, TaskStatus
 from models.users import UserResponse
-from models.comments import CommentIn, CommentOut, CommentList
+from models.comments import CommentIn, CommentOut
 from test_tasks import FakeTaskQueries
 
 client = TestClient(app)
