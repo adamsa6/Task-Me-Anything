@@ -63,7 +63,7 @@ export default function SignInForm() {
                     help you stay on top of it all with a smile
                 </p>
             </div>
-            <div className="card card-form">
+            <div className="card-form">
                 <h1>Sign In</h1>
                 {error && <div>{error}</div>}
                 <form onSubmit={handleFormSubmit}>
