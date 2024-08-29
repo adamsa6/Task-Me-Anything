@@ -38,7 +38,7 @@ const GetTaskDetails = () => {
 
   return (
     <div className="task-container">
-      <GetConfetti showConfetti={showConfetti} /> 
+      <GetConfetti showConfetti={showConfetti} />
       <div className="task-left-column">
         <div className="task-details-card">
           <h1>{task.title}:</h1>
@@ -64,7 +64,7 @@ const GetTaskDetails = () => {
         <div className="task-buttons" key={task.id}>
           <CompletedButton task={task} onComplete={handleCompleteClick} />
           <InProgressButton task={task} />
-          {userData.id === users.assigner.id && (
+          {userData.id === users.assigner.id && task.status != "Deleted" && (
             <button onClick={handleEditClick} className="edit-button">
               Edit Task
             </button>
