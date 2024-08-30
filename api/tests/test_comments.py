@@ -65,8 +65,10 @@ class FakeCommentQueries:
             created_on="2024-08-27T19:20:46.770731",
         )
 
-    # def delete_comment(self, comment_id: int):
-    #     pass
+    def delete_comment(self, comment_id: int):
+        if comment_id == 1:
+            return None
+        return True
 
 
 def test_create_comment_401():
@@ -233,5 +235,42 @@ def test_edit_task_comment_200():
     assert data["comment"] == body["comment"]
 
 
-# def test_delete_task_comment():
-#     pass
+def test_delete_task_comment_401():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    result = client.delete("/api/tasks/2/comments/3")
+    assert result.status_code == 401
+
+
+def test_delete_task_comment_task_404():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    result = client.delete("/api/tasks/1/comments/3")
+    assert result.status_code == 404
+
+
+def test_delete_task_comment_comment_404():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    result = client.delete("/api/tasks/2/comments/1")
+    assert result.status_code == 404
+
+
+def test_delete_task_comment_204():
+    app.dependency_overrides = {}
+    app.dependency_overrides[CommentQueries] = FakeCommentQueries
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    result = client.delete("/api/tasks/2/comments/3")
+    assert result.status_code == 204
