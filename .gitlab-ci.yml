@@ -16,7 +16,9 @@ tests:
         SIGNING_KEY: 'does not matter'
         API_NINJA_KEY: 'does not matter'
     script:
+        - pip install black
         - pip install flake8
+        - black api
         - flake8 api
         # Run unit tests
         - cd api

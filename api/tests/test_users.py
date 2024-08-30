@@ -18,6 +18,7 @@ def fake_try_get_jwt_user_data():
         email="a@email.com",
     )
 
+
 class FakeUserQueries:
     def list_all(self):
         return [
