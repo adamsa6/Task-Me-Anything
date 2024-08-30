@@ -31,8 +31,8 @@ def get_task_users(
 
     assigner_id = task.assigner_id
     assignee_id = task.assignee_id
-    assigner = user_queries.get_by_id(id=assigner_id)
-    assignee = user_queries.get_by_id(id=assignee_id)
+    assigner = user_queries.get_user_by_id(id=assigner_id)
+    assignee = user_queries.get_user_by_id(id=assignee_id)
     assigner_out = {
         "id": assigner.id,
         "first_name": assigner.first_name,
@@ -66,5 +66,5 @@ def get_single_user(
 
     check_user_exceptions(user)
 
-    single_user = queries.get_by_id(user_id)
+    single_user = queries.get_user_by_id(user_id)
     return single_user

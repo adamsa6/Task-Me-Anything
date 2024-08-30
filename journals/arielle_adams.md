@@ -29,7 +29,7 @@
 
 ## Journal Entry for 8/23/2024
 - We mob coded, with King piloting as we continued to work on our Task Details page. We decided that in order to add the buttons, it would be best to create a subcomponent for each button. Since each button had specific conditions on whether or not it shows up for the user (and if the user is allowed to actually update the status / task). We were able to complete the In Progress, Completed, and Deleted buttons (but still have plans to add the update button).
-- Andy piloted as we mob coded in order to create the buttons. As part of the Completed buttons, we had to research how to create a modal in Bootstrap. We experiemented with how that works for awhile, before settling on how we wanted it to look and be implemented.
+- Andy piloted as we mob coded in order to create the buttons. As part of the Completed buttons, we had to research how to create a modal in Bootstrap. We experimented with how that works for awhile, before settling on how we wanted it to look and be implemented.
 - Also as part of the modal, we had to implement our Get Joke Query, so that the modal would show a random joke when the task status is changed to completed.
 - We also changed it to redirect to the user's dashboard once the modal is closed.
 - We continued mob coding, but I started piloting for the last bit of class. Due to the limited time left, we wanted to fix some smaller things. We added navigation links from each specific task (on the list pages and the dashboard) to the page for that task.
