@@ -6,13 +6,13 @@
 
 |    Action           | Method | URL                                   |
 |---------------------|--------|---------------------------------------|
-| List All Tasks      | GET    | <<Host URL>>/api/tasks                |
-| List My Tasks       | GET    | <<Host URL>>/api/tasks/mine           |
-| List Assigned Tasks | GET    | <<Host URL>>/api/assigned-tasks/mine  |
-| Create a Task       | POST   | <<Host URL>>/api/tasks                |
-| Get Task Details    | GET    | <<Host URL>>/api/tasks/:taskId        |
-| Edit a Task         | PUT    | <<Host URL>>/api/tasks/:taskId        |
-| Change Task Status  | PATCH  | <<Host URL>>/api/tasks/:taskId/status |
+| List All Tasks      | GET    | << Host URL >>/api/tasks                |
+| List My Tasks       | GET    | << Host URL >>/api/tasks/mine           |
+| List Assigned Tasks | GET    | << Host URL >>/api/assigned-tasks/mine  |
+| Create a Task       | POST   | << Host URL >>/api/tasks                |
+| Get Task Details    | GET    | << Host URL >>/api/tasks/:taskId        |
+| Edit a Task         | PUT    | << Host URL >>/api/tasks/:taskId        |
+| Change Task Status  | PATCH  | << Host URL >>/api/tasks/:taskId/status |
 
 ### List All Tasks, List My Tasks, and List Assigned Tasks
 
@@ -159,11 +159,11 @@ Response body:
 
 |    Action          | Method | URL                                                |
 |--------------------|--------|----------------------------------------------------|
-| Create Comment     | POST   | <<Host URL>>/api/tasks/:taskId/comments            |
-| Get a Comment      | GET    | <<Host URL>>/api/tasks/:taskId/comments/:commentId |
-| Edit a Comment     | PUT    | <<Host URL>>/api/tasks/:taskId/comments/:commentId |
-| Delete a Comment   | DELETE | <<Host URL>>/api/tasks/:taskId/comments/:commentId |
-| List Task Comments | GET    | <<Host URL>>/api/tasks/:taskId/comments            |
+| Create Comment     | POST   | << Host URL >>/api/tasks/:taskId/comments            |
+| Get a Comment      | GET    | << Host URL >>/api/tasks/:taskId/comments/:commentId |
+| Edit a Comment     | PUT    | << Host URL >>/api/tasks/:taskId/comments/:commentId |
+| Delete a Comment   | DELETE | << Host URL >>/api/tasks/:taskId/comments/:commentId |
+| List Task Comments | GET    | << Host URL >>/api/tasks/:taskId/comments            |
 
 
 ### Create a Comment
@@ -258,13 +258,13 @@ Response body:
 
 |    Action       | Method | URL                                  |
 |-----------------|--------|--------------------------------------|
-| Sign up         | POST   | <<Host URL>>/api/auth/signup         |
-| Signin          | POST   | <<Host URL>>/api/auth/signin         |
-| Authenticate    | GET    | <<Host URL>>/api/auth/authenticate   |
-| Signout         | DELETE | <<Host URL>>/api/auth/signout        |
-| Get Task Users  | GET    | <<Host URL>>/api/tasks/:taskId/users |
-| Get Users       | GET    | <<Host URL>>/api/users               |
-| Get Single User | GET    | <<Host URL>>/api/users/:userId        |
+| Sign up         | POST   | << Host URL >>/api/auth/signup         |
+| Signin          | POST   | << Host URL >>/api/auth/signin         |
+| Authenticate    | GET    | << Host URL >>/api/auth/authenticate   |
+| Signout         | DELETE | << Host URL >>/api/auth/signout        |
+| Get Task Users  | GET    | << Host URL >>/api/tasks/:taskId/users |
+| Get Users       | GET    | << Host URL >>/api/users               |
+| Get Single User | GET    | << Host URL >>/api/users/:userId        |
 
 ### Sign Up
 
@@ -389,8 +389,8 @@ Response body:
 
 |    Action       | Method | URL                    |
 |-----------------|--------|------------------------|
-| Get Joke        | GET    | <<Host URL>>/api/joke  |
-| Get Quote       | GET    | <<Host URL>>/api/quote |
+| Get Joke        | GET    | << Host URL >>/api/joke  |
+| Get Quote       | GET    | << Host URL >>/api/quote |
 
 
 ### Get Joke
