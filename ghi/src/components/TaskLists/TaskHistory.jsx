@@ -60,6 +60,17 @@ const TaskHistory = () => {
                                                 task={task}
                                             />
                                         )
+                                    }  else if (
+                                        task.status
+                                            .toLowerCase()
+                                            .includes(searchInput)
+                                    ) {
+                                        return (
+                                            <TaskHistoryRow
+                                                key={task.id}
+                                                task={task}
+                                            />
+                                        )
                                     }
                                 }
                             }
