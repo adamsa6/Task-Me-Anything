@@ -1,24 +1,24 @@
 .task-row {
     cursor: pointer;
     overflow: hidden;
-    border-bottom: 1px solid #d9cdc4; /* Reduced border size to 1px */
+    border-bottom: 1px solid #d9cdc4; 
 }
 
 .task-row-wrapper {
     display: flex;
     width: 100%;
-    background-color: #faf9f6; /* Original background color */
-    color: #07757f; /* Original text color */
-    border-radius: 10px; /* Rounded corners for the entire box */
-    overflow: hidden; /* Ensures content stays within rounded corners */
+    background-color: #faf9f6;
+    color: #07757f;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .task-cell {
-    padding: 8px; /* Reduced padding to bring cells closer */
-    flex: 1; /* Ensures cells take equal space */
-    box-sizing: border-box; /* Ensures padding is included in width calculation */
+    padding: 8px;
+    flex: 1;
+    box-sizing: border-box;
 }
 
 .task-row:hover .task-row-wrapper {
-    background-color: #dbdad8; /* Original hover background color */
+    background-color: #dbdad8;
 }

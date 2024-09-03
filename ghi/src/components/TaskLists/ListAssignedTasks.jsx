@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useListAssignedTasksQuery } from '../../app/api'
 import AssignerTaskRow from '../TaskRows/AssignerTaskRow'
-// import './ListMyTasks.css'
-import '../listing.css'
+import './listing.css'
+
 const ListAssignedTasks = ({ isLimited, showControls = true }) => {
     const { data, isLoading } = useListAssignedTasksQuery()
     const [tasksToList, setTasksToList] = useState([])
@@ -52,6 +52,15 @@ const ListAssignedTasks = ({ isLimited, showControls = true }) => {
                         } else {
                             if (
                                 task.title.toLowerCase().includes(searchInput)
+                            ) {
+                                return (
+                                    <AssignerTaskRow
+                                        key={task.id}
+                                        task={task}
+                                    />
+                                )
+                            } else if (
+                                task.status.toLowerCase().includes(searchInput)
                             ) {
                                 return (
                                     <AssignerTaskRow

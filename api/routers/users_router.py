@@ -5,6 +5,7 @@ from fastapi import (
 from utils.exceptions import (
     check_user_exceptions,
     check_task_exception,
+    user_not_found_exception,
 )
 from queries.tasks_queries import TaskQueries
 from queries.user_queries import UserQueries
@@ -67,4 +68,7 @@ def get_single_user(
     check_user_exceptions(user)
 
     single_user = queries.get_user_by_id(user_id)
+
+    if single_user is None:
+        raise user_not_found_exception
     return single_user

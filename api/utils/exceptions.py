@@ -27,6 +27,10 @@ edit_comment_exception = HTTPException(
     status_code=401, detail="You do not have permission to update this comment"
 )
 
+user_not_found_exception = HTTPException(
+    status_code=404, detail="User does not exist!"
+)
+
 
 def check_for_exceptions(user, task, status):
 

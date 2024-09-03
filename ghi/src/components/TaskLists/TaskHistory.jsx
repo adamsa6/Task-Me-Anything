@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useListAllTasksQuery } from '../../app/api'
 import TaskHistoryRow from '../TaskRows/TaskHistoryRow'
-// import './TaskHistory.css'
-import '../listing.css'
+import './listing.css'
 
 const TaskHistory = () => {
     const { data, isLoading } = useListAllTasksQuery()
@@ -52,6 +51,17 @@ const TaskHistory = () => {
                                 } else {
                                     if (
                                         task.title
+                                            .toLowerCase()
+                                            .includes(searchInput)
+                                    ) {
+                                        return (
+                                            <TaskHistoryRow
+                                                key={task.id}
+                                                task={task}
+                                            />
+                                        )
+                                    } else if (
+                                        task.status
                                             .toLowerCase()
                                             .includes(searchInput)
                                     ) {

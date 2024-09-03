@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useListMyTasksQuery } from '../../app/api'
 import AssigneeTaskRow from '../TaskRows/AssigneeTaskRow'
-// import './ListMyTasks.css'
-import '../listing.css'
+import './listing.css'
 
 const ListMyTasks = ({ isLimited, showControls = true }) => {
     const { data, isLoading } = useListMyTasksQuery()
@@ -53,6 +52,15 @@ const ListMyTasks = ({ isLimited, showControls = true }) => {
                         } else {
                             if (
                                 task.title.toLowerCase().includes(searchInput)
+                            ) {
+                                return (
+                                    <AssigneeTaskRow
+                                        key={task.id}
+                                        task={task}
+                                    />
+                                )
+                            } else if (
+                                task.status.toLowerCase().includes(searchInput)
                             ) {
                                 return (
                                     <AssigneeTaskRow

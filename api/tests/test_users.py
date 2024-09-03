@@ -108,7 +108,7 @@ def test_get_single_user_404():
     app.dependency_overrides[try_get_jwt_user_data] = (
         fake_try_get_jwt_user_data
     )
-    result = client.get("/users/1")
+    result = client.get("/api/users/1")
     assert result.status_code == 404
 
 
