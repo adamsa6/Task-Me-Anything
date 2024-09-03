@@ -1,33 +1,10 @@
 .container {
     padding-top: 80px;
+    /* margin: 0px; */
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.buttons-container {
-    position: fixed;
-    top: 100px;
-    left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.link-button button {
-    width: 200px;
-    padding: 15px;
-    font-size: 18px;
-    background-color: #964734;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.link-button button:hover {
-    background-color: #7b382c;
+    width: 100%;
 }
 
 .search-bar-container {
@@ -36,6 +13,7 @@
     max-width: 900px;
     display: flex;
     justify-content: center;
+    position: fixed top;
 }
 
 .search-bar-container input {
@@ -70,7 +48,6 @@ h1 {
 
 table {
     width: 100%;
-    max-width: 900px;
     margin: 20px 0;
     border-collapse: collapse;
     background-color: #d9cdc4;

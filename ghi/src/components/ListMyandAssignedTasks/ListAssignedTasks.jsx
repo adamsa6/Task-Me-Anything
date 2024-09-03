@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useListAssignedTasksQuery } from '../../app/api'
 import AssignerTaskRow from '../TaskRows/AssignerTaskRow'
-import './ListMyTasks.css'
-
+// import './ListMyTasks.css'
+import '../listing.css'
 const ListAssignedTasks = ({ isLimited, showControls = true }) => {
     const { data, isLoading } = useListAssignedTasksQuery()
     const [tasksToList, setTasksToList] = useState([])

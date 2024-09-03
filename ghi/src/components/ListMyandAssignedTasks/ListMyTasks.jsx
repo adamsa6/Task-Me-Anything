@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useListMyTasksQuery } from '../../app/api'
 import AssigneeTaskRow from '../TaskRows/AssigneeTaskRow'
-import './ListMyTasks.css'
+// import './ListMyTasks.css'
+import '../listing.css'
 
 const ListMyTasks = ({ isLimited, showControls = true }) => {
     const { data, isLoading } = useListMyTasksQuery()
