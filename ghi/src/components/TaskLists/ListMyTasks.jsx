@@ -59,6 +59,15 @@ const ListMyTasks = ({ isLimited, showControls = true }) => {
                                         task={task}
                                     />
                                 )
+                            } else if (
+                                task.status.toLowerCase().includes(searchInput)
+                            ) {
+                                return (
+                                    <AssigneeTaskRow
+                                        key={task.id}
+                                        task={task}
+                                    />
+                                )
                             }
                         }
                     })}

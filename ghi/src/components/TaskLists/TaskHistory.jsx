@@ -60,7 +60,7 @@ const TaskHistory = () => {
                                                 task={task}
                                             />
                                         )
-                                    }  else if (
+                                    } else if (
                                         task.status
                                             .toLowerCase()
                                             .includes(searchInput)

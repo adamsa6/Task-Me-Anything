@@ -52,6 +52,14 @@ const ListAllTasks = () => {
                                     return (
                                         <AllTaskRow key={task.id} task={task} />
                                     )
+                                } else if (
+                                    task.status
+                                        .toLowerCase()
+                                        .includes(searchInput)
+                                ) {
+                                    return (
+                                        <AllTaskRow key={task.id} task={task} />
+                                    )
                                 }
                             }
                         }

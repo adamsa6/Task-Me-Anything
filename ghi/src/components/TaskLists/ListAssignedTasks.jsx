@@ -59,6 +59,15 @@ const ListAssignedTasks = ({ isLimited, showControls = true }) => {
                                         task={task}
                                     />
                                 )
+                            } else if (
+                                task.status.toLowerCase().includes(searchInput)
+                            ) {
+                                return (
+                                    <AssignerTaskRow
+                                        key={task.id}
+                                        task={task}
+                                    />
+                                )
                             }
                         }
                     })}
