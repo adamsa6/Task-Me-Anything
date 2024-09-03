@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useListAllTasksQuery } from '../../app/api'
 import TaskHistoryRow from '../TaskRows/TaskHistoryRow'
-// import './TaskHistory.css'
-import '../listing.css'
+import './listing.css'
 
 const TaskHistory = () => {
     const { data, isLoading } = useListAllTasksQuery()

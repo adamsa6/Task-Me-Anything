@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useLazyGetQuoteQuery, useGetUserQuery } from '../../app/api'
 import { Link, useNavigate } from 'react-router-dom'
-import ListAssignedTasks from '../ListMyandAssignedTasks/ListAssignedTasks'
-import ListMyTasks from '../ListMyandAssignedTasks/ListMyTasks'
+import ListAssignedTasks from '../TaskLists/ListAssignedTasks'
+import ListMyTasks from '../TaskLists/ListMyTasks'
 import './Dashboard.css'
 
 const Dashboard = () => {
@@ -10,7 +10,6 @@ const Dashboard = () => {
     const { data: user, isLoading: userIsLoading } = useGetUserQuery()
     const [quotes, setQuotes] = useState([])
     const navigate = useNavigate()
-
 
     useEffect(() => {
         if (user === null) {

@@ -31,6 +31,7 @@ user_not_found_exception = HTTPException(
     status_code=404, detail="User does not exist!"
 )
 
+
 def check_for_exceptions(user, task, status):
 
     if user.id != task.assignee_id and user.id != task.assigner_id:
