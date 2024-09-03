@@ -4,10 +4,19 @@
 * At least one ah-ha! moment that you had during your coding, however small
 
 
+## Journal Entry for 9/3/2024
+- Today was basically a wrap up day. We had a stand up at the start of the day to discuss the final goals and things that needed to be done. We divvied up the work with a plan for the day.
+- My goal was to finish the Readme, which just needed the front end documentation and screenshots / explanations of our design. However, we also asked Adrianna to test our instructions by forking and cloning our repo to see if she could get the project up and running. This was instrumental because it helped us realize that we hadn't included any instructions to create an env file containing our environment variables, which meant that the project could not be run. I added that information, along with instructions to create a signing key and get an API key for one of our third party APIs to the readme.
+- Yazan and King focused on finalizing the last minute CSS fixes. While there were some other goals we wanted to do with our CSS, we discussed it and ultimately decided that some of them would require too many changes throughout all of our CSS. Since we had a time limit for today (and were ultimately happy with what the CSS currently was), we decided to make any major changes more of a stretch goal to complete after the project has been submitted. Instead, Yazan and King focused on small changes that we knew could be completed in a timely manner.
+- Andy continued working on figuring out how to redirect the user to the signin page if the token expires. While this probably won't be ready / implemented before end of day today, its still a goal we'd like to work on for the future.
+- Additionally, I added a small bit of extra functionality to our search bars, since we didn't implement the filter button yet. Now users can search by task title or by task status to filter the results listed on each of the task list pages.
+- We made a plan to cut off any additional changes or merges by 3 pm ET, so that we could finalize the merging and walking through the user interface to confirm everything is working as intended
+
+
 ## Journal Entry for 8/29/2024
 - We started off pair programming with King and I working on setting up the pipeline.
 - Afterwards, we all made a plan for what work still needed to be completed and made a plan for the rest of the day. King and Yazan were focusing on troubleshooting our CSS to improve it, while Andy and I worked on the ReadMe (but then Andy ended up troubleshooting a feature that we wanted to implement).
-- I mostly worked on the ReadMe, but I did check in with my group members throughout the day to make sure no one needed help with anything. 
+- I mostly worked on the ReadMe, but I did check in with my group members throughout the day to make sure no one needed help with anything.
 
 ## Journal Entry for 8/28/2024
 - We started off by pairing up (but in the same room), but each pair working on something different. I worked on figuring out the unit tests to make sure I had an understanding of them. Working in a branch, I practiced writing them for our tasks until I was able to get all of them to pass. While doing that, the other pair was working on troubleshooting some CSS design (like the comment edit and delete buttons, etc).
