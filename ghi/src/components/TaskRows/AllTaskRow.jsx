@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useGetTaskUsersQuery } from '../app/api'
+import { useGetTaskUsersQuery } from '../../app/api'
 import './AssigneeTaskRow.css'
 
 const AllTaskRow = ({ task }) => {

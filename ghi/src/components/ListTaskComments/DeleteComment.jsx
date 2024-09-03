@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useDeleteTaskCommentMutation } from '../app/api'
+import { useDeleteTaskCommentMutation } from '../../app/api'
 
 const DeleteComment = ({ comment }) => {
     const { taskId } = useParams()

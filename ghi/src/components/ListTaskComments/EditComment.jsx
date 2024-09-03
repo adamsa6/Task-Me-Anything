@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useEditTaskCommentMutation } from '../app/api'
+import { useEditTaskCommentMutation } from '../../app/api'
 
 const EditComment = ({comment}) => {
     const { taskId } = useParams()
@@ -64,7 +64,7 @@ const EditComment = ({comment}) => {
                                 <button type="submit" data-bs-toggle="modal" data-bs-target="#edit-comment" className="submit-button">
                                     Submit
                                 </button>
-                            </form>      
+                            </form>
                         </div>
                         <div className="modal-footer">
                             <button onClick={handleNavigateClick} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

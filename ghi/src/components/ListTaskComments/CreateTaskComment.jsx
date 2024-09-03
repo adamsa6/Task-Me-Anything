@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import {useCreateCommentMutation} from '../app/api'
+import { useCreateCommentMutation } from '../../app/api'
 
 const CreateComment = () => {
     const { taskId } = useParams()

@@ -1,4 +1,4 @@
-import { useGetSingleUserQuery } from '../app/api'
+import { useGetSingleUserQuery } from '../../app/api'
 
 const GetSingleUser = ({ comment }) => {
     const userId = comment.user_id

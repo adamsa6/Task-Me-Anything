@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { useListAllTasksQuery } from '../app/api'
-import AllTaskRow from './AllTaskRow'
-import { Link } from 'react-router-dom'
+import { useListAllTasksQuery } from '../../app/api'
+import AllTaskRow from '../TaskRows/AllTaskRow'
 import './ListAllTasks.css'
 
 const ListAllTasks = () => {
@@ -17,9 +16,6 @@ const ListAllTasks = () => {
 
     return (
         <div className="container">
-            {/* <div className="buttons-container">
-                <button>Filter By</button>
-            </div> */}
             <div className="search-bar-container">
                 <input
                     type="text"
@@ -48,7 +44,11 @@ const ListAllTasks = () => {
                             if (searchInput == '') {
                                 return <AllTaskRow key={task.id} task={task} />
                             } else {
-                                if (task.title.toLowerCase().includes(searchInput)) {
+                                if (
+                                    task.title
+                                        .toLowerCase()
+                                        .includes(searchInput)
+                                ) {
                                     return (
                                         <AllTaskRow key={task.id} task={task} />
                                     )

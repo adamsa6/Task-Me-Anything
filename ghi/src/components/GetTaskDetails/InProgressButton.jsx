@@ -1,4 +1,4 @@
-import { useChangeTaskStatusMutation, useGetUserQuery } from '../app/api'
+import { useChangeTaskStatusMutation, useGetUserQuery } from '../../app/api'
 
 export default function InProgressButton({ task }) {
     const { data: userData, isLoading: userDataIsLoading } = useGetUserQuery()

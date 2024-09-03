@@ -4,17 +4,17 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { store } from './app/store'
 import { Provider } from 'react-redux'
 
-import SignInForm from './components/SignInForm'
-import SignUpForm from './components/SignUpForm'
-import ListAllTasks from './components/ListAllTasks'
-import ListAssignedTasks from './components/ListAssignedTasks'
-import ListMyTasks from './components/ListMyTasks'
-import GetTaskDetails from './components/GetTaskDetails'
-import ListTaskComments from './components/ListTaskComments'
-import CreateTaskForm from './components/CreateTaskForm'
-import TaskHistory from './components/TaskHistory'
-import Dashboard from './components/Dashboard'
-import EditTaskForm from './components/EditTaskForm'
+import SignInForm from './components/SignIn/SignInForm'
+import SignUpForm from './components/Signup/SignUpForm'
+import ListAllTasks from './components/ListAllTasks/ListAllTasks'
+import ListAssignedTasks from './components/ListMyandAssignedTasks/ListAssignedTasks'
+import ListMyTasks from './components/ListMyandAssignedTasks/ListMyTasks'
+import GetTaskDetails from './components/GetTaskDetails/GetTaskDetails'
+import ListTaskComments from './components/ListTaskComments/ListTaskComments'
+import CreateTaskForm from './components/CreateTask/CreateTaskForm'
+import TaskHistory from './components/TaskHistory/TaskHistory'
+import Dashboard from './components/Dashboard/Dashboard'
+import EditTaskForm from './components/EditTask/EditTaskForm'
 import Home from './components/Home'
 import App from './App'
 
@@ -33,7 +33,7 @@ const router = createBrowserRouter(
             children: [
                 {
                     index: true,
-                    element: <Home />
+                    element: <Home />,
                 },
                 {
                     path: 'signup',

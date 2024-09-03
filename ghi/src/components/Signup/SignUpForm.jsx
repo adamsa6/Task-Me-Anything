@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSignupMutation } from '../app/api'
+import { useSignupMutation } from '../../app/api'
 import './SignUpForm.css'
 
 export default function SignUpForm() {

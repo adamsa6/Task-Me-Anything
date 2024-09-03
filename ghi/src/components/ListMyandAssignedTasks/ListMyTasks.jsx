@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useListAssignedTasksQuery } from '../app/api'
-import AssignerTaskRow from './AssignerTaskRow'
-import { Link } from 'react-router-dom'
+import { useListMyTasksQuery } from '../../app/api'
+import AssigneeTaskRow from '../TaskRows/AssigneeTaskRow'
 import './ListMyTasks.css'
 
-const ListAssignedTasks = ({ isLimited, showControls = true }) => {
-    const { data, isLoading } = useListAssignedTasksQuery()
+const ListMyTasks = ({ isLimited, showControls = true }) => {
+    const { data, isLoading } = useListMyTasksQuery()
     const [tasksToList, setTasksToList] = useState([])
     const [searchInput, setSearchInput] = useState('')
 
@@ -26,9 +25,6 @@ const ListAssignedTasks = ({ isLimited, showControls = true }) => {
         <div className="container">
             {showControls && (
                 <>
-                    {/* <div className="buttons-container">
-                        <button>Filter By</button>
-                    </div> */}
                     <div className="search-bar-container">
                         <input
                             type="text"
@@ -39,12 +35,12 @@ const ListAssignedTasks = ({ isLimited, showControls = true }) => {
                     </div>
                 </>
             )}
-            <h1>Tasks Assigned to Me</h1>
+            <h1>Tasks I Have Created</h1>
             <table>
                 <thead>
                     <tr>
                         <th>Task Title</th>
-                        <th>Assigner</th>
+                        <th>Assignee</th>
                         <th>Due Date</th>
                         <th>Priority Level</th>
                     </tr>
@@ -52,11 +48,13 @@ const ListAssignedTasks = ({ isLimited, showControls = true }) => {
                 <tbody>
                     {tasksToList.map((task) => {
                         if (searchInput == '') {
-                            return <AssignerTaskRow key={task.id} task={task} />
+                            return <AssigneeTaskRow key={task.id} task={task} />
                         } else {
-                            if (task.title.toLowerCase().includes(searchInput)) {
+                            if (
+                                task.title.toLowerCase().includes(searchInput)
+                            ) {
                                 return (
-                                    <AssignerTaskRow
+                                    <AssigneeTaskRow
                                         key={task.id}
                                         task={task}
                                     />
@@ -70,4 +68,4 @@ const ListAssignedTasks = ({ isLimited, showControls = true }) => {
     )
 }
 
-export default ListAssignedTasks
+export default ListMyTasks

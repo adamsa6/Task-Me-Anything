@@ -1,4 +1,4 @@
-import { useChangeTaskStatusMutation, useGetUserQuery } from '../app/api'
+import { useChangeTaskStatusMutation, useGetUserQuery } from '../../app/api'
 
 export default function DeleteButton({ task }) {
     const { data: userData, isLoading: userDataIsLoading } = useGetUserQuery()

@@ -4,7 +4,7 @@ import {
     useEditTaskMutation,
     useGetUsersQuery,
     useGetTaskDetailsQuery,
-} from '../app/api'
+} from '../../app/api'
 import './EditTaskForm.css'
 
 export default function EditTaskForm() {

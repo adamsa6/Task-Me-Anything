@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import ErrorNotification from './components/ErrorNotification'
-import Nav from './components/Nav'
+// import ErrorNotification from './components/ErrorNotification'
+import Nav from './components/Nav/Nav'
 
 import './App.css'
 
@@ -22,7 +22,7 @@ function App() {
                 <Nav />
             </header>
             <Outlet />
-            <ErrorNotification error={error} />
+            {/* <ErrorNotification error={error} /> */}
         </div>
     )
 }

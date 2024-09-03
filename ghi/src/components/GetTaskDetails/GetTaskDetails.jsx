@@ -5,11 +5,11 @@ import {
     useGetTaskUsersQuery,
     useGetUserQuery,
     useGetJokeQuery,
-} from '../app/api'
+} from '../../app/api'
 import InProgressButton from './InProgressButton'
 import DeleteButton from './DeletedButton'
 import CompletedButton from './CompletedButton'
-import ListTaskComments from './ListTaskComments'
+import ListTaskComments from '../ListTaskComments/ListTaskComments'
 import GetConfetti from './Confetti'
 import './GetTaskDetails.css'
 

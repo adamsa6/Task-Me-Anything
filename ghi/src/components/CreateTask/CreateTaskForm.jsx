@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useCreateTaskMutation, useGetUsersQuery } from '../app/api'
+import { useCreateTaskMutation, useGetUsersQuery } from '../../app/api'
 import './CreateTaskForm.css'
 
 export default function CreateTaskForm() {

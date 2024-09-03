@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useListAllTasksQuery } from '../app/api'
-import TaskHistoryRow from './TaskHistoryRow'
+import { useListAllTasksQuery } from '../../app/api'
+import TaskHistoryRow from '../TaskRows/TaskHistoryRow'
 import './TaskHistory.css'
 
 const TaskHistory = () => {

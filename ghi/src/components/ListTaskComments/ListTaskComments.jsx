@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useListTaskCommentsQuery, useGetUserQuery } from '../app/api'
+import { useListTaskCommentsQuery, useGetUserQuery } from '../../app/api'
 import GetSingleUser from './GetSingleUser'
 import CreateComment from './CreateTaskComment'
 import EditComment from './EditComment'
@@ -10,7 +10,7 @@ const ListTaskComments = () => {
     const { taskId } = useParams()
     const { data, isLoading } = useListTaskCommentsQuery(taskId)
     const { data: user, isLoading: userIsLoading } = useGetUserQuery()
-    
+
     if (isLoading) return <>Loading...</>
 
     return (

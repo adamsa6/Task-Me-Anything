@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useLazyGetQuoteQuery , useGetUserQuery } from '../app/api'
+import { useLazyGetQuoteQuery, useGetUserQuery } from '../../app/api'
 import { Link, useNavigate } from 'react-router-dom'
-import ListAssignedTasks from './ListAssignedTasks'
-import ListMyTasks from './ListMyTasks'
+import ListAssignedTasks from '../ListMyandAssignedTasks/ListAssignedTasks'
+import ListMyTasks from '../ListMyandAssignedTasks/ListMyTasks'
 import './Dashboard.css'
 
 const Dashboard = () => {
