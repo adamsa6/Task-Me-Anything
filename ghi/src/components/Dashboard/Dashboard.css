@@ -49,3 +49,18 @@
 h2 {
     color: #035057;
 }
+button {
+    width: 200px;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #964734;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #7b382c;
+}
