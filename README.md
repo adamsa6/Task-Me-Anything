@@ -10,7 +10,7 @@ Task Me Anything - your task taming sidekick!
 ## Design
 
 - [API design](docs/apis.md)
-- [Data model](docs/data-model.md)
+- [Data model](docs/data_model.md)
 - [GHI](docs/ghi.md)
 
 ## Intended Market
@@ -42,31 +42,42 @@ Currently, the app is built for just one business, with all of the users being a
         - if the user is the assignee, they can mark the task "Completed" or "In Progress".
         - if the user is neither the assignee nor the assigner, they will not be able to edit the task in any way.
 - Any user can add a comment to a specific task, and choose to edit or delete any comment that they created.
-- When a user marks a task completed, they will be shown a new joke (from a third party API) as a reward before being redirected back to their dashboard.
+- When a user marks a task completed, they will be shown a new joke (from a third party API) and confetti as a reward before being redirected back to their dashboard.
 
 ## Project Initialization
 
 To fully enjoy this application on your local machine, please make sure to follow these steps:
 1. Fork and clone the repository down to your local machine.
 2. CD into the new project directory
-3. Run `docker compose up -- build`
+3. In the root of the project, you MUST create a .env file containing the following variables:
+    - POSTGRES_DB
+    - POSTGRES_USER
+    - POSTGRES_PASSWORD
+    - SIGNING_KEY
+        - NOTE: you can generate a signing key in several ways.
+            - If you already have the command line utility `openssl` installed, you can run the following command to generate a signing key: `openssl rand -hex 32`
+            - Alternatively, you can open a wsl terminal and run the same command: `openssl rand -hex 32`
+    - API_NINJA_KEY
+        - NOTE: you can obtain an API key by signing up for a free account at https://api-ninjas.com/api to access all of their API's.
+    See a sample .env file for what it should contain below:
 
-## Requirements
+            ```
+            POSTGRES_DB="task-database"
+            POSTGRES_USER="user"
+            POSTGRES_PASSWORD="password"
+            SIGNING_KEY="12345"
+            API_NINJA_KEY= ** you must sign up for API key following link below **
+            ```
 
-- You will need an API key to access the third party API that gets a joke upon task completion. You can do this by signing up for a free account at https://api-ninjas.com/api to access all of their API's. Create a .env file to store your API Key as the variable API_NINJA_KEY.
-
-#### Do we need to add anything else for this?
+4. Run `docker compose up --build`
 
 
-
-
-## Install Extensions -- NOT SURE IF NEEDED SOMEWHERE
-
+## Install Extensions
 
 -   Prettier: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
 -   Black Formatter: <https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter>
 
-### Installing python dependencies locally -- NOT SURE IF NEEDED SOMEWHERE
+### Installing python dependencies locally
 
 In order for VSCode's built in code completion and intelligence to
 work correctly, it needs the dependencies from the requirements.txt file
