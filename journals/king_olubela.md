@@ -74,3 +74,6 @@ After reaching a good stopping point, we transitioned to mob coding with me lead
 
 ## Journal Entry for 08/29/2024
 We began the day with pair programming, where Arielle and I set up the pipeline. We then made a plan for the remaining work and organized our tasks for the day. Yazan and I focused on troubleshooting and improving the CSS, while Andy and Arielle initially worked on the README. Andy later shifted to troubleshooting a feature we wanted to implement. I primarily worked on the README but checked in with my team members throughout the day to offer assistance as needed.
+
+## Journal Entry for 08/29/2024
+Today was focused on cleanup. We addressed and fixed any remaining bugs, removed unnecessary console logs, and reorganized the component folder for better structure. It was a productive day dedicated to finalizing and tidying up the project.
