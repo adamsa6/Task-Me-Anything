@@ -76,3 +76,7 @@
 ## Journal Entry for 8/29/2024
 
 -   We began the day with pair programming to set up the pipeline and plan the day's work. Throughout the day, we collectively tackled CSS improvements, ReadMe updates, and troubleshooting, frequently checking in with each other to ensure smooth progress.
+
+## Journal Entry for 9/3/2024
+
+-   we were testing and adding the finale touches to the css to make sure everything looks great and is ready for submission
