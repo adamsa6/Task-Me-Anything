@@ -47,7 +47,7 @@ The user does not have to be the assigner (task creator) OR the assignee of a ta
 
 The task card will show the task title, the task assignee and assigner, the task due date, and the task priority level.
 
-Users can search the list of all tasks by task title, which will filter the list to show only those tasks matching the search query.
+Users can search the list of all tasks by task title and by task status, which will filter the list to show only those tasks matching the search query.
 
 ![All Tasks Page](wireframes/list-all-tasks-page.png)
 
@@ -60,7 +60,7 @@ The user must be the assigner of a task (task creator) in order for the task to 
 
 The task card will show the task title, the task assignee, the task due date, and the task priority level.
 
-Users can search the list of all tasks by task title, which will filter the list to show only those tasks matching the search query.
+Users can search the list of all tasks by task title and by task status, which will filter the list to show only those tasks matching the search query.
 
 ![My Created Tasks Page](wireframes/my-created-tasks-page.png)
 
@@ -73,7 +73,7 @@ The user must be the assignee of a task in order for the task to show on this pa
 
 The task card will show the task title, the task assigner, the task due date, and the task priority level.
 
-Users can search the list of all tasks by task title, which will filter the list to show only those tasks matching the search query.
+Users can search the list of all tasks by task title and by task status, which will filter the list to show only those tasks matching the search query.
 
 ![My Assigned Tasks Page](wireframes/my-assigned-tasks-page.png)
 
@@ -85,7 +85,7 @@ A user does not have to be the assigner (task creator) OR the assignee of a task
 
 The task card will show the task title, the task assigner and assignee, the task due date, and the task priority level.
 
-Users can search the list of all tasks by task title, which will filter the list to show only those tasks matching the search query.
+Users can search the list of all tasks by task title and by task status, which will filter the list to show only those tasks matching the search query.
 
 ![Task History Page](wireframes/task-history-page.png)
 
