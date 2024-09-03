@@ -63,6 +63,7 @@ export const taskApi = createApi({
             query: (taskId) => ({
                 url: `/api/tasks/${taskId}/users`,
             }),
+            providesTags: ['Users']
         }),
         signout: builder.mutation({
             query: () => ({
@@ -77,7 +78,7 @@ export const taskApi = createApi({
                 body,
                 method: 'POST',
             }),
-            invalidatesTags: ['User'],
+            invalidatesTags: ['User', 'Tasks'],
         }),
         signin: builder.mutation({
             query: (body) => ({
@@ -106,7 +107,7 @@ export const taskApi = createApi({
                 body,
                 method: 'PUT',
             }),
-            invalidatesTags: ['Task'],
+            invalidatesTags: ['Task', 'Users'],
         }),
         changeTaskStatus: builder.mutation({
             query: ({ body, taskId }) => ({
