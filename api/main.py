@@ -28,4 +28,3 @@ app.include_router(tasks_router.router)
 app.include_router(external_api_router.router)
 app.include_router(comments_router.router)
 app.include_router(users_router.router)
-
