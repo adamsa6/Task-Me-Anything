@@ -24,6 +24,20 @@ pool = ConnectionPool(DATABASE_URL)
 class TaskQueries:
 
     def create_task(self, new_task: TaskIn, assigner_id: int) -> TaskOut:
+        """
+        Creates a new task in the database.
+
+        Args:
+            new_task (TaskIn): The details of the new task to be created.
+            assigner_id (int): The ID of the user who is creating the task.
+
+        Returns:
+            TaskOut: The created task with all its details.
+
+        Raises:
+            TaskDatabaseException: If the task could not be created.
+        """
+
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(TaskOut)) as cur:
                 cur.execute(
@@ -57,6 +71,16 @@ class TaskQueries:
                 return new_task
 
     def list_all(self) -> TaskList:
+        """
+        Retrieves all tasks from the database and returns them as a list.
+
+        Returns:
+            TaskList: A list of tasks retrieved from the database,
+            ordered by due date and priority properties.
+
+        Raises:
+            None
+        """
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(TaskOut)) as cur:
                 cur.execute(
@@ -70,6 +94,18 @@ class TaskQueries:
                 return tasks
 
     def list_assigned(self, assignee_id: int) -> TaskList:
+        """
+        Retrieve a list of tasks assigned to a specific assignee.
+
+        Args:
+            assignee_id (int): The ID of the logged in user.
+
+        Returns:
+            TaskList: A list of tasks assigned to the logged in user.
+
+        Raises:
+            None
+        """
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(TaskOut)) as cur:
                 cur.execute(
@@ -86,6 +122,18 @@ class TaskQueries:
                 return tasks
 
     def list_mine(self, assigner_id: int) -> TaskList:
+        """
+        Retrieve a list of tasks assigned to a specific assigner.
+
+        Args:
+            assigner_id (int): The ID of the logged in user.
+
+        Returns:
+            TaskList: A list of tasks assigned to the logged in user.
+
+        Raises:
+            None
+        """
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(TaskOut)) as cur:
                 cur.execute(
@@ -102,6 +150,19 @@ class TaskQueries:
                 return tasks
 
     def get_task(self, task_id: int) -> TaskOut:
+        """
+        Retrieves a task from the database based on the given task ID.
+
+        Args:
+            task_id (int): The ID of the task to retrieve.
+
+        Returns:
+            TaskOut: The retrieved task object.
+
+        Raises:
+            None
+        """
+
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(TaskOut)) as cur:
                 cur.execute(
@@ -116,6 +177,20 @@ class TaskQueries:
                 return task
 
     def update_task(self, task_id: int, task_in: TaskIn) -> TaskOut:
+        """
+        Update a task in the database.
+
+        Args:
+            task_id (int): The ID of the task to be updated.
+            task_in (TaskIn): The updated task information.
+
+        Returns:
+            TaskOut: The updated task.
+
+        Raises:
+            None
+        """
+
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(TaskOut)) as cur:
                 cur.execute(
@@ -142,6 +217,19 @@ class TaskQueries:
                 return task
 
     def change_status(self, task_id: int, status: TaskStatus) -> TaskOut:
+        """
+        Updates the status of a task with the given task_id.
+
+        Args:
+            task_id (int): The ID of the task to update.
+            status (TaskStatus): The new status to set for the task.
+
+        Returns:
+            TaskOut: The updated task object.
+
+        Raises:
+            None
+        """
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(TaskOut)) as cur:
                 cur.execute(

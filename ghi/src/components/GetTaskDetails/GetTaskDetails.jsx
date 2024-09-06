@@ -71,10 +71,6 @@ const GetTaskDetails = () => {
                         <li data-label="Status:">{task.status}</li>
                     </ul>
                     <div className="task-buttons" key={task.id}>
-                        <CompletedButton
-                            task={task}
-                            onComplete={handleCompleteClick}
-                        />
                         <InProgressButton task={task} />
                         {userData.id === users.assigner.id &&
                             task.status != 'Deleted' &&
@@ -86,6 +82,10 @@ const GetTaskDetails = () => {
                                     Edit Task
                                 </button>
                             )}
+                        <CompletedButton
+                            task={task}
+                            onComplete={handleCompleteClick}
+                        />
                         <DeleteButton task={task} />
                     </div>
                 </div>

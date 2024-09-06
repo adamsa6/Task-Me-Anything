@@ -31,6 +31,20 @@ def create_task(
 ) -> TaskOut:
     """
     Creates a new task when someone submits the task form
+
+    Args:
+    - new_task (TaskIn): The task information submitted in the task form.
+    - user (UserResponse):
+        The user making the request (the user data obtained from the JWT token)
+    - queries (TaskQueries):
+        The instance of the TaskQueries class used to
+        interact with the database
+
+    Returns:
+    - TaskOut: The created task object.
+
+    Raises:
+    - UserException: If the user is not logged in.
     """
     check_user_exceptions(user)
 
@@ -43,7 +57,23 @@ def list_all_tasks(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
 ) -> TaskList:
+    """
+    Retrieves a list of all created tasks.
 
+    Args:
+    - user (UserResponse):
+        The user making the request (the user data
+        obtained from the JWT token)
+    - queries (TaskQueries):
+        The instance of the TaskQueries class used to
+        interact with the database
+
+    Returns:
+    - TaskList: A dictionary containing the list of all tasks.
+
+    Raises:
+    - UserException: If the user is not logged in.
+    """
     check_user_exceptions(user)
 
     return {"tasks": queries.list_all()}
@@ -54,7 +84,23 @@ def list_assigned_tasks(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
 ) -> TaskList:
+    """
+    Retrieves a list of all tasks assigned to the logged in user.
 
+    Args:
+    - user (UserResponse):
+        The user making the request (the user data
+        obtained from the JWT token)
+    - queries (TaskQueries):
+        The instance of the TaskQueries class used
+        to interact with the database
+
+    Returns:
+    - TaskList: A dictionary containing the list of all tasks.
+
+    Raises:
+    - UserException: If the user is not logged in.
+    """
     check_user_exceptions(user)
 
     return {"tasks": queries.list_assigned(assignee_id=user.id)}
@@ -65,7 +111,23 @@ def list_my_tasks(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
 ) -> TaskList:
+    """
+    Retrieves a list of all tasks created by the logged in user.
 
+    Args:
+    - user (UserResponse):
+        The user making the request (the user data
+        obtained from the JWT token)
+    - queries (TaskQueries):
+        The instance of the TaskQueries class used
+        to interact with the database
+
+    Returns:
+    - TaskList: A dictionary containing the list of all tasks.
+
+    Raises:
+    - UserException: If the user is not logged in.
+    """
     check_user_exceptions(user)
 
     return {"tasks": queries.list_mine(assigner_id=user.id)}
@@ -77,7 +139,25 @@ def get_task_details(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
 ) -> TaskOut:
+    """
+    Retrieves the details of a specific task.
 
+    Args:
+    - task_id (int): The ID of the task to retrieve.
+    - user (UserResponse):
+        The user making the request (the user data
+        obtained from the JWT token)
+    - queries (TaskQueries):
+        The instance of the TaskQueries class used
+        to interact with the database
+
+    Returns:
+    - TaskOut: The details of the requested task.
+
+    Raises:
+    - UserException: If the user is not logged in.
+    - TaskException: If the task with the given ID does not exist.
+    """
     check_user_exceptions(user)
 
     task = queries.get_task(task_id)
@@ -93,7 +173,29 @@ def edit_task(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
 ) -> TaskOut:
+    """
+    Edit a specific task.
 
+    Args:
+    - task_id (int): The ID of the task to be edited.
+    - task_in (TaskIn): The updated task information.
+    - user (UserResponse:
+        The user making the request (the user data
+        obtained from the JWT token)
+    - queries (TaskQueries):
+        The instance of the TaskQueries class used
+        to interact with the database
+
+    Returns:
+    - TaskOut: The edited task.
+
+    Raises:
+    - edit_task_exception:
+        If the user is not authorized to edit the task
+        (if they did not create the task).
+    - TaskNotFoundException:
+        If the task with the given ID is not found / does not exist.
+    """
     check_user_exceptions(user)
 
     task = queries.get_task(task_id)
@@ -113,7 +215,28 @@ def change_task_status(
     user: UserResponse = Depends(try_get_jwt_user_data),
     queries: TaskQueries = Depends(),
 ) -> TaskOut:
+    """
+    Changes the status of a task.
 
+    Args:
+    - task_id (int): The ID of the task to be updated.
+    - status (TaskStatus): The new status of the task.
+    - user (UserResponse):
+        The user making the request. Defaults to the result of
+        the try_get_jwt_user_data function.
+    - queries (TaskQueries):
+        The instance of the TaskQueries class used
+        to interact with the database
+
+    Returns:
+    - TaskOut: The updated task.
+
+    Raises:
+    - UserException: If the user is not logged in.
+    - TaskException: If the task with the given ID does not exist.
+    - EditTaskException:
+        If the user does not have permission to update the task status.
+    """
     check_user_exceptions(user)
 
     task = queries.get_task(task_id)

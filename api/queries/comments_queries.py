@@ -19,6 +19,21 @@ class CommentQueries:
     def create_comment(
         self, new_comment: CommentIn, user_id: int, task_id: int
     ) -> CommentOut:
+        """
+        Creates a new comment in the database.
+
+        Args:
+            new_comment (CommentIn): The new comment to be created.
+            user_id (int):
+                The ID of the user creating the comment (the logged in user).
+            task_id (int): The ID of the task associated with the comment.
+
+        Returns:
+            CommentOut: The newly created comment.
+
+        Raises:
+            CommentDatabaseException: If the comment could not be created.
+        """
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(CommentOut)) as cur:
                 cur.execute(
@@ -44,6 +59,19 @@ class CommentQueries:
                 return new_comment
 
     def list_all(self, task_id: int) -> CommentList:
+        """
+        Retrieve all comments for a given task ID.
+
+        Args:
+            task_id (int): The ID of the task.
+
+        Returns:
+            CommentList: A list of comments for the given task ID,
+            ordered by creation date.
+
+        Raises:
+            None
+        """
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(CommentOut)) as cur:
                 cur.execute(
@@ -59,6 +87,18 @@ class CommentQueries:
                 return comments
 
     def get_comment(self, comment_id: int) -> CommentOut:
+        """
+        Retrieve a comment from the database based on the given comment ID.
+
+        Args:
+            comment_id (int): The ID of the comment to retrieve.
+
+        Returns:
+            CommentOut: The retrieved comment object.
+
+        Raises:
+            None
+        """
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(CommentOut)) as cur:
                 cur.execute(
@@ -75,6 +115,19 @@ class CommentQueries:
     def edit_comment(
         self, comment_id: int, comment_in: CommentIn
     ) -> CommentOut:
+        """
+        Edit a comment in the database.
+
+        Args:
+            comment_id (int): The ID of the comment to be edited.
+            comment_in (CommentIn): The updated comment data.
+
+        Returns:
+            CommentOut: The edited comment.
+
+        Raises:
+            None
+        """
         with pool.connection() as conn:
             with conn.cursor(row_factory=class_row(CommentOut)) as cur:
                 cur.execute(
@@ -90,6 +143,18 @@ class CommentQueries:
                 return comment
 
     def delete_comment(self, comment_id: int):
+        """
+        Deletes a comment from the database.
+
+        Args:
+            comment_id (int): The ID of the comment to be deleted.
+
+        Returns:
+            int: The ID of the deleted comment.
+
+        Raises:
+            None
+        """
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(

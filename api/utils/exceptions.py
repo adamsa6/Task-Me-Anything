@@ -62,3 +62,8 @@ def check_comment_exceptions(task, comment):
         raise task_exception
     if comment is None or comment.task_id != task.id:
         raise comment_exception
+
+
+def check_user_not_found_exception(user):
+    if user is None:
+        raise user_not_found_exception

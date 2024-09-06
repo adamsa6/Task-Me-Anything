@@ -23,19 +23,37 @@ def create_comment(
     new_comment: CommentIn,
     task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
-    queries: CommentQueries = Depends(),
+    comment_queries: CommentQueries = Depends(),
     task_queries: TaskQueries = Depends(),
 ) -> CommentOut:
     """
-    Creates a new comment when someone submits the comments form.
-    """
+    Creates a new comment for a specific task.
 
+    Args:
+    - new_comment (CommentIn): The data for the new comment.
+    - task_id (int): The ID of the task the comment belongs to.
+    - user (UserResponse):
+        The user making the comment. Defaults to the current authenticated user
+    - comment_queries (CommentQueries):
+        The instance of the CommentQueries class used to
+        interact with the database.
+    - task_queries (TaskQueries):
+        The instance of the TaskQueries class used to
+        interact with the database.
+
+    Returns:
+    - CommentOut: The created comment.
+
+    Raises:
+    - UserException: If the user is not logged in.
+    - TaskException: If the task does not exist.
+    """
     check_user_exceptions(user)
 
     task = task_queries.get_task(task_id)
     check_task_exception(task)
 
-    comment = queries.create_comment(
+    comment = comment_queries.create_comment(
         new_comment=new_comment, user_id=user.id, task_id=task_id
     )
     return comment
@@ -45,16 +63,39 @@ def create_comment(
 def list_task_comments(
     task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
-    queries: CommentQueries = Depends(),
+    comment_queries: CommentQueries = Depends(),
     task_queries: TaskQueries = Depends(),
 ) -> CommentList:
+    """
+    Lists all comments for a specific task.
+
+    Args:
+    - task_id (int): The ID of the task the comments belong to.
+    - user (UserResponse):
+        The user making the request. Defaults to the current authenticated user
+    - comment_queries (CommentQueries):
+        The instance of the CommentQueries class used to
+        interact with the database.
+    - task_queries (TaskQueries):
+        The instance of the TaskQueries class
+        used to interact with the database.
+
+    Returns:
+    - CommentOut:
+        A dictionary containing the list of all comments
+        associated with the specific task.
+
+    Raises:
+    - UserException: If the user is not logged in.
+    - TaskException: If the task does not exist.
+    """
 
     check_user_exceptions(user)
 
     task = task_queries.get_task(task_id)
     check_task_exception(task)
 
-    return {"comments": queries.list_all(task_id=task_id)}
+    return {"comments": comment_queries.list_all(task_id=task_id)}
 
 
 @router.get(
@@ -64,14 +105,38 @@ def get_task_comment(
     comment_id: int,
     task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
+    comment_queries: CommentQueries = Depends(),
     task_queries: TaskQueries = Depends(),
-    queries: CommentQueries = Depends(),
 ) -> CommentOut:
+    """
+    Retrieves the details of a specific comment.
 
+    Args:
+    - comment_id (int): The ID of the comment to retrieve.
+    - task_id (int): The ID of the task the comments belong to.
+    - user (UserResponse):
+        The user making the request. Defaults to the current authenticated user
+    - comment_queries (CommentQueries):
+        The instance of the CommentQueries class used to
+        interact with the database.
+    - task_queries (TaskQueries):
+        The instance of the TaskQueries class used to
+        interact with the database.
+
+    Returns:
+    - CommentOut: The details of the requested comment.
+
+    Raises:
+    - UserException: If the user is not logged in.
+    - TaskException: If the task does not exist.
+    - CommentException:
+        If the comment does not belong to the specified task
+        or if the comment does not exist
+    """
     check_user_exceptions(user)
 
     task = task_queries.get_task(task_id)
-    comment = queries.get_comment(comment_id)
+    comment = comment_queries.get_comment(comment_id)
     check_comment_exceptions(task, comment)
 
     return comment
@@ -85,20 +150,47 @@ def edit_task_comment(
     task_id: int,
     comment_in: CommentIn,
     user: UserResponse = Depends(try_get_jwt_user_data),
+    comment_queries: CommentQueries = Depends(),
     task_queries: TaskQueries = Depends(),
-    queries: CommentQueries = Depends(),
 ) -> CommentOut:
+    """
+    Edits a specific comment.
 
+    Args:
+    - comment_id (int): The ID of the comment to retrieve.
+    - task_id (int): The ID of the task the comments belong to.
+    - user (UserResponse):
+        The user editing the comment. Defaults to the current
+        authenticated user.
+    - comment_queries (CommentQueries):
+        The instance of the CommentQueries class used to
+        interact with the database.
+    - task_queries (TaskQueries):
+        The instance of the TaskQueries class used to
+        interact with the database.
+
+    Returns:
+    - CommentOut: The details of the edited comment.
+
+    Raises:
+    - UserException: If the user is not logged in.
+    - TaskException: If the task does not exist.
+    - CommentException:
+        If the comment does not belong to the specified task
+        or if the comment does not exist
+    - EditCommentException:
+        If the user does not have permission to edit the comment.
+    """
     check_user_exceptions(user)
 
     task = task_queries.get_task(task_id)
-    comment = queries.get_comment(comment_id)
+    comment = comment_queries.get_comment(comment_id)
     check_comment_exceptions(task, comment)
 
     if user.id != comment.user_id:
         raise edit_comment_exception
     else:
-        comment = queries.edit_comment(comment_id, comment_in)
+        comment = comment_queries.edit_comment(comment_id, comment_in)
         return comment
 
 
@@ -107,17 +199,45 @@ def delete_task_comment(
     comment_id: int,
     task_id: int,
     user: UserResponse = Depends(try_get_jwt_user_data),
+    comment_queries: CommentQueries = Depends(),
     task_queries: TaskQueries = Depends(),
-    queries: CommentQueries = Depends(),
 ):
+    """
+    Deletes a specific comment.
+
+    Args:
+    - comment_id (int): The ID of the comment to retrieve.
+    - task_id (int): The ID of the task the comments belong to.
+    - user (UserResponse):
+        The user deleting the comment. Defaults to the
+        current authenticated user.
+    - comment_queries (CommentQueries):
+        The instance of the CommentQueries class used to
+        interact with the database.
+    - task_queries (TaskQueries):
+        The instance of the TaskQueries class used to
+        interact with the database.
+
+    Returns:
+    - None
+
+    Raises:
+    - UserException: If the user is not logged in.
+    - TaskException: If the task does not exist.
+    - CommentException:
+        If the comment does not belong to the specified task
+        or if the comment does not exist
+    - EditCommentException:
+        If the user does not have permission to delete the comment.
+    """
     check_user_exceptions(user)
 
     task = task_queries.get_task(task_id)
-    comment = queries.get_comment(comment_id)
+    comment = comment_queries.get_comment(comment_id)
     check_comment_exceptions(task, comment)
 
     if user.id != comment.user_id:
         raise edit_comment_exception
     else:
-        queries.delete_comment(comment_id)
+        comment_queries.delete_comment(comment_id)
         return
