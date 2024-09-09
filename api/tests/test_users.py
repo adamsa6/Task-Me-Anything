@@ -26,6 +26,7 @@ class FakeUserQueries:
                 id=3,
                 first_name="Aaron",
                 last_name="Newhart",
+                username="anewhart"
             )
         ]
 
@@ -36,6 +37,7 @@ class FakeUserQueries:
             id=id,
             first_name="Aaron",
             last_name="Newhart",
+            username="anewhart"
         )
 
 

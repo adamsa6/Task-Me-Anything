@@ -65,11 +65,13 @@ def get_task_users(
         "id": assigner.id,
         "first_name": assigner.first_name,
         "last_name": assigner.last_name,
+        "username": assigner.username
     }
     assignee_out = {
         "id": assignee.id,
         "first_name": assignee.first_name,
         "last_name": assignee.last_name,
+        "username": assignee.username,
     }
     return {"assigner": assigner_out, "assignee": assignee_out}
 
