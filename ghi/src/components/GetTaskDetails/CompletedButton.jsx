@@ -1,8 +1,8 @@
 import { useChangeTaskStatusMutation, useGetUserQuery } from '../../app/api'
 
 export default function CompletedButton({ task, onComplete }) {
-    const { data: userData, isLoading: userDataIsLoading } = useGetUserQuery()
-    const [status, statusStatus] = useChangeTaskStatusMutation()
+    const { data: userData } = useGetUserQuery()
+    const [status] = useChangeTaskStatusMutation()
 
     async function handleStatusChange() {
         status({

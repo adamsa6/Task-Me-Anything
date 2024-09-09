@@ -9,7 +9,7 @@ import './ListTaskComments.css'
 const ListTaskComments = () => {
     const { taskId } = useParams()
     const { data, isLoading } = useListTaskCommentsQuery(taskId)
-    const { data: user, isLoading: userIsLoading } = useGetUserQuery()
+    const { data: user} = useGetUserQuery()
 
     if (isLoading) return <>Loading...</>
 
