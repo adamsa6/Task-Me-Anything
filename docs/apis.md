@@ -344,12 +344,14 @@ Response body:
   "assigner": {
     "id": database id of the user who is the task assigner (number),
     "first_name": user's first name (string),
-    "last_name": user's last name (string)
+    "last_name": user's last name (string),
+    "username": assigner's username (string)
   },
   "assignee": {
     "id": database id of the user who is the assignee (number),
     "first_name": user's first name (string),
-    "last_name": user's last name (string)
+    "last_name": user's last name (string),
+    "username": assignee's username (string)
   }
 }
 ```
@@ -365,7 +367,8 @@ Response body:
     {
     "id": database id of the user (number),
     "first_name": user's first name (string),
-    "last_name": user's last name (string)
+    "last_name": user's last name (string),
+    "username": user's username (string)
     },
     ...
   ]
@@ -379,9 +382,10 @@ Response body:
 Response body:
 ```
 {
-"id": database id of the user (number),
-"first_name": user's first name (string),
-"last_name": user's last name (string)
+  "id": database id of the user (number),
+  "first_name": user's first name (string),
+  "last_name": user's last name (string),
+  "username": user's username (string)
 }
 ```
 
