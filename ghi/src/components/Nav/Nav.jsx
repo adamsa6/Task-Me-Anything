@@ -96,9 +96,7 @@ const Nav = () => {
                         <div className="d-flex">
                             <button
                                 className="btn signout-button me-2"
-                                onClick={() => {
-                                    signout()
-                                }}
+                                onClick={signout}
                             >
                                 Sign Out
                             </button>
