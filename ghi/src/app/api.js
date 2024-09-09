@@ -64,6 +64,7 @@ export const taskApi = createApi({
             query: () => ({
                 url: '/api/quote',
             }),
+            providesTags: ['Quote'],
         }),
         listTaskComments: builder.query({
             query: (taskId) => ({
@@ -82,7 +83,7 @@ export const taskApi = createApi({
                 url: '/api/auth/signout',
                 method: 'DELETE',
             }),
-            invalidatesTags: ['User', 'Tasks'],
+            invalidatesTags: ['User'],
         }),
         signup: builder.mutation({
             query: (body) => ({
@@ -90,7 +91,7 @@ export const taskApi = createApi({
                 body,
                 method: 'POST',
             }),
-            invalidatesTags: ['User', 'Tasks'],
+            invalidatesTags: ['User', 'Tasks', 'Quote'],
         }),
         signin: builder.mutation({
             query: (body) => ({
@@ -98,7 +99,7 @@ export const taskApi = createApi({
                 body,
                 method: 'POST',
             }),
-            invalidatesTags: ['User', 'Tasks'],
+            invalidatesTags: ['User', 'Tasks', 'Quote'],
         }),
         createTask: builder.mutation({
             query: (body) => ({

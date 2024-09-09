@@ -37,7 +37,6 @@ def get_joke(
 
 @router.get("/quote")
 def get_quote(
-    user: UserResponse = Depends(try_get_jwt_user_data),
     queries: GetExternalApi = Depends(),
 ):
     """
@@ -54,6 +53,5 @@ def get_quote(
     Raises:
     - UserException: If the user is not logged in.
     """
-    check_user_exceptions(user)
     quote = queries.get_quote()
     return quote
