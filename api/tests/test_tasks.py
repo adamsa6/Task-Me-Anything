@@ -48,6 +48,36 @@ class FakeTaskQueries:
             )
         ]
 
+    def list_current(self):
+        return [
+            TaskOut(
+                id=10,
+                title="Foodies",
+                description="asdf",
+                created_on="2024-08-27T19:20:46.770731",
+                due_date="2024-08-23",
+                priority=2,
+                status="Active",
+                assigner_id=1,
+                assignee_id=2,
+            )
+        ]
+
+    def list_past(self):
+        return [
+            TaskOut(
+                id=10,
+                title="Foodies",
+                description="asdf",
+                created_on="2024-08-27T19:20:46.770731",
+                due_date="2024-08-23",
+                priority=2,
+                status="Active",
+                assigner_id=1,
+                assignee_id=2,
+            )
+        ]
+
     def list_assigned(self, assignee_id: int):
         return [
             TaskOut(
@@ -168,7 +198,6 @@ def test_list_all_tasks_401():
     result = client.get("/api/tasks")
     assert result.status_code == 401
 
-
 def test_list_all_tasks_200():
     app.dependency_overrides = {}
     app.dependency_overrides[TaskQueries] = FakeTaskQueries
@@ -176,6 +205,46 @@ def test_list_all_tasks_200():
         fake_try_get_jwt_user_data
     )
     result = client.get("/api/tasks")
+    assert result.status_code == 200
+    data = result.json()
+    assert len(data["tasks"]) == 1
+    assert data["tasks"][0]["id"] == 10
+
+
+def test_list_current_tasks_401():
+    app.dependency_overrides = {}
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    result = client.get("/api/tasks/current")
+    assert result.status_code == 401
+
+
+def test_list_current_tasks_200():
+    app.dependency_overrides = {}
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    result = client.get("/api/tasks/current")
+    assert result.status_code == 200
+    data = result.json()
+    assert len(data["tasks"]) == 1
+    assert data["tasks"][0]["id"] == 10
+
+
+def test_list_past_tasks_401():
+    app.dependency_overrides = {}
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    result = client.get("/api/tasks/past")
+    assert result.status_code == 401
+
+
+def test_list_past_tasks_200():
+    app.dependency_overrides = {}
+    app.dependency_overrides[TaskQueries] = FakeTaskQueries
+    app.dependency_overrides[try_get_jwt_user_data] = (
+        fake_try_get_jwt_user_data
+    )
+    result = client.get("/api/tasks/past")
     assert result.status_code == 200
     data = result.json()
     assert len(data["tasks"]) == 1
