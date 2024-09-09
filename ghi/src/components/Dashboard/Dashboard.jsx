@@ -6,8 +6,8 @@ import ListMyTasks from '../TaskLists/ListMyTasks'
 import './Dashboard.css'
 
 const Dashboard = () => {
-    const [getQuotesTrigger, quotesResults] = useLazyGetQuoteQuery()
     const { data: user, isLoading: userIsLoading } = useGetUserQuery()
+    const [getQuotesTrigger, quotesResults] = useLazyGetQuoteQuery()
     const [quotes, setQuotes] = useState([])
     const navigate = useNavigate()
 

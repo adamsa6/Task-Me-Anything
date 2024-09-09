@@ -65,7 +65,7 @@ export default function SignInForm() {
             </div>
             <div className="card-form">
                 <h1>Sign In</h1>
-                {error && <div>{error}</div>}
+                {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleFormSubmit}>
                     <input
                         type="text"
