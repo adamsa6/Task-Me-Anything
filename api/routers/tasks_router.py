@@ -79,6 +79,33 @@ def list_all_tasks(
     return {"tasks": queries.list_all()}
 
 
+@router.get("/tasks/current", response_model=TaskList)
+def list_current_tasks(
+    user: UserResponse = Depends(try_get_jwt_user_data),
+    queries: TaskQueries = Depends(),
+) -> TaskList:
+    """
+    Retrieves a list of all current tasks.
+
+    Args:
+    - user (UserResponse):
+        The user making the request (the user data
+        obtained from the JWT token)
+    - queries (TaskQueries):
+        The instance of the TaskQueries class used to
+        interact with the database
+
+    Returns:
+    - TaskList: A dictionary containing the list of all current tasks (status of "Active" or "In Progress")
+
+    Raises:
+    - UserException: If the user is not logged in.
+    """
+    check_user_exceptions(user)
+
+    return {"tasks": queries.list_current()}
+
+
 @router.get("/assigned-tasks/mine", response_model=TaskList)
 def list_assigned_tasks(
     user: UserResponse = Depends(try_get_jwt_user_data),
