@@ -24,6 +24,18 @@ export const taskApi = createApi({
             }),
             providesTags: ['Tasks', 'Task'],
         }),
+        listCurrentTasks: builder.query({
+            query: () => ({
+                url: '/api/tasks/current',
+            }),
+            providesTags: ['Tasks', 'Task'],
+        }),
+        listPastTasks: builder.query({
+            query: () => ({
+                url: '/api/tasks/past',
+            }),
+            providesTags: ['Tasks', 'Task'],
+        }),
         listAssignedTasks: builder.query({
             query: () => ({
                 url: '/api/assigned-tasks/mine',
@@ -46,7 +58,7 @@ export const taskApi = createApi({
             query: () => ({
                 url: '/api/joke',
             }),
-            providesTags: ['Joke']
+            providesTags: ['Joke'],
         }),
         getQuote: builder.query({
             query: () => ({
@@ -57,13 +69,13 @@ export const taskApi = createApi({
             query: (taskId) => ({
                 url: `/api/tasks/${taskId}/comments`,
             }),
-            providesTags: ['Comments']
+            providesTags: ['Comments'],
         }),
         getTaskUsers: builder.query({
             query: (taskId) => ({
                 url: `/api/tasks/${taskId}/users`,
             }),
-            providesTags: ['Users']
+            providesTags: ['Users'],
         }),
         signout: builder.mutation({
             query: () => ({
@@ -118,12 +130,12 @@ export const taskApi = createApi({
             invalidatesTags: ['Task', 'Joke'],
         }),
         createComment: builder.mutation({
-            query: ({body, taskId}) => ({
+            query: ({ body, taskId }) => ({
                 url: `/api/tasks/${taskId}/comments`,
                 body,
                 method: 'POST',
             }),
-            invalidatesTags: ['Comments']
+            invalidatesTags: ['Comments'],
         }),
         editTaskComment: builder.mutation({
             query: ({ body, taskId, commentId }) => ({
@@ -131,14 +143,14 @@ export const taskApi = createApi({
                 body,
                 method: 'PUT',
             }),
-            invalidatesTags: ['Comments']
+            invalidatesTags: ['Comments'],
         }),
         deleteTaskComment: builder.mutation({
             query: ({ taskId, commentId }) => ({
                 url: `/api/tasks/${taskId}/comments/${commentId}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Comments']
+            invalidatesTags: ['Comments'],
         }),
     }),
 })
@@ -149,6 +161,8 @@ export const {
     useGetTaskUsersQuery,
     useGetUsersQuery,
     useListAllTasksQuery,
+    useListCurrentTasksQuery,
+    useListPastTasksQuery,
     useListAssignedTasksQuery,
     useListMyTasksQuery,
     useGetTaskDetailsQuery,
