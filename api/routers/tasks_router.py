@@ -78,6 +78,7 @@ def list_all_tasks(
 
     return {"tasks": queries.list_all()}
 
+
 @router.get("/tasks/current", response_model=TaskList)
 def list_current_tasks(
     user: UserResponse = Depends(try_get_jwt_user_data),
@@ -95,7 +96,8 @@ def list_current_tasks(
         interact with the database
 
     Returns:
-    - TaskList: A dictionary containing the list of all current tasks (status of "Active" or "In Progress")
+    - TaskList: A dictionary containing the list of all current tasks
+        (status of "Active" or "In Progress")
 
     Raises:
     - UserException: If the user is not logged in.
@@ -122,7 +124,8 @@ def list_past_tasks(
         interact with the database
 
     Returns:
-    - TaskList: A dictionary containing the list of all past tasks (status of "Completed" or "Deleted")
+    - TaskList: A dictionary containing the list of all past tasks
+        (status of "Completed" or "Deleted")
 
     Raises:
     - UserException: If the user is not logged in.

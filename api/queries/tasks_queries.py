@@ -95,7 +95,8 @@ class TaskQueries:
 
     def list_current(self) -> TaskList:
         """
-        Retrieves all current tasks from the database and returns them as a list.
+        Retrieves all current tasks from the database and
+            returns them as a list.
 
         Returns:
             TaskList: A list of tasks retrieved from the database,
