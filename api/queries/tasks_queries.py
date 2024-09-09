@@ -117,6 +117,30 @@ class TaskQueries:
                 tasks = cur.fetchall()
                 return tasks
 
+    def list_past(self) -> TaskList:
+        """
+        Retrieves all past tasks from the database and returns them as a list.
+
+        Returns:
+            TaskList: A list of tasks retrieved from the database,
+            ordered by due date and priority properties.
+
+        Raises:
+            None
+        """
+        with pool.connection() as conn:
+            with conn.cursor(row_factory=class_row(TaskOut)) as cur:
+                cur.execute(
+                    """
+                    SELECT *
+                    FROM tasks
+                    WHERE (status = 'Completed' OR status = 'Deleted')
+                    ORDER BY due_date, priority;
+                    """
+                )
+                tasks = cur.fetchall()
+                return tasks
+
     def list_assigned(self, assignee_id: int) -> TaskList:
         """
         Retrieve a list of tasks assigned to a specific assignee.
