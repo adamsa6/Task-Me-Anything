@@ -198,6 +198,7 @@ def test_list_all_tasks_401():
     result = client.get("/api/tasks")
     assert result.status_code == 401
 
+
 def test_list_all_tasks_200():
     app.dependency_overrides = {}
     app.dependency_overrides[TaskQueries] = FakeTaskQueries
