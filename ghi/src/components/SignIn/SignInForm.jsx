@@ -83,7 +83,7 @@ export default function SignInForm() {
                     />
                     <button type="submit">Sign In</button>
                 </form>
-                <Link to="/signup">Dont have an Account? SignUp</Link>
+                <Link to="/signup">Dont have an Account? Sign Up</Link>
             </div>
         </div>
     )
