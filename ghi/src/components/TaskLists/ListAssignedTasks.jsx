@@ -9,12 +9,13 @@ const ListAssignedTasks = ({ isLimited, showControls = true }) => {
     const [searchInput, setSearchInput] = useState('')
     const [selectedStatus, setSelectedStatus] = useState('')
     const [selectedPriority, setSelectedPriority] = useState('')
-    //const [filteredTasks, setFilteredTasks] = useState([])
 
     useEffect(() => {
         if (data) {
             setTasksToList(isLimited ? data.tasks.slice(0, 5) : data.tasks)
-            filterItems()
+            if (!isLimited) {
+                filterItems()
+            }
         }
     }, [data, isLimited, selectedStatus, selectedPriority])
 

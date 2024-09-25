@@ -45,7 +45,9 @@ const Dashboard = () => {
                 <h1>My Top Priority Tasks</h1>
                 <div className="tasks-container">
                     <div className="tasks-column">
-                        <ListMyTasks isLimited={true} showControls={false} />
+                        <ListMyTasks
+                            isLimited={true}
+                            showControls={false} />
                         <Link to="/tasks/mine" className="link-button">
                             <button>View All My Created Tasks</button>
                         </Link>
