@@ -75,18 +75,18 @@ const Nav = () => {
                                 </li>
                                 <li className="nav-item">
                                     <NavLink
-                                        to="/tasks/create"
-                                        className="nav-link btn btn-light"
-                                    >
-                                        Create Task
-                                    </NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink
                                         to="/tasks/history"
                                         className="nav-link btn btn-light"
                                     >
                                         Task History
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink
+                                        to="/tasks/create"
+                                        className="nav-link btn btn-light"
+                                    >
+                                        Create Task
                                     </NavLink>
                                 </li>
                             </>
