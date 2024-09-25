@@ -60,7 +60,7 @@ export default function SignInForm() {
                 <p>
                     So, whether you're juggling work projects, personal goals,
                     or that ever-growing to-do list, Task Me Anything is here to
-                    help you stay on top of it all with a smile
+                    help you stay on top of it all with a smile!
                 </p>
             </div>
             <div className="card-form">

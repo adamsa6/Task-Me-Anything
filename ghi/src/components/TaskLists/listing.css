@@ -70,3 +70,27 @@ th {
 .task-row td {
     padding: 20px;
 }
+
+.filter {
+    color: #024950;
+    font-size: 25px;
+}
+
+.filter p {
+    margin-top: 10px;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.filter-select {
+    padding: 10px;
+    height: 50px;
+    font-size: 18px;
+    border: 1px solid #024950;
+    border-radius: 5px;
+    margin: 5px;
+}
